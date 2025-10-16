@@ -1,50 +1,45 @@
 <?php
 // =======================================================
 // HEADER.PHP - Inicio de la estructura HTML y navegación
-// Se incluye al inicio de cada página PHP (ej: index.php).
 // =======================================================
 
-// 🚨 Verificación de Variables: 
-// Esto asegura que la página tiene un título y descripción si no se definen
-// en el archivo principal (como index.php) antes de incluir este header.
 $page_title = $page_title ?? "Quota Salud - Soluciones de Pago";
 $page_description = $page_description ?? "Accede a tratamientos médicos y odontológicos con facilidad de pago en cuotas sin intereses.";
 
-// Captura el estado ('exito' o 'error') del envío del formulario.
 $estado_formulario = $_GET['estado'] ?? null;
 ?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
+    <!-- Favicon -->
+    <link rel="icon" href="img/LOGO-ICON.png" type="image/png">
+
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="css/style.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title><?php echo $page_title; ?></title>
     <meta name="description" content="<?php echo $page_description; ?>">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
     <header>
         <div class="contenedor header-content">
-            <h1>Quota Salud</h1>
+            <a href="index.php" class="logo-link">
+                <img src="img/QUOTALOGO.png" alt="Quota Salud Logo" class="logo-animado">
+            </a>
+
             <nav>
-                <a href="#informacion-principal" class="nav-link">¿Qué es Quota?</a>
-                <a href="#formulario-captacion" class="nav-link cta-link">Contáctanos</a>
+                <a href="#informacion-principal" class="nav-link">¿Quienes somos?</a>
+                <a href="#informacion-principal" class="nav-link">Afiliate con nosotros</a>
+                <a href="#informacion-principal" class="nav-link">Pagar en Cuotas</a>
+                <a href="#formulario-captacion" class="nav-link2 cta-link">Contactanos</a>
             </nav>
         </div>
     </header>
-
-    <main class="contenedor">
-        <section id="mensajes-sistema">
-            <?php
-            if ($estado_formulario === 'exito') {
-                echo '<div class="alerta exito">¡Gracias! Tu solicitud ha sido enviada con éxito. Pronto te contactaremos.</div>';
-            } elseif ($estado_formulario === 'error') {
-                echo '<div class="alerta error">Hubo un problema al enviar tu solicitud. Por favor, inténtalo de nuevo.</div>';
-            }
-            ?>
-        </section>

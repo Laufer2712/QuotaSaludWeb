@@ -2,17 +2,18 @@
 /* PALETA DE COLORES */
 /* ======================================================= */
 :root {
-  --color-primary-dark: #171eda;
+  --color-primary-dark: #0059a5;
   --color-primary-light: #1729ad;
-  --color-accent-dark: #739e57;
+  --color-accent-dark: #406a27;
   --color-accent-light: #70b642;
-  --color-background: #f4f4f9;
+  --color-background: #eae8df;
   --color-text: #333;
+  --color-light-text: #666;
   --color-error: #ad1717;
 }
 
 /* ======================================================= */
-/* GENERAL Y ESTRUCTURA BASE */
+/* RESET / BASE */
 /* ======================================================= */
 * {
   box-sizing: border-box;
@@ -20,154 +21,543 @@
   padding: 0;
 }
 
+html,
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Montserrat", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-background);
-  padding-top: 60px; /* Espacio para el header fijo */
-}
-
-/* Contenedor centralizado y responsivo */
-.contenedor {
-  width: 90%; /* Ancho general para móviles */
-  max-width: 1200px; /* Ancho máximo para PC */
-  margin: 0 auto;
+  padding-top: 60px; /* espacio para header fijo */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: padding-top 0.3s ease;
 }
 
 /* ======================================================= */
-/* HEADER Y NAVEGACIÓN */
+/* HEADER Y NAVEGACIÓN (FIJO) */
 /* ======================================================= */
 header {
-  background-color: var(--color-primary-dark);
-  color: white;
-  padding: 15px 0;
+  background: #ffffff;
+  padding: 8px 0;
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  font-family: "Poppins", sans-serif;
 }
 
 .header-content {
+  max-width: 1100px; /* ancho contenido menos ancho que full screen */
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
 }
 
+/* Logo o título */
 header h1 {
-  font-size: 1.5em; /* Tamaño por defecto para móvil */
+  font-size: 1.6rem;
+  color: #08314a;
+  font-weight: 700;
+  letter-spacing: 0.2px;
 }
 
+/* Navegación */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* espacio amplio entre links */
+}
+
+/* Links de navegación */
 .nav-link {
-  color: white;
+  color: #08314a;
   text-decoration: none;
-  margin-left: 15px;
-  padding: 5px 10px;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+  position: relative;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-left: 20px;
+  padding: 6px 0;
+  transition: color 0.3s;
+}
+.nav-link2 {
+  text-decoration: none;
+  position: relative;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-left: 20px;
+  padding: 6px 0;
+  transition: color 0.3s;
+}
+/* Efecto de subrayado animado */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background-color: #1729ad;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 .nav-link:hover {
-  background-color: var(--color-primary-light);
+  color: #1729ad;
 }
 
+/* CTA destacado */
 .cta-link {
-  /* Botón de llamado a la acción en el nav */
-  background-color: var(--color-accent-light);
-  font-weight: bold;
+  background-color: var(--color-accent-light, #2c6e9b);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(16, 100, 45, 0.08);
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .cta-link:hover {
-  background-color: var(--color-accent-dark);
+  background-color: var(--color-accent-dark, #1f4d6e);
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVE HEADER */
+@media (max-width: 1024px) {
+  .header-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* menos gap en tablet */
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+  }
+
+  .cta-link {
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px; /* links verticales en móvil */
+  }
+
+  .nav-link,
+  .cta-link {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* ======================================================= */
-/* SECCIONES Y CONTENIDO */
+/* LOGO ANIMADO */
 /* ======================================================= */
-main {
-  padding-top: 20px;
+.logo-link {
+  display: inline-block;
+  line-height: 0;
+}
+.logo-animado {
+  height: 40px;
+  width: auto;
+  transition: transform 0.28s ease;
+  display: block;
+  animation: fadeInDown 0.7s ease both;
+}
+.logo-animado:hover {
+  transform: scale(1.05);
 }
 
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======================================================= */
+/* CONTENEDOR BASE */
+/* ======================================================= */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* ======================================================= */
+/* SECCIONES (RESPONSIVE) */
+/* ======================================================= */
 section {
-  background-color: white;
-  padding: 30px;
-  margin-bottom: 25px;
-  border-radius: 8px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-}
-
-section h2 {
-  color: var(--color-primary-light);
-  border-bottom: 2px solid var(--color-accent-light);
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-}
-
-/* ======================================================= */
-/* ESTADO DEL SISTEMA Y ALERTAS */
-/* ======================================================= */
-.alerta {
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  font-weight: bold;
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  font-size: 1.1em;
+  padding: 60px 20px;
+  box-sizing: border-box;
+  scroll-margin-top: 76px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.exito {
-  background-color: var(--color-accent-light);
-  color: white;
+#informacion-principal {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.82),
+      rgba(255, 255, 255, 0.82)
+    ),
+    url("img/FONDO.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+#informacion-principal .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.error {
-  background-color: var(--color-error);
-  color: white;
+#formulario-captacion {
+  background: linear-gradient(180deg, #ffffff 0%, #f6faf6 100%);
 }
 
 /* ======================================================= */
-/* FORMULARIO */
+/* TITULOS Y TEXTOS */
 /* ======================================================= */
-#formulario-captacion form {
-  display: grid;
+.section-title {
+  margin-bottom: 28px;
+  width: 100%;
+}
+.section-title h2 {
+  font-size: clamp(2.8rem, 6vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  font-weight: 900;
+  background-image: linear-gradient(
+    to right,
+    var(--color-primary-dark),
+    var(--color-primary-light),
+    var(--color-accent-light),
+    var(--color-primary-light),
+    var(--color-primary-dark)
+  );
+  background-size: 300% 100%;
+  animation: gradient-animation 6s ease-in-out infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.section-title p {
+  font-size: 1.2rem;
+  color: var(--color-light-text);
+  margin: 15px auto 0;
+  max-width: 800px;
+}
+@keyframes gradient-animation {
+  0% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+/* ======================================================= */
+/* HERO (USANDO IMAGEN DENTRO DE HTML Y FLEXBOX) */
+/* ======================================================= */
+#hero {
+  position: relative;
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  align-items: center; /* Centra el contenido verticalmente */
+
+  /* MODIFICACIÓN: Imagen de fondo como respaldo/alternativa */
+  background-image: url(../img/Q1_1-1.png);
+  background-color: #e3f7d3;
+
+  /* MODIFICACIONES CLAVE: Aseguran que la imagen no se repita y cubra el contenedor */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  overflow: hidden;
+  color: #fff; /* Color del texto por defecto es blanco */
+}
+
+/* Contenedor Flexbox Principal (Texto a la izquierda, Imagen a la derecha) */
+.container-hero {
+  width: 100%;
+  max-width: 1400px; /* Ancho máximo del contenedor de contenido */
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: row; /* Coloca el texto y la imagen uno al lado del otro */
+  align-items: center;
+  z-index: 2; /* Sobre el overlay */
+}
+
+/* OVERLAY DEGRADADO PARA TEXTO (Afecta solo al lado izquierdo) */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(23, 30, 218, 0.85) 0%,
+    /* azul oscuro con opacidad */ rgba(23, 41, 173, 0.6) 40%,
+    /* azul medio con menos opacidad */ rgba(115, 158, 87, 0.4) 60%,
+    /* verde medio más transparente */ rgba(112, 182, 66, 0) 100%
+      /* verde claro totalmente transparente */
+  );
+  z-index: 1;
+}
+
+/* TEXTO HERO (Mitad izquierda) */
+.hero-texto {
+  flex: 1; /* Ocupa el 50% del espacio horizontal */
+  max-width: 80%; /* Limita el ancho del texto */
+  padding: 0 4rem 0 8%; /* Espacio interno, 8% del borde izquierdo */
+  text-align: justify;
+  z-index: 2;
+  margin-right: 35%;
+  position: relative;
+  color: #fff; /* Asegura color blanco para el texto */
+}
+
+.hero-texto h2 {
+  font-size: clamp(2rem, 4vw, 2rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-texto p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* BOTONES */
+.hero-botones {
+  display: flex;
+  flex-wrap: wrap;
   gap: 15px;
 }
 
-#formulario-captacion label {
-  font-weight: 600;
-  color: var(--color-primary-dark);
+.hero-botones a {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-#formulario-captacion input,
-#formulario-captacion textarea {
+.cta-link {
+  background-color: var(--color-accent-light, #2c6e9b);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cta-link:hover {
+  background-color: var(--color-accent-dark, #1f4d6e);
+  transform: translateY(-2px);
+}
+
+.cta-secondary {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.cta-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ======================================================= */
+/* RESPONSIVE (Móvil y Tablet) */
+/* ======================================================= */
+@media (max-width: 1024px) {
+  #hero {
+    /* Altura mínima ajustada para móvil */
+    min-height: 60vh;
+  }
+
+  .container-hero {
+    flex-direction: column; /* Apila el contenido (texto y luego imagen) */
+    padding: 40px 20px;
+  }
+
+  .hero-texto,
+  .hero-image {
+    flex: auto; /* Permite que ocupen el espacio automáticamente */
+    max-width: 100%; /* Ocupan todo el ancho disponible */
+    padding: 0;
+    text-align: center;
+  }
+
+  .hero-image {
+    /* Coloca la imagen arriba del texto en móvil */
+    order: 1;
+    margin-bottom: 20px;
+  }
+
+  .hero-texto {
+    /* Coloca el texto debajo de la imagen en móvil */
+    order: 2;
+  }
+
+  /* En móvil, el overlay es un color sólido que cubre todo para legibilidad */
+  .hero-overlay {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .hero-texto h2 {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+
+  .hero-botones {
+    justify-content: center;
+    flex-direction: column; /* Apila los botones si no hay espacio */
+    gap: 10px;
+  }
+
+  .hero-botones a {
+    margin: 0;
+  }
+}
+
+/* ======================================================= */
+/* FEATURE GRID */
+/* ======================================================= */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  text-align: left;
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1em;
+}
+.feature-card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 5px solid var(--color-primary-light);
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+.feature-card h3 {
+  color: var(--color-primary-dark);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+.feature-card p {
+  font-size: 1rem;
+  color: var(--color-text);
+  margin: 0;
+  max-width: none;
 }
 
+/* ======================================================= */
+/* FORMULARIO CAPTACION */
+/* ======================================================= */
+#formulario-captacion form {
+  display: grid;
+  gap: 14px;
+  width: 100%;
+  max-width: 720px;
+  margin-top: 12px;
+  box-sizing: border-box;
+  align-items: start;
+}
+#formulario-captacion label {
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  text-align: left;
+  display: block;
+  font-size: 0.95rem;
+}
+#formulario-captacion input,
+#formulario-captacion textarea,
+#formulario-captacion select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  font-size: 0.98rem;
+  background-color: white;
+  transition: border-color 0.15s, box-shadow 0.12s;
+}
+#formulario-captacion input:focus,
+#formulario-captacion textarea:focus,
+#formulario-captacion select:focus {
+  outline: none;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 6px 18px rgba(23, 41, 173, 0.06);
+}
 #formulario-captacion textarea {
-  min-height: 120px;
+  min-height: 140px;
   resize: vertical;
 }
-
-/* Botón principal de CTA */
 #formulario-captacion button[type="submit"] {
   background-color: var(--color-accent-light);
-  color: white;
-  padding: 15px 25px;
+  color: #07311e;
+  padding: 14px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 1.2em;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.1s;
+  font-size: 1.05rem;
+  font-weight: 800;
+  transition: background-color 0.22s ease, transform 0.08s ease;
+  box-shadow: 0 6px 18px rgba(16, 100, 45, 0.08);
 }
-
 #formulario-captacion button[type="submit"]:hover {
   background-color: var(--color-accent-dark);
+  transform: translateY(-2px);
 }
 
 /* ======================================================= */
@@ -175,88 +565,199 @@ section h2 {
 /* ======================================================= */
 footer {
   text-align: center;
-  padding: 20px 0;
-  background-color: #eee;
+  padding: 26px 12px;
+  background-color: #f3f3f3;
   color: var(--color-text);
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #e6e6e6;
   margin-top: 30px;
 }
-
 .footer-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
-
 .legal-links a {
   color: var(--color-text);
-  margin: 0 10px;
+  margin: 0 8px;
   text-decoration: none;
+  font-size: 0.95rem;
 }
 
 /* ======================================================= */
-/* MEDIA QUERIES (Responsividad) */
+/* ACCESIBILIDAD Y AJUSTES FINOS */
 /* ======================================================= */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 3px solid rgba(23, 41, 173, 0.12);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
 
-/* 1. TABLET (Ancho entre 601px y 1024px) */
-@media (min-width: 601px) and (max-width: 1024px) {
-  header h1 {
-    font-size: 1.8em;
+/* ======================================================= */
+/* MEDIA QUERIES (MÓVIL / TABLET / PC) */
+/* ======================================================= */
+@media (max-width: 600px) {
+  body {
+    padding-top: 64px;
   }
   .header-content {
-    flex-direction: row;
-    justify-content: space-around;
-    gap: 0;
+    padding: 8px 12px;
+    gap: 10px;
   }
-  .nav-link {
-    margin-left: 10px;
+  header h1 {
+    font-size: 1.25rem;
   }
+  .nav {
+    gap: 6px;
+  }
+  .logo-animado {
+    height: 34px;
+  }
+  section {
+    padding: 36px 14px;
+    min-height: auto;
+  }
+  section h2 {
+    font-size: clamp(1.4rem, 6vw, 1.9rem);
+  }
+  section p {
+    font-size: 0.98rem;
+  }
+  #hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 70vh;
+    margin-top: -60px;
+    background: url("img/FONDO.png") center/cover no-repeat;
+  }
+  #hero::before,
+  #hero::after {
+    width: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 1;
+    opacity: 1;
+  }
+  .hero-texto {
+    text-align: center;
+    padding: 30px 20px;
+    z-index: 2;
+  }
+  .hero-texto > div {
+    justify-content: center;
+  }
+  .hero-texto h2 {
+    font-size: 2rem;
+  }
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+  #formulario-captacion form {
+    max-width: 100%;
+    gap: 12px;
+  }
+  #formulario-captacion button[type="submit"] {
+    font-size: 1rem;
+    padding: 12px;
+    border-radius: 8px;
+  }
+  .footer-content {
+    gap: 8px;
+    padding: 8px 12px;
+  }
+}
 
+@media (min-width: 601px) and (max-width: 1024px) {
+  .header-content {
+    padding: 10px 20px;
+  }
+  header h1 {
+    font-size: 1.6rem;
+  }
+  .logo-animado {
+    height: 42px;
+  }
+  #hero {
+    grid-template-columns: 60% 40%;
+  }
+  #hero::before {
+    width: 60%;
+  }
+  #hero::after {
+    left: 60%;
+    width: 40%;
+  }
+  .hero-texto {
+    padding: 30px 40px;
+    gap: 15px;
+  }
+  .hero-texto h2 {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+  }
+  section {
+    padding: 72px 32px;
+    min-height: 70vh;
+  }
+  section h2 {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  }
+  section p {
+    font-size: 1.02rem;
+    max-width: 760px;
+  }
+  .feature-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  #formulario-captacion form {
+    max-width: 640px;
+  }
   .footer-content {
     flex-direction: row;
     justify-content: space-between;
+    gap: 12px;
   }
 }
 
-/* 2. PC (Ancho mayor a 1024px) */
 @media (min-width: 1025px) {
+  .header-content {
+    padding: 12px 24px;
+  }
   header h1 {
-    font-size: 2em;
+    font-size: 2rem;
+  }
+  .logo-animado {
+    height: 50px;
   }
   section {
-    padding: 40px 60px;
+    padding: 100px 80px;
+    min-height: 75vh;
   }
-  /* Podrías usar un layout de dos columnas para el formulario en PC */
   #formulario-captacion form {
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 18px;
+    max-width: 900px;
   }
-  #formulario-captacion label:nth-child(7), /* Label para textarea */
-    #formulario-captacion textarea,         /* Textarea */
-    #formulario-captacion button[type="submit"] {
-    /* Botón */
-    grid-column: 1 / span 2; /* Ocupan ambas columnas */
-  }
-}
-
-/* 3. MÓVIL (Ancho hasta 600px - Ya cubierto por el diseño base) */
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 1.4em;
-  }
-  .header-content {
-    flex-direction: column; /* Apila el título y la nav */
-    text-align: center;
-  }
-  .nav-link {
-    display: block;
-    margin: 5px 0;
-  }
-  section {
-    padding: 20px;
-  }
+  #formulario-captacion textarea,
   #formulario-captacion button[type="submit"] {
-    font-size: 1.1em;
+    grid-column: 1 / -1;
+  }
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 }

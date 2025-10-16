@@ -52,3 +52,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 5000); // 5 segundos
     }
 });
+
+// Mostrar secciones con animación al hacer scroll
+document.addEventListener('DOMContentLoaded', () => {
+    const secciones = document.querySelectorAll('section');
+
+    const observer = new IntersectionObserver((entradas, observer) => {
+        entradas.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('section-visible');
+                observer.unobserve(entry.target); // una vez visible, dejar de observar
+            }
+        });
+    }, { threshold: 0.1 });
+
+    secciones.forEach(section => observer.observe(section));
+});
