@@ -1,0 +1,262 @@
+/* ======================================================= */
+/* PALETA DE COLORES */
+/* ======================================================= */
+:root {
+  --color-primary-dark: #171eda;
+  --color-primary-light: #1729ad;
+  --color-accent-dark: #739e57;
+  --color-accent-light: #70b642;
+  --color-background: #f4f4f9;
+  --color-text: #333;
+  --color-error: #ad1717;
+}
+
+/* ======================================================= */
+/* GENERAL Y ESTRUCTURA BASE */
+/* ======================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  padding-top: 60px; /* Espacio para el header fijo */
+}
+
+/* Contenedor centralizado y responsivo */
+.contenedor {
+  width: 90%; /* Ancho general para móviles */
+  max-width: 1200px; /* Ancho máximo para PC */
+  margin: 0 auto;
+}
+
+/* ======================================================= */
+/* HEADER Y NAVEGACIÓN */
+/* ======================================================= */
+header {
+  background-color: var(--color-primary-dark);
+  color: white;
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 1.5em; /* Tamaño por defecto para móvil */
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+  background-color: var(--color-primary-light);
+}
+
+.cta-link {
+  /* Botón de llamado a la acción en el nav */
+  background-color: var(--color-accent-light);
+  font-weight: bold;
+}
+
+.cta-link:hover {
+  background-color: var(--color-accent-dark);
+}
+
+/* ======================================================= */
+/* SECCIONES Y CONTENIDO */
+/* ======================================================= */
+main {
+  padding-top: 20px;
+}
+
+section {
+  background-color: white;
+  padding: 30px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+  color: var(--color-primary-light);
+  border-bottom: 2px solid var(--color-accent-light);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* ======================================================= */
+/* ESTADO DEL SISTEMA Y ALERTAS */
+/* ======================================================= */
+.alerta {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.exito {
+  background-color: var(--color-accent-light);
+  color: white;
+}
+
+.error {
+  background-color: var(--color-error);
+  color: white;
+}
+
+/* ======================================================= */
+/* FORMULARIO */
+/* ======================================================= */
+#formulario-captacion form {
+  display: grid;
+  gap: 15px;
+}
+
+#formulario-captacion label {
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+#formulario-captacion input,
+#formulario-captacion textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+#formulario-captacion textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Botón principal de CTA */
+#formulario-captacion button[type="submit"] {
+  background-color: var(--color-accent-light);
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.1s;
+}
+
+#formulario-captacion button[type="submit"]:hover {
+  background-color: var(--color-accent-dark);
+}
+
+/* ======================================================= */
+/* FOOTER */
+/* ======================================================= */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #eee;
+  color: var(--color-text);
+  border-top: 1px solid #ddd;
+  margin-top: 30px;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.legal-links a {
+  color: var(--color-text);
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+/* ======================================================= */
+/* MEDIA QUERIES (Responsividad) */
+/* ======================================================= */
+
+/* 1. TABLET (Ancho entre 601px y 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  header h1 {
+    font-size: 1.8em;
+  }
+  .header-content {
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0;
+  }
+  .nav-link {
+    margin-left: 10px;
+  }
+
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* 2. PC (Ancho mayor a 1024px) */
+@media (min-width: 1025px) {
+  header h1 {
+    font-size: 2em;
+  }
+  section {
+    padding: 40px 60px;
+  }
+  /* Podrías usar un layout de dos columnas para el formulario en PC */
+  #formulario-captacion form {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  #formulario-captacion label:nth-child(7), /* Label para textarea */
+    #formulario-captacion textarea,         /* Textarea */
+    #formulario-captacion button[type="submit"] {
+    /* Botón */
+    grid-column: 1 / span 2; /* Ocupan ambas columnas */
+  }
+}
+
+/* 3. MÓVIL (Ancho hasta 600px - Ya cubierto por el diseño base) */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.4em;
+  }
+  .header-content {
+    flex-direction: column; /* Apila el título y la nav */
+    text-align: center;
+  }
+  .nav-link {
+    display: block;
+    margin: 5px 0;
+  }
+  section {
+    padding: 20px;
+  }
+  #formulario-captacion button[type="submit"] {
+    font-size: 1.1em;
+  }
+}
