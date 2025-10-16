@@ -3,7 +3,7 @@
 // INDEX.PHP - LANDING PAGE DE DESARROLLO (QUOTA SALUD)
 // Este archivo sirve como el Front-Controller de la landing.
 // =======================================================
-
+//Laura esta aqui
 // 1. Definición de Variables de Contexto
 // Útil para cambiar títulos o descripciones rápidamente.
 $page_title = "Quota Salud - Tu Acceso a Tratamientos Médicos";
