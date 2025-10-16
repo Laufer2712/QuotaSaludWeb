@@ -1,4 +1,5 @@
 <?php
+//
 // =======================================================
 // INDEX.PHP - LANDING PAGE DE DESARROLLO (QUOTA SALUD)
 // Este archivo sirve como el Front-Controller de la landing.
