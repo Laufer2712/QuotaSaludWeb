@@ -11,7 +11,7 @@ $page_description = "Accede a tratamientos médicos y odontológicos con facilid
 require_once 'includes/header.php';
 ?>
 
-<link rel="stylesheet" href="css/style.css">
+
 <!-- ================= HERO SECTION ================= -->
 <section id="hero">
     <div class="hero-overlay"></div>
@@ -100,7 +100,7 @@ require_once 'includes/header.php';
         </div>
 
         <!-- CONTENIDO DE PESTAÑAS -->
-        <div class="tab-content active">
+        <div id="mision" class="tab-content active">
             <ul>
                 <li><span class="bullet"></span><strong>Democratizar el acceso a la salud:</strong> Eliminamos las barreras económicas, conectando a cada persona con la atención médica y odontológica que necesita.</li>
                 <li><span class="bullet"></span><strong>Cuotas cómodas y seguras:</strong> Organiza tus tratamientos sin sorpresas, garantizando equidad en el acceso al bienestar.</li>

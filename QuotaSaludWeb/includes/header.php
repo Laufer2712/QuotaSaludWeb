@@ -17,9 +17,8 @@ $estado_formulario = $_GET['estado'] ?? null;
     <link rel="icon" href="img/LOGO-ICON.png" type="image/png">
 
     <!-- CSS Principal -->
-    <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/aliados.css">
+    <link rel="stylesheet" href="css/header-footer.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -29,7 +28,8 @@ $estado_formulario = $_GET['estado'] ?? null;
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body id="top">
+
 
     <header>
         <div class="contenedor header-content">
