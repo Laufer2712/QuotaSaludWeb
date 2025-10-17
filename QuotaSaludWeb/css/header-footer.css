@@ -4,7 +4,18 @@
 
 /* HEADER */
 header {
-  background: #ffffff;
+  /* 1. Imagen de Fondo: Reemplaza 'ruta/a/tu/imagen.jpg' con la ubicación real de tu archivo. */
+  background-image: url("img/fondoHeader.png");
+
+  /* 2. Propiedades de Control de la Imagen */
+  background-size: cover; /* CLAVE: Asegura que la imagen cubra todo el header sin distorsionarse. */
+  background-position: center center; /* Centra la imagen horizontal y verticalmente. */
+  background-repeat: no-repeat; /* Evita que la imagen se repita si el header es grande. */
+
+  /* Puedes añadir un color de respaldo si la imagen falla en cargar (fallback) */
+  background-color: #f8f8f8;
+
+  /* Propiedades que ya tenías */
   padding: 8px 0;
   position: fixed;
   top: 0;

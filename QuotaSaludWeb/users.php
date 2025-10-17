@@ -96,7 +96,7 @@ require_once 'includes/header.php';
 
 <!-- ================= SCRIPTS ================= -->
 <script src="js/script.js"></script>
-<script src="js/aliados.js"></script>
+<script src="js/users.js"></script>
 <?php
 require_once 'includes/footer.php';
 ?>
