@@ -131,6 +131,9 @@ require_once 'includes/header.php';
 
 <!-- ================= SCRIPTS ================= -->
 <script src="js/script.js"></script>
+<?php
+include 'includes/floating.php';
+?>
 
 <?php
 require_once 'includes/footer.php';

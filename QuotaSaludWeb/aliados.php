@@ -38,8 +38,8 @@ require_once 'includes/header.php';
 <section id="pilares-section" class="is-hidden">
     <div class="container">
         <div class="section-title">
-            <h2>Impulsando tu Bienestar: <br>Nuestros Compromisos</h2>
-            <p>Nuestra misión se sostiene sobre pilares fundamentales para garantizar tu salud y tranquilidad.</p>
+            <h2>Haciendo posible que más paciente <br>pacientes terminen su tratamiento.</h2>
+            <p>8 de cada 10 pacientes abandonan un tratamiento por o poder pagarlo completo.</p>
         </div>
 
         <div class="feature-grid">
