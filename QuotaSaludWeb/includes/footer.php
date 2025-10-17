@@ -11,10 +11,10 @@
                 <p class="copyright">© 2024 Quota Salud. Todos los Derechos Reservados.</p>
 
                 <div class="social-icons">
-                    <a href="URL_INSTAGRAM" target="_blank" aria-label="Síguenos en Instagram">
+                    <a href="https://www.instagram.com/quotasalud" target="_blank" aria-label="Síguenos en Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="URL_FACEBOOK" target="_blank" aria-label="Síguenos en Facebook">
+                    <a href="https://www.facebook.com/share/17DxSeLZmN/" target="_blank" aria-label="Síguenos en Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                 </div>

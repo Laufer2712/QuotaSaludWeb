@@ -11,6 +11,7 @@ $page_description = "Accede a tratamientos médicos y odontológicos con facilid
 require_once 'includes/header.php';
 ?>
 
+<link rel="stylesheet" href="css/style.css">
 <!-- ================= HERO SECTION ================= -->
 <section id="hero">
     <div class="hero-overlay"></div>
@@ -76,7 +77,7 @@ require_once 'includes/header.php';
         </div>
         <!-- Botón para mostrar/ocultar CTA -->
         <div class="toggle-container" style="text-align:center; margin-top:30px;">
-            <button class="show-section-btn arrow-btn"
+            <button class="show-section-btn "
                 data-target="#ver-mas-section"
                 data-show-text="Quiero conocer más"
                 data-hide-text="Ocultar">
