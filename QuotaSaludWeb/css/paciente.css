@@ -1,0 +1,448 @@
+/* ======================================================= */
+/* PALETA DE COLORES */
+/* ======================================================= */
+:root {
+  --color-primary-dark: #0059a5;
+  --color-primary-light: #1729ad;
+  --color-accent-dark: #406a27;
+  --color-accent-light: #70b642;
+  --color-background: #eae8df;
+  --color-text: #333;
+  --color-light-text: #666;
+  --color-error: #ad1717;
+}
+
+/* ======================================================= */
+/* RESET / BASE */
+/* ======================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Montserrat", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: padding-top 0.3s ease;
+}
+
+/* ======================================================= */
+/* CONTENEDOR BASE */
+/* ======================================================= */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* ======================================================= */
+/* SECCIONES (RESPONSIVE) */
+/* ======================================================= */
+section {
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 20px;
+  box-sizing: border-box;
+  scroll-margin-top: 76px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#informacion-principal {
+  background-image: url("../img/fondo.jpg");
+
+  background-size: cover;
+  /* Ancla la imagen a la parte superior, permitiendo que la parte inferior se recorte si el contenedor no es lo suficientemente alto */
+  background-position: center top;
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+
+  /* Puedes reducir esta altura si quieres que el "corte" sea más evidente */
+  min-height: 100vh; /* Por ejemplo, una altura menor para que se recorte más la parte inferior */
+  padding: 60px 20px;
+}
+
+#informacion-principal .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+#formulario-captacion {
+  background: linear-gradient(180deg, #ffffff 0%, #f6faf6 100%);
+}
+
+/* ======================================================= */
+/* TITULOS Y TEXTOS */
+/* ======================================================= */
+.section-title {
+  margin-bottom: 28px;
+  width: 100%;
+}
+.section-title h2 {
+  font-size: clamp(2.8rem, 6vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  font-weight: 900;
+  background-image: linear-gradient(
+    to right,
+    var(--color-primary-dark),
+    var(--color-primary-light),
+    var(--color-accent-light),
+    var(--color-primary-light),
+    var(--color-primary-dark)
+  );
+  background-size: 300% 100%;
+  animation: gradient-animation 6s ease-in-out infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.section-title p {
+  justify-content: justify;  
+  font-size: 1.2rem;
+  color: var(--color-light-text);
+  margin: 15px auto 0;
+  max-width: 130vh;
+}
+@keyframes gradient-animation {
+  0% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+/* ======================================================= */
+/* HERO - MODIFICADO A ESTRUCTURA DE DOS COLUMNAS */
+/* ======================================================= */
+#hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex; /* CAMBIO CLAVE: Contenedor Flex para las dos columnas */
+    flex-direction: row; /* Coloca los ítems uno al lado del otro */
+    align-items: stretch; /* Estira ambas columnas a la altura completa */
+    background-color: #e3f7d3; /* Color de fondo base (por si acaso) */
+    overflow: hidden;
+    color: #fff;
+    padding: 0; /* Eliminamos el padding de la sección general */
+}
+
+.container-hero {
+    /* Eliminamos este contenedor o lo reusamos como contenedor del texto */
+    /* Lo reusaremos para envolver el texto de la columna derecha */
+    width: 100%;
+    max-width: 100%; /* No queremos limitar el ancho aquí */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center; /* Centrado vertical del contenido dentro de la columna */
+    z-index: 2;
+}
+
+/* Columna de la IMAGEN (Izquierda) */
+.hero-imagen {
+    flex: 1; /* Ocupa el 50% */
+    background-image: url(../assets/Q4_4.png);
+    background-size: cover;
+    background-position: center center;
+    min-height: 100vh; /* Asegura que mantenga la altura */
+    width: 50%;
+    display: none; /* Ocultar por defecto en móvil para enfocar en el texto */
+}
+
+/* Columna del TEXTO (Derecha) */
+.hero-texto-columna {
+    flex: 1; /* Ocupa el 50% */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido de texto verticalmente */
+    align-items: flex-start;
+    min-height: 100vh; /* Asegura que mantenga la altura */
+    width: 50%;
+    z-index: 3;
+    /* Fondo azul (tomado del overlay anterior o primary-light) */
+    background-color: var(--color-primary-light); 
+}
+
+/* Ajuste del texto dentro de la columna derecha */
+.hero-texto {
+    /* Limpiamos estilos de la versión anterior */
+    max-width: 100%;
+    padding: 5% 8%; /* Ajuste de padding para dejar espacio */
+    text-align: left; /* Alineamos el texto a la izquierda */
+    margin-right: 0; /* Eliminamos el margen que empujaba la imagen */
+    color: #fff;
+}
+
+.hero-texto h2 {
+    /* Mantener estilos de tamaño, pero eliminar estilos inline */
+    font-size: clamp(2.2rem, 4vw, 3rem); /* Aumentamos el tamaño para la columna */
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: #fff !important; /* Asegurar que el color sea blanco */
+}
+
+/* El cintillo se mantiene en la parte inferior de la sección #hero */
+.cintillo-container {
+    /* Ajuste el cintillo para que abarque todo el ancho de la sección de dos columnas */
+    width: 100%; 
+    height: 3%;
+    
+}
+
+/* Media Query para responsividad (móviles) */
+@media (min-width: 769px) {
+    .hero-imagen {
+        display: block; /* Muestra la imagen en escritorio */
+    }
+}
+@media (max-width: 768px) {
+    #hero {
+        flex-direction: column; /* Apila las columnas en móvil */
+        min-height: auto;
+    }
+    .hero-imagen, .hero-texto-columna {
+        width: 100%;
+        min-height: 70vh; /* Opcional: ajustar altura en móvil */
+    }
+    .hero-texto-columna {
+        min-height: auto;
+        padding: 50px 0;
+    }
+    .hero-texto {
+        padding: 30px 20px;
+        text-align: center; /* Centrar el texto en móvil */
+    }
+    .hero-botones {
+        justify-content: center; /* Centrar botones en móvil */
+    }
+}
+.cta-link {
+  background-color: var(--color-accent-light, #2c6e9b);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cta-link:hover {
+  background-color: var(--color-accent-dark, #1f4d6e);
+  transform: translateY(-2px);
+}
+
+.cta-secondary {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.cta-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ======================================================= */
+/* FEATURE GRID */
+/* ======================================================= */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  text-align: left;
+  width: 100%;
+}
+.feature-card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 5px solid var(--color-primary-light);
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+.feature-card h3 {
+  color: var(--color-primary-dark);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+.feature-card p {
+  font-size: 1rem;
+  color: var(--color-text);
+  margin: 0;
+  max-width: none;
+}
+
+/* ======================================================= */
+/* CINTILLO DE CONFIANZA (Estilo Fino y Desplazable) */
+/* ======================================================= */
+/* Contenedor principal del cintillo */
+.cintillo-container {
+  width: 100%;
+  /* Fondo verde por defecto */
+  background-color: var(--cintillo-bg, #82c954);
+  padding: 4px 0;
+  /* Oculta lo que se desplaza */
+  overflow: hidden;
+
+  /* POSICIONAMIENTO CLAVE */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  /* Evita saltos de línea y el margin-bottom es irrelevante por el bottom: 0 */
+  white-space: nowrap;
+  margin-bottom: 0;
+
+  /* Detalles estéticos */
+  box-shadow: 0 -1px 3px rgb(253, 253, 253);
+  border-top: 1px solid var(--cintillo-border-color, rgb(255, 255, 255));
+  border-bottom: none;
+}
+
+/* El contenedor que se desplaza (track) */
+.cintillo-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 50px; /* Espacio grande entre ítems principales */
+
+  /* APLICACIÓN DE LA ANIMACIÓN */
+  animation: scroll-cintillo var(--cintillo-animation-duration, 35s) linear
+    infinite;
+  will-change: transform;
+
+  /* Pausar animación al pasar el ratón (SASS/PostCSS sintaxis) */
+  /* Nota: Si no usa preprocesadores, cambie esto por: .cintillo-track:hover */
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* Ítems individuales de Confianza */
+.confidence-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  /* El texto SIEMPRE será blanco, ya sea por la variable o el fallback */
+  color: var(--cintillo-text-color, #ffffff);
+  font-weight: 600;
+  /* Tamaño de fuente responsivo */
+  font-size: clamp(0.8rem, 1.1vw, 0.9rem);
+  text-transform: uppercase;
+  letter-spacing: 0px;
+
+  /* Espaciado extra si no usa separador */
+  padding-right: 20px;
+}
+
+.confidence-icon {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+/* Separador vertical */
+.confidence-separator {
+  /* Mismo color blanco que el texto */
+  color: rgb(255, 255, 255);
+  font-weight: 300;
+  font-size: 1rem;
+  padding: 0 8px; /* Espaciado a los lados del separador */
+}
+
+/* -------------------- */
+/* ANIMACIÓN (¡INDISPENSABLE!) */
+/* -------------------- */
+@keyframes scroll-cintillo {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Mueve el contenido el 50% para el loop perfecto */
+    transform: translateX(-50%);
+  }
+}
+
+/* -------------------- */
+/* RESPONSIVE */
+/* -------------------- */
+@media (max-width: 768px) {
+  .cintillo-container {
+    padding: 4px 0;
+  }
+  .cintillo-track {
+    animation-duration: 40s; /* Más lento */
+    gap: 30px; /* Menos espacio */
+    /* Pausamos en móvil por defecto */
+    animation-play-state: paused;
+  }
+  .confidence-item {
+    font-size: 0.8rem;
+  }
+}
+
+/* ======================================================= */
+/* PERSONALIZACIÓN DEL SCROLLBAR (WEBKIT) */
+/* ======================================================= */
+
+/* 1. Define el ancho de la barra de desplazamiento */
+::-webkit-scrollbar {
+  /* Puedes ajustar el valor, 10px es común */
+  width: 10px;
+}
+
+/* 2. Estiliza el "track" (la pista o fondo por donde se mueve la barra) */
+::-webkit-scrollbar-track {
+  /* Usamos el color de fondo de la página para que se integre bien */
+  background: var(--color-background);
+  /* Le damos un borde redondeado sutil */
+  border-radius: 10px;
+}
+
+/* 3. Estiliza el "thumb" (el agarre que se desliza) */
+::-webkit-scrollbar-thumb {
+  /* Usamos un color de tu paleta, por ejemplo el primario oscuro */
+  background: var(--color-primary-dark);
+  /* Hacemos que la barra de agarre sea redondeada */
+  border-radius: 10px;
+}
+
+/* 4. Estiliza el thumb al pasar el ratón para un efecto visual */
+::-webkit-scrollbar-thumb:hover {
+  /* Un color un poco más claro o acentuado al pasar el ratón */
+  background: var(--color-primary-light);
+}

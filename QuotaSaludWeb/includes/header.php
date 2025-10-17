@@ -40,7 +40,7 @@ $estado_formulario = $_GET['estado'] ?? null;
             <nav>
                 <a href="index.php" class="nav-link">¿Quienes somos?</a>
                 <a href="aliados.php" class="nav-link">Afiliate con nosotros</a>
-                <a href="users.php" class="nav-link">Unete a nuestros planes</a>
+                <a href="paciente.php" class="nav-link">Unete a nuestros planes</a>
                 <a href="#formulario-captacion" class="nav-link2 cta-link">Contactanos</a>
             </nav>
         </div>
