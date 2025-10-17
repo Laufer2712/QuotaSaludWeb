@@ -75,60 +75,58 @@ require_once 'includes/header.php';
 
         </div>
         <!-- Botón para mostrar/ocultar CTA -->
-
-        <div style="text-align: center; margin-top: 30px;">
+        <div class="toggle-container" style="text-align:center; margin-top:30px;">
             <button class="show-section-btn arrow-btn"
-                data-target="#ver-mas-section" data-show-text="Quiero conocer mas" data-hide-text="Ocultar">
-
-                <span>Quiero conocer mas</span>
+                data-target="#ver-mas-section"
+                data-show-text="Quiero conocer más"
+                data-hide-text="Ocultar">
+                <span>Quiero conocer más</span>
                 <i class="arrow down"></i>
             </button>
         </div>
-    </div>
+
     </div>
 </section>
 
-
-<!-- ================= SECCIÓN Ver Mas (inicialmente oculta) ================= -->
+<!-- ================= SECCIÓN VER MÁS CON CARD ================= -->
 <section id="ver-mas-section">
-    <div class="container">
-        <div class="section-title">
-            <h2>Nuestra Esencia y Compromiso</h2>
-            <p>Conoce los pilares que nos definen y la dirección que guía nuestro servicio.</p>
+    <div id="tabs-section" class="card">
+        <!-- NAV DE PESTAÑAS -->
+        <div class="tabs-nav">
+            <button class="tab-button active" onclick="openTab(event, 'mision')">¿Qué Somos?</button>
+            <button class="tab-button" onclick="openTab(event, 'vision')">¿Qué Hacemos?</button>
+            <button class="tab-button" onclick="openTab(event, 'valores')">Nuestros valores</button>
         </div>
 
-        <section id="tabs-section">
-            <div class="tabs-nav">
-                <button class="tab-button active" onclick="openTab(event, 'mision')">Misión</button>
-                <button class="tab-button" onclick="openTab(event, 'vision')">Visión</button>
-                <button class="tab-button" onclick="openTab(event, 'valores')">Valores</button>
-            </div>
+        <!-- CONTENIDO DE PESTAÑAS -->
+        <div class="tab-content active">
+            <ul>
+                <li><span class="bullet"></span><strong>Democratizar el acceso a la salud:</strong> Eliminamos las barreras económicas, conectando a cada persona con la atención médica y odontológica que necesita.</li>
+                <li><span class="bullet"></span><strong>Cuotas cómodas y seguras:</strong> Organiza tus tratamientos sin sorpresas, garantizando equidad en el acceso al bienestar.</li>
+                <li><span class="bullet"></span><strong>Puente digital confiable:</strong> Te devolvemos la tranquilidad de poder cuidarte, con soporte y seguridad en cada paso.</li>
+            </ul>
+        </div>
 
-            <div class="tab-content active" id="mision">
-                <h3>Nuestra Misión</h3>
-                <p>Democratizamos el acceso a la salud eliminando barreras económicas y conectando a cada persona con la atención médica y odontológica que necesita a través de nuestra red aliada.</p>
-                <p>Facilitamos la organización del costo en cuotas cómodas y seguras, garantizando equidad y bienestar para todos.</p>
-            </div>
+        <div id="vision" class="tab-content">
+            <ul class="vision-list">
+                <li><span class="bullet"></span><strong>Ecosistema digital confiable:</strong> Aspiramos a ser el ecosistema digital de bienestar más querido y confiable de Venezuela.</li>
+                <li><span class="bullet"></span><strong>Planificación con certidumbre:</strong> Cada persona puede planificar su cuidado con total claridad y seguridad.</li>
+                <li><span class="bullet"></span><strong>Innovación y accesibilidad:</strong> Referente en innovación, humanidad y accesibilidad continua en el sector salud.</li>
+            </ul>
+        </div>
 
-            <div class="tab-content" id="vision">
-                <h3>Nuestra Visión</h3>
-                <p>Aspiramos a ser el ecosistema digital de bienestar más confiable y querido de Venezuela, reconocido por eliminar las barreras de acceso a la salud.</p>
-                <p>Queremos un futuro donde cada persona planifique su cuidado con certeza, y donde los centros de salud prosperen sin preocuparse por la gestión de cobros.</p>
-            </div>
-
-            <div class="tab-content" id="valores">
-                <h3>Nuestros Valores</h3>
-                <ul class="values-list">
-                    <li><strong>Humanidad y Empatía:</strong> La persona es el centro de todo.</li>
-                    <li><strong>Acceso Genuino:</strong> Simplificamos y abrimos el camino hacia el tratamiento.</li>
-                    <li><strong>Confianza y Claridad Digital:</strong> Transparencia absoluta y seguridad en cada paso.</li>
-                    <li><strong>Conexión y Red de Apoyo:</strong> Crecemos juntos, pacientes y aliados.</li>
-                    <li><strong>Innovación con Propósito:</strong> Tecnología útil, humana y constante.</li>
-                </ul>
-            </div>
-        </section>
+        <div id="valores" class="tab-content">
+            <ul class="valores-list">
+                <li><span class="bullet"></span><strong>Humanidad y Empatía:</strong> Ponemos a la persona en el centro de todas nuestras decisiones.</li>
+                <li><span class="bullet"></span><strong>Acceso Genuino:</strong> Facilitamos el camino hacia tu tratamiento sin obstáculos.</li>
+                <li><span class="bullet"></span><strong>Confianza y Claridad Digital:</strong> Transparencia total en pagos y gestión.</li>
+                <li><span class="bullet"></span><strong>Conexión y Red de Apoyo:</strong> Apoyo a pacientes y crecimiento para proveedores.</li>
+                <li><span class="bullet"></span><strong>Innovación con Propósito:</strong> Soluciones tecnológicas que hacen la gestión más fácil e intuitiva.</li>
+            </ul>
+        </div>
     </div>
 </section>
+
 
 <!-- ================= SCRIPTS ================= -->
 <script src="js/script.js"></script>

@@ -66,6 +66,7 @@ section {
   transform: translateY(40px);
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
+
 .section-visible {
   opacity: 1;
   transform: translateY(0);
@@ -160,6 +161,11 @@ section {
   background-position: center center;
   overflow: hidden;
   color: #fff;
+
+  display: flex;
+  justify-content: center; /* vertical */
+  align-items: center; /* horizontal */
+  min-height: 100vh;
 }
 
 .container-hero {
@@ -447,247 +453,256 @@ section {
   background: var(--color-primary-light);
 }
 
-/* --- Estilos Generales del Botón (Opcional, pero recomendado) --- */
-.show-section-btn {
-  /* Estilos base */
-  background-color: #007bff; /* Color de fondo azul */
-  color: white; /* Color del texto */
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-
-  /* Para centrar los elementos internos */
-  display: inline-flex;
-  align-items: center;
-  gap: 8px; /* Espacio entre el texto y la flecha */
-}
-
-/* --- Estilo Específico de la Flecha --- */
-.arrow {
-  border: solid white; /* Color de la flecha */
-  border-width: 0 3px 3px 0; /* Solo bordes derecho e inferior */
-  display: inline-block;
-  padding: 3px; /* Tamaño de la flecha */
-  transition: transform 0.3s ease; /* Transición suave al girar */
-}
-
-/* --- Dirección de la Flecha --- */
-.down {
-  transform: rotate(45deg); /* Flecha apuntando abajo */
-}
-
-.up {
-  transform: rotate(-135deg); /* Flecha apuntando arriba */
-}
-
-/* --- Estado de la Sección Activa (para cambiar la flecha) --- */
-/* Esta clase se añade al botón mediante JavaScript cuando se muestra la sección. */
-.show-section-btn.is-open .arrow {
-  transform: rotate(-135deg); /* Cambia a flecha arriba */
-}
-
-/* ========================================= */
-/* SECCIÓN "VER MÁS" */
-/* ========================================= */
+/* ================= SECCIÓN CON IMAGEN DE FONDO ================= */
 #ver-mas-section {
   background-image: url("../img/fondoLimpio.png");
   background-size: cover;
-  background-position: center top;
+  background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.08);
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 80px 20px;
-  min-height: auto;
-  display: none;
+  padding: 60px 20px;
+  display: none; /* oculto por defecto */
+  justify-content: center;
+  margin: 0;
+}
+
+#ver-mas-section.visible {
+  display: flex; /* se muestra al darle al botón */
+  animation: slideDown 0.4s ease-in-out;
+}
+
+/* El card ya no necesita display:none */
+#tabs-section {
+  max-width: 1000px;
+  width: 100%;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
   transition: all 0.4s ease;
 }
 
-/* Cuando se muestra */
-#ver-mas-section.visible {
+#tabs-section.visible {
   display: block;
-  animation: fadeInSection 0.7s ease-in-out;
+  animation: slideDown 0.5s ease forwards;
 }
-
-@keyframes fadeInSection {
-  from {
+@keyframes slideDown {
+  0% {
     opacity: 0;
-    transform: translateY(25px);
+    transform: translateY(-20px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* ======== CONTENEDOR GENERAL ======== */
-#ver-mas-section .container {
-  max-width: 1100px;
-  margin: 0 auto;
-  text-align: center;
+/* ================= VARIABLES CSS - PALETA OPTIMIZADA ================= */
+:root {
+  /* Azules */
+  --color-primary-dark: #171eda; /* Azul oscuro principal */
+  --color-primary-light: #1729ad; /* Azul secundario */
+
+  /* Verdes */
+  --color-secondary-dark: #539e3f;
+  --color-secondary-light: #70b642; /* Verde vibrante para acentos */
+
+  /* Textos y fondos */
+  --color-text-dark: #2c2c2c;
+  --color-text-light: #555;
+  --color-background-white: #fff;
+
+  /* Bordes y sombras */
+  --color-border-light: #e0e0e0;
+  --color-shadow-subtle: rgba(0, 0, 0, 0.05);
+
+  /* Bordes y transiciones */
+  --border-radius-lg: 12px;
+  --border-radius-sm: 8px;
+  --transition-speed: 0.3s;
 }
 
-/* ======== TÍTULO DE SECCIÓN ======== */
-.section-title {
-  margin-bottom: 50px;
-}
-
-.section-title h2 {
-  font-size: 2.2rem;
-  color: #007bff;
-  margin-bottom: 10px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-.section-title p {
-  color: #555;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-/* ========================================= */
-/* ESTILOS PARA LAS PESTAÑAS */
-/* ========================================= */
-#tabs-section {
-  max-width: 950px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  backdrop-filter: blur(6px);
-  transition: all 0.3s ease;
-}
-
-/* ======== NAV DE PESTAÑAS ======== */
+/* ================= NAV PESTAÑAS INTEGRADAS ================= */
 .tabs-nav {
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  background: #f4f7fb;
-  padding: 15px;
+  justify-content: flex-start;
+  gap: 0px;
+  background: var(--color-background-white);
+  border-bottom: 1px solid var(--color-border-light);
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+  padding: 0px 0px;
   flex-wrap: wrap;
-  border-bottom: 2px solid #e5e9f2;
 }
 
 .tab-button {
-  background: #fff;
-  border: 1px solid #dce3ef;
-  border-radius: 30px;
-  padding: 12px 30px;
+  flex: 0 1 auto;
+  text-align: center;
+  padding: 10px 22px;
+  margin-bottom: -1px;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
-  color: #555;
-  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--color-text-dark);
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  outline: none;
 }
 
 .tab-button:hover {
-  color: #007bff;
-  border-color: #007bff;
-  box-shadow: 0 3px 10px rgba(0, 123, 255, 0.15);
+  color: var(--color-primary-dark);
+  background: rgba(23, 30, 218, 0.08);
 }
 
+.tab-button:focus-visible {
+  color: var(--color-primary-dark);
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+/* ================= PESTAÑA ACTIVA ================= */
 .tab-button.active {
-  background: #007bff;
-  color: #fff;
-  border-color: #007bff;
-  box-shadow: 0 3px 15px rgba(0, 123, 255, 0.25);
+  color: var(--color-background-white);
+  font-weight: 600;
+  background: var(--color-secondary-light);
+  border-bottom: 1px solid var(--color-secondary-light);
+  z-index: 3;
+  box-shadow: 0 -2px 6px var(--color-shadow-subtle);
 }
 
-/* ======== CONTENIDO DE LAS PESTAÑAS ======== */
+/* ================= CONTENIDO PESTAÑAS ================= */
 .tab-content {
   display: none;
+  padding: 30px 30px;
+  background: var(--color-background-white);
+  border-top: 1px solid var(--color-border-light); /* cambiar de none a border-top */
+  border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+  box-shadow: none; /* quitar sombra extra */
+  margin-top: 0px; /* quitar margen negativo */
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(0); /* quitar el desplazamiento */
   text-align: left;
-  padding: 40px 50px;
-  animation: fadeIn 0.4s ease-in-out;
 }
 
 .tab-content.active {
   display: block;
+  opacity: 1;
+  transform: translateY(0);
+  border: 1px solid var(--color-border-light); /* borde uniforme */
+  border-top: none; /* opcional si quieres continuidad con nav */
+  box-shadow: none; /* nada de sombra que flote */
 }
 
-.tab-content h3 {
-  color: #007bff;
-  font-size: 1.7rem;
-  margin-bottom: 15px;
+/* ================= LISTAS INTERACTIVAS ================= */
+.tab-content ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0px;
+  color: var(--color-text-light);
+}
+
+.tab-content li {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 0px;
+  gap: 14px;
+  margin-bottom: 14px;
+  padding: 12px 15px;
+  line-height: 1.6;
+  border-radius: var(--border-radius-sm);
+  border-left: 5px solid transparent;
+  transition: all 0.25s ease;
+}
+
+.tab-content li:hover {
+  background: rgba(23, 30, 218, 0.06);
+  border-left: 5px solid var(--color-primary-dark);
+  transform: scale(1.01);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  cursor: default;
+}
+
+.tab-content li .bullet {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-secondary-light);
+}
+
+.tab-content li strong {
+  color: var(--color-primary-dark);
   font-weight: 700;
 }
 
-.tab-content p {
-  color: #444;
-  line-height: 1.8;
-  margin-bottom: 15px;
-  font-size: 1rem;
-}
-
-/* ======== LISTA DE VALORES ======== */
-.values-list {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 20px;
-}
-
-.values-list li {
-  margin-bottom: 12px;
-  line-height: 1.6;
-  position: relative;
-  padding-left: 25px;
-}
-
-.values-list li::before {
-  content: "✓";
-  color: #007bff;
-  font-weight: bold;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.values-list strong {
-  color: #007bff;
-}
-
-/* ======== ANIMACIÓN ======== */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ======== RESPONSIVE ======== */
+/* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-  #tabs-section {
-    border-radius: 14px;
-    padding: 0;
-  }
-
-  .tab-content {
-    padding: 25px;
+  .tabs-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 5px;
   }
 
   .tab-button {
     flex: 1 1 100%;
-    font-size: 15px;
+    margin-bottom: 5px;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: var(--border-radius-sm);
+  }
+
+  .tab-button.active {
+    border: 1px solid var(--color-secondary-light);
+    border-bottom: 1px solid var(--color-secondary-light);
+    box-shadow: none;
+  }
+
+  .tab-content {
+    padding: 0px;
+  }
+
+  .tab-content li {
     padding: 10px;
   }
+}
 
-  .section-title h2 {
-    font-size: 1.8rem;
+/* ================= BOTÓN TOGGLE ================= */
+.show-section-btn {
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #1730ad, #70b642);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+.show-section-btn:hover {
+  filter: brightness(1.1);
+}
+.show-section-btn.is-open {
+  background: linear-gradient(90deg, #70b642, #1730ad);
+}
+.show-section-btn .arrow {
+  transition: transform 0.3s ease;
+}
+.show-section-btn.is-open .arrow {
+  transform: rotate(180deg);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .tab-content {
+    padding: 0px 0px;
   }
-
-  .section-title p {
-    font-size: 1rem;
+  .tab-button {
+    font-size: 0.95rem;
+    padding: 14px 0;
   }
 }

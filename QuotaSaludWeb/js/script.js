@@ -70,52 +70,31 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// =======================================================
-// SCRIPT PARA BOTONES DESPLEGABLES (TOGGLE) MEJORADO Y CORREGIDO
-// =======================================================
+// ================= BOTÓN TOGGLE =================
 document.addEventListener('DOMContentLoaded', function () {
     const btn = document.querySelector('.show-section-btn');
-
-    // El script lee dinámicamente el nuevo data-target="#ver-mas-section"
     if (!btn) return;
 
     const target = document.querySelector(btn.dataset.target);
-
-    if (!target) return; // Asegura que la sección target exista
+    if (!target) return;
 
     const spanText = btn.querySelector('span');
 
     btn.addEventListener('click', function () {
-
-        // 1. Toggle la visibilidad de la sección (maneja #ver-mas-section.visible)
         target.classList.toggle('visible');
-
-        // 2. Toggle la clase 'is-open' en el botón (para el giro de la flecha)
         btn.classList.toggle('is-open');
 
-        // 3. Cambiar el texto
         const isVisible = target.classList.contains('visible');
-
-        if (isVisible) {
-            spanText.textContent = btn.dataset.hideText; // Ocultar
-        } else {
-            spanText.textContent = btn.dataset.showText; // Quiero conocer mas
-        }
+        spanText.textContent = isVisible ? btn.dataset.hideText : btn.dataset.showText;
     });
 });
 
-// =======================================================
-// FUNCIÓN PARA PESTAÑAS DINÁMICAS (TABS)
-// =======================================================
+// ================= PESTAÑAS DINÁMICAS =================
 function openTab(evt, tabName) {
-    const contents = document.querySelectorAll('.tab-content');
-    const buttons = document.querySelectorAll('.tab-button');
-
-    contents.forEach(c => c.classList.remove('active'));
-    buttons.forEach(b => b.classList.remove('active'));
-
-    document.getElementById(tabName).classList.add('active');
-    evt.currentTarget.classList.add('active');
+    const tabContents = document.querySelectorAll(".tab-content");
+    const tabButtons = document.querySelectorAll(".tab-button");
+    tabContents.forEach(tc => tc.classList.remove("active"));
+    tabButtons.forEach(tb => tb.classList.remove("active"));
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
 }
-// *** IMPORTANTE: Se elimina el bloque DOMContentLoaded de las pestañas ***
-// Ya no es necesario el click simulado, ya que el estado inicial está en el HTML.

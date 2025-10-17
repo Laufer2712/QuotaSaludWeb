@@ -197,27 +197,45 @@ footer {
   padding: 0 20px;
 }
 
-/* Enlaces legales (links) */
+/* ================= ENLACES LEGALES (LINKS) - ESTILO MEJORADO ================= */
+
 .legal-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px 25px; /* Espacio entre los enlaces */
+  gap: 10px; /* Reducimos el gap para un look más compacto y moderno */
 }
 
 .legal-links a {
-  color: #ffffff; /* Enlaces en blanco */
-  margin: 0;
+  /* Estilo base (Píldora Fantasma) */
+  display: block; /* Necesario para que el padding funcione */
+  padding: 5px 12px; /* Espacio interior para dar forma de píldora */
+  border: 1px solid rgba(255, 255, 255, 0.4); /* Borde blanco sutil */
+  border-radius: 20px; /* Bordes redondeados para la forma de píldora */
+
+  /* Estilo del texto */
+  color: #ffffff;
   text-decoration: none;
   font-size: 0.9rem;
-  font-weight: 400;
-  opacity: 0.85;
-  transition: opacity 0.3s;
+  font-weight: 500; /* Lo hacemos un poco más grueso para legibilidad */
+  opacity: 1; /* Mantenemos la opacidad en 1 para que el texto sea claro */
+
+  /* Transición suave para todos los cambios */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  margin: 0; /* Mantenemos el margen a cero */
 }
 
 .legal-links a:hover {
-  opacity: 1;
-  text-decoration: underline;
+  /* Efecto al pasar el ratón (Píldora Rellena) */
+  color: #ffffff; /* El texto permanece blanco */
+  background-color: #1729ad; /* CLAVE: Fondo azul oscuro rellenado */
+  border-color: #1729ad; /* El borde se funde con el fondo */
+  text-decoration: none; /* Quitamos la decoración de texto para un look más limpio */
+
+  /* Pequeña elevación al hacer hover para destacar */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilo para el texto de advertencia legal */
@@ -275,5 +293,145 @@ footer {
     flex-basis: 100%;
     text-align: center;
     margin: 25px auto 0;
+  }
+}
+
+/* ================= CSS AÑADIDO PARA ICONOS SOCIALES (Más Llamativo) ================= */
+
+.social-icons {
+  display: flex;
+  gap: 15px; /* Reducimos ligeramente el espacio para que el círculo se vea mejor */
+  align-items: center;
+}
+
+.social-icons a {
+  /* Estilo del contenedor circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 38px; /* Tamaño del círculo */
+  height: 38px; /* Tamaño del círculo */
+  border-radius: 50%; /* Convierte el div en un círculo */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.15
+  ); /* Fondo blanco semitransparente */
+
+  /* Estilo del icono (dentro del círculo) */
+  color: #ffffff;
+  font-size: 1.1rem; /* Icono más pequeño para caber en el círculo */
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  /* Opcional: Pequeña sombra sutil para "levantar" el icono */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.social-icons a:hover {
+  /* Efecto al pasar el ratón */
+  background-color: #1729ad; /* Fondo verde vibrante */
+  color: #ffffff; /* Texto oscuro para mayor contraste sobre el verde */
+  transform: translateY(-2px) scale(1.05); /* Ligeramente elevado y un poco más grande */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Sombra más fuerte */
+}
+
+/* ================= AJUSTE DE ESCRITORIO (min-width: 1025px) ================= */
+@media (min-width: 1025px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Aseguramos que los 3 elementos principales (Copyright, Iconos, Enlaces) tengan espacio equitativo */
+  .footer-content > * {
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+
+  /* Copyright a la Izquierda */
+  .footer-content .copyright {
+    text-align: center;
+  }
+
+  /* Iconos Sociales al Centro */
+  .footer-content .social-icons {
+    text-align: center;
+    justify-content: center; /* Centra los iconos */
+  }
+
+  /* Enlaces Legales a la Derecha */
+  .footer-content .legal-links {
+    text-align: right;
+    justify-content: flex-end; /* Alinea los enlaces a la derecha */
+  }
+
+  .legal-disclaimer {
+    flex-basis: 100%;
+    text-align: center;
+    margin: 25px auto 0;
+  }
+}
+
+/* Nuevo contenedor para agrupar el Copyright y los Iconos */
+.footer-info-group {
+  display: flex;
+  flex-direction: column; /* Por defecto, apilados en móvil */
+  align-items: center;
+  gap: 15px; /* Espacio entre el copyright y los iconos en móvil */
+}
+
+@media (min-width: 1025px) {
+  /* ... (Estilos existentes para .footer-content y su flex-direction: row) ... */
+
+  /* ================= CSS BASE: Nuevo contenedor (Móvil) ================= */
+  /* Este contenedor ya está apilado y centrado por defecto en móvil */
+  .footer-info-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos verticalmente */
+    gap: 15px;
+  }
+
+  /* ================= AJUSTE DE ESCRITORIO (min-width: 1025px) ================= */
+  @media (min-width: 1025px) {
+    .footer-content {
+      flex-direction: column; /* Cambiamos a columna para centrar mejor en el medio */
+      justify-content: center;
+      align-items: center; /* CLAVE: Centra todo el contenido horizontalmente */
+    }
+
+    /* 1. Agrupación Copyright + Iconos (Centrada) */
+    .footer-info-group {
+      flex-direction: row; /* Alineación horizontal en escritorio */
+      gap: 20px;
+      /* Quitamos flex-grow/flex-basis para que solo ocupe el espacio necesario para centrar */
+      flex-grow: 0;
+      margin-bottom: 0px; /* Separación de los enlaces legales */
+    }
+
+    /* 2. Enlaces Legales (Centrados) */
+    .footer-content .legal-links {
+      text-align: center;
+      justify-content: center; /* CLAVE: Centra el grupo de enlaces */
+
+      /* Aseguramos que ocupe el ancho necesario sin expandirse */
+      flex-grow: 0;
+    }
+
+    /* 3. Disclaimer (Ancho Completo y Centrado) */
+    .legal-disclaimer {
+      /* Se mantiene fuera del flex-content (o se maneja con flex-basis: 100% si está dentro) */
+      flex-basis: 100%;
+      text-align: center;
+      margin: 25px auto 0;
+    }
+
+    /* Limpiamos la alineación de texto que ya no es necesaria */
+    .footer-content .copyright {
+      text-align: initial;
+    }
   }
 }
