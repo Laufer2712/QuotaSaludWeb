@@ -111,3 +111,35 @@
 #afiliate-cta-section {
   display: none;
 }
+
+/* ======================================================= */
+/* PERSONALIZACIÓN DEL SCROLLBAR (WEBKIT) */
+/* ======================================================= */
+
+/* 1. Define el ancho de la barra de desplazamiento */
+::-webkit-scrollbar {
+  /* Puedes ajustar el valor, 10px es común */
+  width: 10px;
+}
+
+/* 2. Estiliza el "track" (la pista o fondo por donde se mueve la barra) */
+::-webkit-scrollbar-track {
+  /* Usamos el color de fondo de la página para que se integre bien */
+  background: var(--color-background);
+  /* Le damos un borde redondeado sutil */
+  border-radius: 10px;
+}
+
+/* 3. Estiliza el "thumb" (el agarre que se desliza) */
+::-webkit-scrollbar-thumb {
+  /* Usamos un color de tu paleta, por ejemplo el primario oscuro */
+  background: var(--color-primary-dark);
+  /* Hacemos que la barra de agarre sea redondeada */
+  border-radius: 10px;
+}
+
+/* 4. Estiliza el thumb al pasar el ratón para un efecto visual */
+::-webkit-scrollbar-thumb:hover {
+  /* Un color un poco más claro o acentuado al pasar el ratón */
+  background: var(--color-primary-light);
+}

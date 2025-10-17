@@ -21,7 +21,7 @@ require_once 'includes/header.php';
             <p>Quota Salud es la plataforma digital que conecta tu bienestar con una Red de Especialistas y Centros, simplificando la gestión de tus pagos.</p>
 
             <div class="hero-botones">
-                <a href="#formulario-captacion" class="cta-link">Quiero Solicitar Información</a>
+                <a href="aliados.php" class="cta-link">Deseo Afiliarme</a>
                 <a href="#informacion-principal" class="cta-secondary">Conoce Cómo Funciona</a>
             </div>
         </div>
@@ -31,13 +31,16 @@ require_once 'includes/header.php';
     <div class="cintillo-container">
         <div class="cintillo-track" data-duplicate="Pago Fraccionado Seguro | Sin Cargos Adicionales | Red de Aliados Certificados | Pago Fraccionado Seguro | Sin Cargos Adicionales | Red de Aliados Certificados">
 
-            <div style="color: #ffffffff;" class="confidence-item"><span class="confidence-icon">✔️</span>Pago Fraccionado Seguro</div>
-            <div style="color: #ffffffff;" class="confidence-item"><span class="confidence-icon">✔️</span>Sin Cargos Adicionales</div>
-            <div style="color: #ffffffff;" class="confidence-item"><span class="confidence-icon">✔️</span>Red de Aliados Certificados</div>
-            <div style="color: #ffffffff;" class="confidence-item"><span class="confidence-icon">✔️</span>Pago Fraccionado Seguro</div>
-            <div style="color: #ffffffff;" class="confidence-item"><span class="confidence-icon">✔️</span>Sin Cargos Adicionales</div>
-            <div style="color: #ffffffff;" class="confidence-item"><span class="confidence-icon">✔️</span>Red de Aliados Certificados</div>
-
+            <div class="confidence-item"><span class="confidence-icon">✔️</span>Pago Fraccionado Seguro</div>
+            <span class="confidence-separator">|</span>
+            <div class="confidence-item"><span class="confidence-icon">✔️</span>Sin Cargos Adicionales</div>
+            <span class="confidence-separator">|</span>
+            <div class="confidence-item"><span class="confidence-icon">✔️</span>Red de Aliados Certificados</div>
+            <div class="confidence-item"><span class="confidence-icon">✔️</span>Pago Fraccionado Seguro</div>
+            <span class="confidence-separator">|</span>
+            <div class="confidence-item"><span class="confidence-icon">✔️</span>Sin Cargos Adicionales</div>
+            <span class="confidence-separator">|</span>
+            <div class="confidence-item"><span class="confidence-icon">✔️</span>Red de Aliados Certificados</div>
         </div>
     </div>
 </section>

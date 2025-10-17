@@ -303,100 +303,63 @@ section {
 }
 
 /* ======================================================= */
-/* FORMULARIO CAPTACION */
-/* ======================================================= */
-#formulario-captacion form {
-  display: grid;
-  gap: 14px;
-  width: 100%;
-  max-width: 720px;
-  margin-top: 12px;
-  align-items: start;
-}
-#formulario-captacion label {
-  font-weight: 700;
-  color: var(--color-primary-dark);
-  text-align: left;
-  display: block;
-  font-size: 0.95rem;
-}
-#formulario-captacion input,
-#formulario-captacion textarea,
-#formulario-captacion select {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #d0d0d0;
-  border-radius: 8px;
-  font-size: 0.98rem;
-  background-color: white;
-}
-#formulario-captacion button[type="submit"] {
-  background-color: var(--color-accent-light);
-  color: #07311e;
-  padding: 14px 20px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1.05rem;
-  font-weight: 800;
-}
-
-/* ======================================================= */
 /* CINTILLO DE CONFIANZA (Estilo Fino y Desplazable) */
 /* ======================================================= */
 /* Contenedor principal del cintillo */
 .cintillo-container {
   width: 100%;
+  /* Fondo verde por defecto */
   background-color: var(--cintillo-bg, #82c954);
   padding: 4px 0;
+  /* Oculta lo que se desplaza */
   overflow: hidden;
 
-  /* CLAVE: Cambiar a POSICIÓN ABSOLUTA */
+  /* POSICIONAMIENTO CLAVE */
   position: absolute;
-  /* Anclarlo al fondo de su contenedor padre (section#hero) */
   bottom: 0;
   left: 0;
-
+  /* Evita saltos de línea y el margin-bottom es irrelevante por el bottom: 0 */
   white-space: nowrap;
   margin-bottom: 0;
 
-  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1); /* Sombra superior sutil */
-  border-top: 1px solid var(--cintillo-border-color, rgba(255, 255, 255, 0.4));
-  border-bottom: none; /* Ya está en el borde de la sección */
+  /* Detalles estéticos */
+  box-shadow: 0 -1px 3px rgb(253, 253, 253);
+  border-top: 1px solid var(--cintillo-border-color, rgb(255, 255, 255));
+  border-bottom: none;
 }
-
-/* El resto del CSS del .cintillo-track, .confidence-item, y @keyframes se mantiene igual */
 
 /* El contenedor que se desplaza (track) */
 .cintillo-track {
   display: inline-flex;
   align-items: center;
-  gap: 50px;
+  gap: 50px; /* Espacio grande entre ítems principales */
 
-  /* CLAVE: Aplicación de la animación */
+  /* APLICACIÓN DE LA ANIMACIÓN */
   animation: scroll-cintillo var(--cintillo-animation-duration, 35s) linear
     infinite;
   will-change: transform;
 
-  /* Pausar animación al pasar el ratón */
+  /* Pausar animación al pasar el ratón (SASS/PostCSS sintaxis) */
+  /* Nota: Si no usa preprocesadores, cambie esto por: .cintillo-track:hover */
   &:hover {
     animation-play-state: paused;
   }
 }
 
-/* Ítems individuales de Confianza (Pago Fraccionado, etc.) */
+/* Ítems individuales de Confianza */
 .confidence-item {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  /* El texto SIEMPRE será blanco, ya sea por la variable o el fallback */
   color: var(--cintillo-text-color, #ffffff);
   font-weight: 600;
-
+  /* Tamaño de fuente responsivo */
   font-size: clamp(0.8rem, 1.1vw, 0.9rem);
   text-transform: uppercase;
   letter-spacing: 0px;
 
-  /* Espaciado extra al final de cada ítem para que no se vean pegados */
+  /* Espaciado extra si no usa separador */
   padding-right: 20px;
 }
 
@@ -407,10 +370,11 @@ section {
 
 /* Separador vertical */
 .confidence-separator {
-  color: rgba(255, 255, 255, 0.7);
+  /* Mismo color blanco que el texto */
+  color: rgb(255, 255, 255);
   font-weight: 300;
   font-size: 1rem;
-  padding: 0 8px;
+  padding: 0 8px; /* Espaciado a los lados del separador */
 }
 
 /* -------------------- */
@@ -421,7 +385,7 @@ section {
     transform: translateX(0);
   }
   100% {
-    /* Mueve el contenido exactamente el 50% de su ancho total para crear el loop perfecto */
+    /* Mueve el contenido el 50% para el loop perfecto */
     transform: translateX(-50%);
   }
 }
@@ -434,12 +398,44 @@ section {
     padding: 4px 0;
   }
   .cintillo-track {
-    animation-duration: 40s;
-    gap: 30px;
-    /* Pausamos en móvil para ahorrar batería y que el usuario pueda hacer scroll manual */
+    animation-duration: 40s; /* Más lento */
+    gap: 30px; /* Menos espacio */
+    /* Pausamos en móvil por defecto */
     animation-play-state: paused;
   }
   .confidence-item {
     font-size: 0.8rem;
   }
+}
+
+/* ======================================================= */
+/* PERSONALIZACIÓN DEL SCROLLBAR (WEBKIT) */
+/* ======================================================= */
+
+/* 1. Define el ancho de la barra de desplazamiento */
+::-webkit-scrollbar {
+  /* Puedes ajustar el valor, 10px es común */
+  width: 10px;
+}
+
+/* 2. Estiliza el "track" (la pista o fondo por donde se mueve la barra) */
+::-webkit-scrollbar-track {
+  /* Usamos el color de fondo de la página para que se integre bien */
+  background: var(--color-background);
+  /* Le damos un borde redondeado sutil */
+  border-radius: 10px;
+}
+
+/* 3. Estiliza el "thumb" (el agarre que se desliza) */
+::-webkit-scrollbar-thumb {
+  /* Usamos un color de tu paleta, por ejemplo el primario oscuro */
+  background: var(--color-primary-dark);
+  /* Hacemos que la barra de agarre sea redondeada */
+  border-radius: 10px;
+}
+
+/* 4. Estiliza el thumb al pasar el ratón para un efecto visual */
+::-webkit-scrollbar-thumb:hover {
+  /* Un color un poco más claro o acentuado al pasar el ratón */
+  background: var(--color-primary-light);
 }
