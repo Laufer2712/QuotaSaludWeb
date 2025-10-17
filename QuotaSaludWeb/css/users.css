@@ -1,0 +1,113 @@
+/* ======================================================= */
+/* SECCIÓN ALIADOS: PESTAÑAS + LOGOS + BOTONES DESPLEGABLES */
+/* ======================================================= */
+
+/* Título de sección */
+#aliados-section .section-title {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* ================== TABS ================== */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tab-link {
+  padding: 10px 25px;
+  border: 2px solid #82c954;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.tab-link.active {
+  background-color: #82c954;
+  color: #fff;
+}
+
+.tab-link:hover {
+  background-color: #82c954;
+  color: #fff;
+}
+
+/* Contenido de pestañas */
+.tab-content {
+  display: none;
+  margin-top: 20px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ================== GRID DE LOGOS ================== */
+.aliados-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.aliado-logo-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.aliado-logo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.aliado-logo {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: filter 0.5s ease, opacity 0.5s ease;
+}
+
+.aliado-logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* ================== BOTONES DESPLEGABLES ================== */
+.show-section-btn {
+  padding: 12px 30px;
+  background-color: #82c954;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.show-section-btn:hover {
+  background-color: #5a9a3f;
+}
+
+/* ================== SECCIONES OCULTAS INICIALES ================== */
+#pilares-section,
+#afiliate-cta-section {
+  display: none;
+}
