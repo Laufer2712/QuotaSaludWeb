@@ -53,13 +53,13 @@ body {
 /* ======================================================= */
 section {
   width: 100%;
-  min-height: 70vh;
+  min-height: 20vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
-  padding: 60px 20px;
+  padding: 30px 20px 60px 20px;
   box-sizing: border-box;
   scroll-margin-top: 76px;
   opacity: 0;
@@ -72,17 +72,23 @@ section {
 }
 
 #informacion-principal {
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.82),
-      rgba(255, 255, 255, 0.82)
-    ),
-    url("img/FONDO.png");
+  background-image: url("../img/fondo.jpg");
+
   background-size: cover;
-  background-position: center;
+  /* Ancla la imagen a la parte superior, permitiendo que la parte inferior se recorte si el contenedor no es lo suficientemente alto */
+  background-position: center top;
+
   background-repeat: no-repeat;
+  background-attachment: fixed;
+
   box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.06);
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+
+  /* Puedes reducir esta altura si quieres que el "corte" sea más evidente */
+  min-height: 100vh; /* Por ejemplo, una altura menor para que se recorte más la parte inferior */
+  padding: 60px 20px;
 }
+
 #informacion-principal .container {
   display: flex;
   flex-direction: column;
@@ -101,10 +107,11 @@ section {
   width: 100%;
 }
 .section-title h2 {
-  font-size: clamp(2.8rem, 6vw, 2.5rem);
+  font-size: clamp(2.5rem, 6vw, 1.5rem);
   line-height: 1.1;
   letter-spacing: -1px;
   font-weight: 900;
+  margin-top: 0px;
   background-image: linear-gradient(
     to right,
     var(--color-primary-dark),
@@ -438,4 +445,249 @@ section {
 ::-webkit-scrollbar-thumb:hover {
   /* Un color un poco más claro o acentuado al pasar el ratón */
   background: var(--color-primary-light);
+}
+
+/* --- Estilos Generales del Botón (Opcional, pero recomendado) --- */
+.show-section-btn {
+  /* Estilos base */
+  background-color: #007bff; /* Color de fondo azul */
+  color: white; /* Color del texto */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+
+  /* Para centrar los elementos internos */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre el texto y la flecha */
+}
+
+/* --- Estilo Específico de la Flecha --- */
+.arrow {
+  border: solid white; /* Color de la flecha */
+  border-width: 0 3px 3px 0; /* Solo bordes derecho e inferior */
+  display: inline-block;
+  padding: 3px; /* Tamaño de la flecha */
+  transition: transform 0.3s ease; /* Transición suave al girar */
+}
+
+/* --- Dirección de la Flecha --- */
+.down {
+  transform: rotate(45deg); /* Flecha apuntando abajo */
+}
+
+.up {
+  transform: rotate(-135deg); /* Flecha apuntando arriba */
+}
+
+/* --- Estado de la Sección Activa (para cambiar la flecha) --- */
+/* Esta clase se añade al botón mediante JavaScript cuando se muestra la sección. */
+.show-section-btn.is-open .arrow {
+  transform: rotate(-135deg); /* Cambia a flecha arriba */
+}
+
+/* ========================================= */
+/* SECCIÓN "VER MÁS" */
+/* ========================================= */
+#ver-mas-section {
+  background-image: url("../img/fondoLimpio.png");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 80px 20px;
+  min-height: auto;
+  display: none;
+  transition: all 0.4s ease;
+}
+
+/* Cuando se muestra */
+#ver-mas-section.visible {
+  display: block;
+  animation: fadeInSection 0.7s ease-in-out;
+}
+
+@keyframes fadeInSection {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======== CONTENEDOR GENERAL ======== */
+#ver-mas-section .container {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ======== TÍTULO DE SECCIÓN ======== */
+.section-title {
+  margin-bottom: 50px;
+}
+
+.section-title h2 {
+  font-size: 2.2rem;
+  color: #007bff;
+  margin-bottom: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.section-title p {
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ========================================= */
+/* ESTILOS PARA LAS PESTAÑAS */
+/* ========================================= */
+#tabs-section {
+  max-width: 950px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+/* ======== NAV DE PESTAÑAS ======== */
+.tabs-nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  background: #f4f7fb;
+  padding: 15px;
+  flex-wrap: wrap;
+  border-bottom: 2px solid #e5e9f2;
+}
+
+.tab-button {
+  background: #fff;
+  border: 1px solid #dce3ef;
+  border-radius: 30px;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+  color: #007bff;
+  border-color: #007bff;
+  box-shadow: 0 3px 10px rgba(0, 123, 255, 0.15);
+}
+
+.tab-button.active {
+  background: #007bff;
+  color: #fff;
+  border-color: #007bff;
+  box-shadow: 0 3px 15px rgba(0, 123, 255, 0.25);
+}
+
+/* ======== CONTENIDO DE LAS PESTAÑAS ======== */
+.tab-content {
+  display: none;
+  text-align: left;
+  padding: 40px 50px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tab-content h3 {
+  color: #007bff;
+  font-size: 1.7rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.tab-content p {
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+/* ======== LISTA DE VALORES ======== */
+.values-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 20px;
+}
+
+.values-list li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 25px;
+}
+
+.values-list li::before {
+  content: "✓";
+  color: #007bff;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.values-list strong {
+  color: #007bff;
+}
+
+/* ======== ANIMACIÓN ======== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 768px) {
+  #tabs-section {
+    border-radius: 14px;
+    padding: 0;
+  }
+
+  .tab-content {
+    padding: 25px;
+  }
+
+  .tab-button {
+    flex: 1 1 100%;
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .section-title h2 {
+    font-size: 1.8rem;
+  }
+
+  .section-title p {
+    font-size: 1rem;
+  }
 }

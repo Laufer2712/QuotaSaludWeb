@@ -74,12 +74,61 @@ require_once 'includes/header.php';
             </div>
 
         </div>
+        <!-- Botón para mostrar/ocultar CTA -->
 
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="show-section-btn arrow-btn"
+                data-target="#ver-mas-section" data-show-text="Quiero conocer mas" data-hide-text="Ocultar">
+
+                <span>Quiero conocer mas</span>
+                <i class="arrow down"></i>
+            </button>
+        </div>
+    </div>
     </div>
 </section>
 
 
+<!-- ================= SECCIÓN Ver Mas (inicialmente oculta) ================= -->
+<section id="ver-mas-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Nuestra Esencia y Compromiso</h2>
+            <p>Conoce los pilares que nos definen y la dirección que guía nuestro servicio.</p>
+        </div>
 
+        <section id="tabs-section">
+            <div class="tabs-nav">
+                <button class="tab-button active" onclick="openTab(event, 'mision')">Misión</button>
+                <button class="tab-button" onclick="openTab(event, 'vision')">Visión</button>
+                <button class="tab-button" onclick="openTab(event, 'valores')">Valores</button>
+            </div>
+
+            <div class="tab-content active" id="mision">
+                <h3>Nuestra Misión</h3>
+                <p>Democratizamos el acceso a la salud eliminando barreras económicas y conectando a cada persona con la atención médica y odontológica que necesita a través de nuestra red aliada.</p>
+                <p>Facilitamos la organización del costo en cuotas cómodas y seguras, garantizando equidad y bienestar para todos.</p>
+            </div>
+
+            <div class="tab-content" id="vision">
+                <h3>Nuestra Visión</h3>
+                <p>Aspiramos a ser el ecosistema digital de bienestar más confiable y querido de Venezuela, reconocido por eliminar las barreras de acceso a la salud.</p>
+                <p>Queremos un futuro donde cada persona planifique su cuidado con certeza, y donde los centros de salud prosperen sin preocuparse por la gestión de cobros.</p>
+            </div>
+
+            <div class="tab-content" id="valores">
+                <h3>Nuestros Valores</h3>
+                <ul class="values-list">
+                    <li><strong>Humanidad y Empatía:</strong> La persona es el centro de todo.</li>
+                    <li><strong>Acceso Genuino:</strong> Simplificamos y abrimos el camino hacia el tratamiento.</li>
+                    <li><strong>Confianza y Claridad Digital:</strong> Transparencia absoluta y seguridad en cada paso.</li>
+                    <li><strong>Conexión y Red de Apoyo:</strong> Crecemos juntos, pacientes y aliados.</li>
+                    <li><strong>Innovación con Propósito:</strong> Tecnología útil, humana y constante.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</section>
 
 <!-- ================= SCRIPTS ================= -->
 <script src="js/script.js"></script>

@@ -5,7 +5,7 @@
 /* HEADER */
 header {
   /* 1. Imagen de Fondo: Reemplaza 'ruta/a/tu/imagen.jpg' con la ubicación real de tu archivo. */
-  background-image: url("img/fondoHeader.png");
+  background-image: url("../img/fondoHeader.png");
 
   /* 2. Propiedades de Control de la Imagen */
   background-size: cover; /* CLAVE: Asegura que la imagen cubra todo el header sin distorsionarse. */
