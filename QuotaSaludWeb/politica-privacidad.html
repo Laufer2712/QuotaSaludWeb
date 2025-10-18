@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Políticas de Privacidad - QuotaSalud</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Favicon -->
+    <link rel="icon" href="img/LOGO-ICON.png" type="image/png" />
+
+    <style>
+      :root {
+        --primary-color: #1a73e8;
+        --secondary-color: #0d47a1;
+        --accent-color: #70b642;
+        --text-color: #333;
+        --light-bg: #f8f8f8;
+        --white: #fff;
+        --shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--light-bg);
+        padding-top: 140px;
+      }
+
+      /* HEADER FIXED CON NAVEGACIÓN */
+      .page-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(23, 30, 218, 0.247),
+          rgba(116, 158, 87, 0.37),
+          rgba(112, 182, 66, 0.438)
+        );
+        color: var(--white);
+        padding: 15px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo {
+        height: 40px;
+        width: auto;
+      }
+
+      .site-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      /* NAVEGACIÓN EN HEADER */
+      .header-nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .nav-toggle {
+        background: none;
+        border: none;
+        color: var(--white);
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+
+      .nav-toggle:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        padding: 15px;
+        min-width: 250px;
+        z-index: 1001;
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-dropdown.active {
+        display: flex;
+      }
+
+      .nav-dropdown h3 {
+        color: var(--primary-color);
+        margin-bottom: 10px;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-dropdown .nav-link {
+        background: #f0f0f0;
+        padding: 10px 15px;
+        border-radius: 6px;
+        text-decoration: none;
+        color: var(--text-color);
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-dropdown .nav-link:hover {
+        background: var(--primary-color);
+        color: white;
+        transform: translateX(5px);
+      }
+
+      .nav-dropdown .nav-link i {
+        width: 16px;
+        text-align: center;
+      }
+
+      .back-button {
+        background-color: var(--white);
+        color: var(--primary-color);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .back-button:hover {
+        background-color: var(--primary-color);
+        color: var(--white);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      /* MAIN CONTENT */
+      .container {
+        max-width: 900px;
+        margin: 0px auto;
+        padding: 30px;
+        background-color: var(--white);
+        box-shadow: var(--shadow);
+        border-radius: 8px;
+      }
+
+      header h1 {
+        color: var(--primary-color);
+        border-bottom: 3px solid var(--primary-color);
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        font-size: 2.2em;
+      }
+
+      section {
+        margin-bottom: 30px;
+        padding: 20px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      section:hover {
+        background-color: rgba(26, 115, 232, 0.03);
+      }
+
+      h2 {
+        color: var(--secondary-color);
+        font-size: 1.5em;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      h2 i {
+        color: var(--accent-color);
+      }
+
+      p,
+      ul,
+      ol {
+        margin-bottom: 15px;
+      }
+
+      ul,
+      ol {
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      strong {
+        font-weight: 600;
+        color: var(--secondary-color);
+      }
+
+      .footer-note {
+        margin-top: 50px;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+        font-size: 0.9em;
+        text-align: right;
+        color: #555;
+      }
+
+      /* Privacy policy specific styles */
+      .privacy-section {
+        background-color: rgba(112, 182, 66, 0.05);
+        border-left: 4px solid var(--accent-color);
+      }
+
+      .privacy-section h2 {
+        color: var(--accent-color);
+      }
+
+      .sub-section {
+        margin-left: 20px;
+        padding-left: 15px;
+        border-left: 2px solid #e0e0e0;
+        margin-bottom: 20px;
+      }
+
+      .sub-section h3 {
+        color: var(--secondary-color);
+        margin-bottom: 10px;
+        font-size: 1.2em;
+      }
+
+      .external-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .external-link:hover {
+        text-decoration: underline;
+      }
+
+      /* FLOATING ACTION BUTTON FOR MOBILE */
+      .fab {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background-color: var(--accent-color);
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        z-index: 999;
+        transition: all 0.3s ease;
+      }
+
+      .fab:hover {
+        transform: scale(1.1);
+        background-color: #406a27;
+      }
+
+      /* RESPONSIVE STYLES */
+      @media (max-width: 768px) {
+        body {
+          padding-top: 120px;
+        }
+
+        .header-content {
+          padding: 0 15px;
+          flex-wrap: wrap;
+        }
+
+        .site-title {
+          font-size: 1rem;
+        }
+
+        .logo {
+          height: 35px;
+        }
+
+        .header-nav {
+          order: 3;
+          width: 100%;
+          justify-content: center;
+          margin-top: 10px;
+        }
+
+        .nav-dropdown {
+          right: 15px;
+          left: 15px;
+          min-width: auto;
+        }
+
+        .back-button {
+          padding: 8px 15px;
+          font-size: 0.9rem;
+        }
+
+        .back-button .button-text {
+          display: none;
+        }
+
+        .container {
+          margin: 20px 15px;
+          padding: 20px;
+        }
+
+        header h1 {
+          font-size: 1.8em;
+        }
+
+        h2 {
+          font-size: 1.3em;
+        }
+
+        .fab {
+          width: 50px;
+          height: 50px;
+          font-size: 1.2rem;
+          bottom: 20px;
+          right: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding-top: 110px;
+        }
+
+        .header-content {
+          flex-direction: column;
+          gap: 10px;
+          text-align: center;
+        }
+
+        .logo-container {
+          justify-content: center;
+        }
+
+        .header-nav {
+          order: 2;
+          width: auto;
+          margin-top: 0;
+        }
+
+        .container {
+          margin: 15px 10px;
+          padding: 15px;
+        }
+
+        header h1 {
+          font-size: 1.5em;
+        }
+
+        h2 {
+          font-size: 1.2em;
+        }
+      }
+
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Section highlighting for better navigation */
+      section:target {
+        background-color: rgba(26, 115, 232, 0.05);
+        padding: 20px;
+        border-left: 4px solid var(--primary-color);
+        transition: all 0.3s ease;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER FIXED CON NAVEGACIÓN -->
+    <header class="page-header">
+      <div class="header-content">
+        <div class="logo-container">
+          <img src="img/QUOTALOGO.png" alt="QuotaSalud Logo" class="logo" />
+        </div>
+
+        <div class="header-nav">
+          <button class="nav-toggle" id="navToggle">
+            <i class="fas fa-bars"></i>
+            <span>Navegación</span>
+          </button>
+
+          <div class="nav-dropdown" id="navDropdown">
+            <h3><i class="fas fa-list"></i> Navegación Rápida</h3>
+            <a href="#introduccion" class="nav-link">
+              <i class="fas fa-info-circle"></i>
+              Introducción
+            </a>
+            <a href="#base-legal" class="nav-link">
+              <i class="fas fa-gavel"></i>
+              Base Legal
+            </a>
+            <a href="#transferencias-internacionales" class="nav-link">
+              <i class="fas fa-globe"></i>
+              Transferencias Internacionales
+            </a>
+            <a href="#datos-recolectados" class="nav-link">
+              <i class="fas fa-database"></i>
+              Datos Recolectados
+            </a>
+            <a href="#cookies" class="nav-link">
+              <i class="fas fa-cookie"></i>
+              Cookies
+            </a>
+            <a href="#derechos" class="nav-link">
+              <i class="fas fa-user-shield"></i>
+              Tus Derechos
+            </a>
+          </div>
+
+          <button
+            class="back-button"
+            onclick="window.location.href='index.php'"
+          >
+            <i class="fas fa-home"></i>
+            <span class="button-text">Ir a la web</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+      <header>
+        <h1>Políticas de Privacidad</h1>
+        <p>
+          En <strong>QuotaSalud</strong> (sitio web: https://quotasalud.com)
+          valoramos tu confianza y la protección de tus datos personales.
+        </p>
+        <p>
+          Somos una empresa dedicada a facilitar el acceso a servicios médicos y
+          odontológicos a través de soluciones digitales.
+        </p>
+        <p>
+          La presente Política de Privacidad explica cómo recopilamos,
+          utilizamos y protegemos tu información. Al usar nuestros servicios,
+          confirmas que has leído y aceptado esta política y otorgas tu
+          consentimiento para el tratamiento de tus datos según lo aquí
+          establecido.
+        </p>
+      </header>
+
+      <section id="introduccion" class="privacy-section">
+        <h2><i class="fas fa-info-circle"></i> 1. Introducción</h2>
+        <p>
+          En QuotaSalud nos comprometemos a proteger la privacidad y seguridad
+          de tus datos personales. Esta política describe cómo recopilamos,
+          utilizamos, almacenamos y protegemos la información que nos
+          proporcionas al utilizar nuestros servicios.
+        </p>
+        <p>
+          Al registrarte en nuestra plataforma o utilizar cualquiera de nuestros
+          servicios, aceptas las prácticas descritas en esta Política de
+          Privacidad.
+        </p>
+      </section>
+
+      <section id="base-legal" class="privacy-section">
+        <h2>
+          <i class="fas fa-gavel"></i> 2. Base Legal y Fundamento Normativo
+        </h2>
+        <p>
+          El tratamiento de sus datos personales se fundamenta en su
+          consentimiento expreso (Art. 6.1.a del RGPD), la ejecución contractual
+          (Art. 6.1.b del RGPD) y el cumplimiento de las obligaciones legales
+          aplicables.
+        </p>
+        <p>Específicamente, estas políticas garantizan y cumplen con:</p>
+        <ul>
+          <li>
+            El Reglamento General de Protección de Datos (RGPD) de la Unión
+            Europea, que sirve como estándar global de protección y seguridad de
+            datos.
+          </li>
+          <li>
+            El derecho de Habeas Data establecido en el Artículo 28 de la
+            Constitución de la República Bolivariana de Venezuela (CRBV),
+            garantizando su derecho a acceder, rectificar, actualizar o destruir
+            su información.
+          </li>
+        </ul>
+      </section>
+
+      <section id="transferencias-internacionales" class="privacy-section">
+        <h2>
+          <i class="fas fa-globe"></i> 3. Transferencias Internacionales de
+          Datos y Jurisdicción
+        </h2>
+        <p>
+          Dado que QuotaSalud opera principalmente en Venezuela pero aloja su
+          plataforma en los servidores de Amazon Web Services (AWS) ubicados en
+          la región de Ohio, Estados Unidos de América, sus datos personales son
+          transferidos y almacenados fuera de la jurisdicción venezolana.
+        </p>
+
+        <div class="sub-section">
+          <h3>Jurisdicción de EE. UU. y Riesgos</h3>
+          <p>
+            Usted es informado y acepta que, al alojarse sus datos en EE. UU.,
+            estos quedan sujetos a las leyes de dicho país, incluyendo
+            normativas como la CLOUD Act y la USA PATRIOT Act. Dichas leyes
+            podrían requerir a los proveedores de servicios (como AWS) la
+            divulgación de datos a autoridades estadounidenses,
+            independientemente de la ubicación de nuestras operaciones o de la
+            nacionalidad del usuario.
+          </p>
+        </div>
+
+        <div class="sub-section">
+          <h3>Mecanismo de Transferencia</h3>
+          <p>
+            La transferencia se realiza garantizando que nuestros proveedores de
+            servicios en EE. UU. (encargados del tratamiento) se adhieren a
+            mecanismos de cumplimiento que buscan proteger sus datos (como las
+            Cláusulas Contractuales Tipo del RGPD, en caso de aplicar), y que
+            usted ha otorgado un consentimiento informado y explícito sobre este
+            riesgo de jurisdicción.
+          </p>
+        </div>
+
+        <p>
+          Nuestros proveedores de hosting cumplen con estrictos estándares de
+          seguridad y políticas de privacidad, asegurando que tu información
+          esté protegida en todo momento.
+        </p>
+      </section>
+
+      <section id="datos-recolectados" class="privacy-section">
+        <h2><i class="fas fa-database"></i> 4. Datos Recolectados</h2>
+
+        <div class="sub-section">
+          <h3>Datos de Registro</h3>
+          <p>
+            Cuando te registras en nuestra plataforma, almacenamos la siguiente
+            información:
+          </p>
+          <ul>
+            <li>El nombre de usuario que elijas.</li>
+            <li>Tu dirección de correo electrónico.</li>
+            <li>
+              Cualquier información personal adicional que decidas añadir a tu
+              perfil y que es requerida para la asignación de planes de pago.
+            </li>
+          </ul>
+          <p>
+            Podrás acceder, modificar o eliminar tus datos personales en
+            cualquier momento (excepto el nombre de usuario).
+          </p>
+          <p>
+            Los administradores de QuotaSalud también pueden acceder y gestionar
+            esta información únicamente con fines operativos y de soporte
+            técnico.
+          </p>
+        </div>
+
+        <div class="sub-section">
+          <h3>Datos de Compra y Uso de Servicios</h3>
+          <p>
+            Cuando realizas una solicitud de acceso a tratamientos o utilizas
+            los servicios de QuotaSalud, recopilamos y almacenamos la
+            información necesaria para gestionar tu operación de forma segura.
+          </p>
+          <p>Esto puede incluir:</p>
+          <ul>
+            <li>
+              Datos de la transacción (fecha, monto, plan o servicio elegido).
+            </li>
+            <li>Estado de la solicitud y su vigencia.</li>
+            <li>Información básica de tu cuenta asociada a la operación.</li>
+          </ul>
+          <p>
+            Estos datos son indispensables para brindarte acceso a los servicios
+            contratados, realizar la gestión administrativa correspondiente y
+            garantizar un correcto seguimiento de tu historial en la plataforma.
+          </p>
+        </div>
+
+        <div class="sub-section">
+          <h3>Datos de Soporte</h3>
+          <p>
+            Si estás registrado en nuestra plataforma y necesitas asistencia,
+            podrás ponerte en contacto con nuestro equipo de soporte a través de
+            formularios, correo electrónico o canales de mensajería autorizados
+            (como WhatsApp Business).
+          </p>
+          <p>
+            Únicamente se recopilarán los datos que proporciones de forma
+            explícita (por ejemplo: nombre, correo electrónico, número de
+            contacto y el detalle de tu consulta). Estos datos se utilizarán
+            exclusivamente para atender tu solicitud y ofrecerte la mejor
+            experiencia de servicio.
+          </p>
+          <p>
+            Cada vez que envíes una solicitud de soporte, se te pedirá
+            consentimiento para el tratamiento de la información compartida.
+          </p>
+          <p>
+            Tus datos de soporte nunca se emplearán con fines comerciales y no
+            se compartirán con terceros sin tu autorización expresa.
+          </p>
+        </div>
+
+        <div class="sub-section">
+          <h3>Comentarios</h3>
+          <p>
+            Cuando dejas un comentario en nuestra página web, APP y redes
+            sociales, recopilamos la información que se muestra en el formulario
+            correspondiente, así como tu dirección IP y el identificador de tu
+            navegador.
+          </p>
+          <p>
+            Estos datos se utilizan únicamente para ayudar en la detección de
+            spam y garantizar la seguridad de la plataforma.
+          </p>
+        </div>
+
+        <div class="sub-section">
+          <h3>Formularios de Contacto</h3>
+          <p>
+            La información que envíes a través de los formularios de contacto de
+            nuestro sitio web (como tu nombre, correo electrónico, número de
+            teléfono y mensaje) se envía de manera segura a nuestro correo
+            corporativo.
+          </p>
+          <p>
+            Estos datos se utilizan únicamente con fines de atención al cliente.
+          </p>
+        </div>
+
+        <div class="sub-section">
+          <h3>Google Analytics</h3>
+          <p>
+            En QuotaSalud utilizamos Google Analytics para recopilar información
+            anónima sobre el uso del sitio web (como páginas visitadas, tiempo
+            de navegación y origen del tráfico). Estos datos no incluyen
+            información personal identificable.
+          </p>
+          <p>
+            Si deseas desactivar la recopilación de datos por parte de Google
+            Analytics, puedes hacerlo mediante este enlace:
+            <a
+              href="https://tools.google.com/dlpage/gaoptout"
+              class="external-link"
+              target="_blank"
+              >Google Analytics Opt-out</a
+            >.
+          </p>
+        </div>
+      </section>
+
+      <section id="contenido-incrustado" class="privacy-section">
+        <h2>
+          <i class="fas fa-external-link-alt"></i> 5. Contenido Incrustado
+        </h2>
+        <p>
+          Algunas páginas de nuestro sitio web pueden incluir contenido
+          incrustado de terceros (por ejemplo, videos de YouTube, publicaciones
+          de redes sociales u otros recursos externos).
+        </p>
+        <p>
+          El contenido incrustado de otros sitios web funciona de la misma
+          manera que si el usuario visitara directamente dichos sitios.
+        </p>
+        <p>
+          Estos sitios web externos pueden recopilar datos sobre ti, utilizar
+          cookies, integrar sistemas de seguimiento adicionales de terceros y
+          supervisar tu interacción con el contenido incrustado, incluyendo el
+          seguimiento si tienes una cuenta activa y estás conectado a esa
+          plataforma en el momento de la interacción.
+        </p>
+
+        <div class="sub-section">
+          <h3>Facebook</h3>
+          <p>
+            En nuestro sitio web podemos utilizar el complemento de Facebook
+            para mostrar publicaciones o integrar nuestra página oficial.
+          </p>
+          <p>
+            Facebook tiene sus propias políticas de cookies y de privacidad,
+            sobre las cuales QuotaSalud no tiene control.
+          </p>
+          <p>
+            No se instalan cookies de Facebook ni se transmite tu dirección IP a
+            sus servidores hasta que otorgues tu consentimiento expreso para la
+            visualización de este contenido.
+          </p>
+          <p>
+            Puedes consultar su política de privacidad aquí:
+            <a
+              href="https://www.facebook.com/privacy/policy/"
+              class="external-link"
+              target="_blank"
+              >Política de privacidad de Facebook</a
+            >.
+          </p>
+        </div>
+
+        <div class="sub-section">
+          <h3>Twitter (X)</h3>
+          <p>
+            En nuestro sitio web podemos utilizar la API de Twitter (X) para
+            mostrar publicaciones o integrar nuestra cuenta oficial.
+          </p>
+          <p>
+            Twitter tiene sus propias políticas de cookies y privacidad, sobre
+            las cuales QuotaSalud no tiene control.
+          </p>
+          <p>
+            Tu dirección IP no se envía a los servidores de Twitter ni se
+            instalan cookies de esta red hasta que otorgues tu consentimiento
+            expreso para visualizar el contenido.
+          </p>
+          <p>
+            Puedes consultar su política de privacidad aquí:
+            <a
+              href="https://twitter.com/privacy"
+              class="external-link"
+              target="_blank"
+              >Política de privacidad de Twitter</a
+            >.
+          </p>
+        </div>
+
+        <div class="sub-section">
+          <h3>YouTube</h3>
+          <p>
+            En nuestro sitio web podemos incrustar videos de YouTube para
+            mejorar la experiencia de los usuarios.
+          </p>
+          <p>
+            YouTube tiene sus propias políticas de cookies y de privacidad,
+            sobre las cuales QuotaSalud no tiene control.
+          </p>
+          <p>
+            No se instalan cookies de YouTube ni se transmite tu dirección IP a
+            sus servidores hasta que otorgues tu consentimiento expreso para la
+            visualización del contenido.
+          </p>
+          <p>
+            Puedes consultar su política de privacidad aquí:
+            <a
+              href="https://policies.google.com/privacy"
+              class="external-link"
+              target="_blank"
+              >Política de privacidad de YouTube</a
+            >.
+          </p>
+        </div>
+      </section>
+
+      <section id="cookies" class="privacy-section">
+        <h2><i class="fas fa-cookie"></i> 6. Cookies</h2>
+        <p>
+          Nuestro sitio web utiliza cookies, que son pequeños archivos de texto
+          que se almacenan en tu dispositivo y permiten mejorar tu experiencia
+          de navegación.
+        </p>
+        <p>En general, las cookies se utilizan para:</p>
+        <ul>
+          <li>Recordar tus preferencias de usuario.</li>
+          <li>Guardar información básica de navegación.</li>
+          <li>
+            Permitir funcionalidades como el inicio de sesión en tu cuenta.
+          </li>
+          <li>
+            Recopilar datos anónimos para análisis (ej. Google Analytics).
+          </li>
+        </ul>
+        <p>
+          Las cookies existen para que tu experiencia en el sitio sea más
+          sencilla y personalizada. No obstante, puedes desactivarlas en
+          cualquier momento desde la configuración de tu navegador. Para ello,
+          te recomendamos consultar la sección de ayuda del navegador que
+          utilices.
+        </p>
+
+        <div class="sub-section">
+          <h3>Cookies Necesarias - Todos los visitantes del sitio</h3>
+          <ul>
+            <li>
+              <strong>PHPSESSID:</strong> identifica tu sesión única en el sitio
+              web.
+            </li>
+            <li>
+              <strong>cfduid (Cloudflare):</strong> ayuda a identificar clientes
+              detrás de una misma IP compartida y aplicar configuraciones de
+              seguridad personalizadas. Más información en la
+              <a
+                href="https://www.cloudflare.com/privacypolicy/"
+                class="external-link"
+                target="_blank"
+                >Política de privacidad de Cloudflare</a
+              >.
+            </li>
+          </ul>
+        </div>
+
+        <div class="sub-section">
+          <h3>Cookies Necesarias - Usuarios registrados</h3>
+          <ul>
+            <li>
+              <strong>wp-auth:</strong> utilizada por WordPress para autenticar
+              a los usuarios registrados.
+            </li>
+            <li>
+              <strong>wordpress_logged_in_{hash}:</strong> identifica si el
+              usuario ha iniciado sesión y permite mantener la sesión activa.
+            </li>
+            <li>
+              <strong>wordpress_test_cookie:</strong> usada por WordPress para
+              verificar que las cookies están habilitadas en el navegador.
+            </li>
+            <li>
+              <strong>wp-settings-[UID]:</strong> almacena configuraciones
+              personalizadas del usuario registrado en la interfaz de
+              administración y, en algunos casos, en la visualización del sitio.
+            </li>
+            <li>
+              <strong>wp-settings-{time}-[UID]:</strong> cookies adicionales de
+              configuración generadas por WordPress en función del ID de
+              usuario.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="acceso-datos" class="privacy-section">
+        <h2>
+          <i class="fas fa-user-lock"></i> 7. Quién tiene acceso a tus datos
+        </h2>
+        <p>
+          Si no eres un usuario registrado en nuestra plataforma, QuotaSalud no
+          recopila ni conserva información personal que permita identificarte.
+        </p>
+        <p>
+          Si eres un usuario registrado con una cuenta activa, tu información
+          personal puede ser accesible únicamente por:
+        </p>
+        <ul>
+          <li>
+            <strong>Administradores del sistema:</strong> para gestionar el
+            correcto funcionamiento de la plataforma.
+          </li>
+          <li>
+            <strong>Equipo de soporte autorizado:</strong> únicamente cuando sea
+            necesario para atender incidencias técnicas, resolver consultas o
+            dar asistencia relacionada con tu cuenta.
+          </li>
+        </ul>
+        <p>
+          En todos los casos, el acceso se realiza bajo estrictos controles de
+          seguridad y confidencialidad.
+        </p>
+      </section>
+
+      <section id="acceso-terceros" class="privacy-section">
+        <h2><i class="fas fa-users"></i> 8. Acceso de terceros a tus datos</h2>
+        <p>
+          En QuotaSalud no compartimos tu información personal con terceros de
+          una manera que revele datos identificables (como nombre, correo
+          electrónico, dirección o teléfono), salvo en los casos necesarios para
+          poder prestarte nuestros servicios de forma adecuada y segura.
+        </p>
+        <p>
+          Los únicos terceros con los que podemos compartir datos limitados son:
+        </p>
+        <ul>
+          <li>
+            <strong
+              >Proveedores de infraestructura tecnológica y hosting:</strong
+            >
+            necesarios para alojar la plataforma y garantizar su funcionamiento
+            seguro.
+          </li>
+          <li>
+            <strong>Servicios de pago y pasarelas autorizadas:</strong> en el
+            caso de que se requiera procesar pagos, solo se comparte la
+            información indispensable para validar la transacción.
+          </li>
+          <li>
+            <strong>Servicios de analítica y seguridad:</strong> utilizados
+            únicamente para recopilar datos anónimos de uso o reforzar la
+            protección del sistema.
+          </li>
+        </ul>
+        <p>
+          En todos los casos, los terceros con los que trabajamos están sujetos
+          a obligaciones contractuales de confidencialidad y cumplen con la
+          normativa vigente en materia de protección de datos.
+        </p>
+      </section>
+
+      <section id="conservacion-datos" class="privacy-section">
+        <h2>
+          <i class="fas fa-clock"></i> 9. Tiempo de Conservación de tus datos
+        </h2>
+        <p>
+          En QuotaSalud conservamos tus datos personales únicamente durante el
+          tiempo necesario para cumplir con los fines para los que fueron
+          recopilados y para dar cumplimiento a nuestras obligaciones legales.
+        </p>
+        <ul>
+          <li>
+            <strong>Formularios de soporte o consultas:</strong> la información
+            y su metadato se conservan mientras sea necesario para gestionar tu
+            solicitud y, en su caso, durante el tiempo legalmente establecido.
+            Puedes solicitar su eliminación en cualquier momento.
+          </li>
+          <li>
+            <strong>Comentarios en el sitio:</strong> los datos asociados se
+            mantienen mientras el contenido esté publicado o hasta que solicites
+            su eliminación.
+          </li>
+          <li>
+            <strong>Usuarios registrados:</strong> la información de tu perfil
+            se conserva mientras tu cuenta permanezca activa. Podrás acceder,
+            modificar o eliminar tu información personal en cualquier momento
+            (excepto el nombre de usuario y datos de contacto).
+          </li>
+        </ul>
+        <p>
+          Los administradores de QuotaSalud pueden acceder y gestionar esta
+          información únicamente con fines operativos y de soporte técnico.
+        </p>
+      </section>
+
+      <section id="medidas-seguridad" class="privacy-section">
+        <h2>
+          <i class="fas fa-shield-alt"></i> 10. Medidas de Seguridad
+          Implementadas
+        </h2>
+        <p>
+          En QuotaSalud implementamos medidas organizativas para proteger tus
+          datos personales y garantizar la confidencialidad, integridad y
+          disponibilidad de la información.
+        </p>
+        <ul>
+          <li>
+            Limitamos el acceso a la información personal únicamente a personal
+            autorizado y bajo estrictos criterios de confidencialidad.
+          </li>
+          <li>
+            Realizamos controles periódicos de seguridad para prevenir accesos
+            indebidos, pérdidas o alteraciones de los datos.
+          </li>
+        </ul>
+        <p>
+          Además de las medidas organizativas y los protocolos de
+          confidencialidad del personal, QuotaSalud implementa medidas técnicas
+          de vanguardia:
+        </p>
+        <ul>
+          <li>
+            <strong>Cifrado en Tránsito:</strong> Uso obligatorio del protocolo
+            SSL/HTTPS para cifrar toda la comunicación entre su dispositivo y
+            nuestros servidores.
+          </li>
+          <li>
+            <strong>Cifrado de Datos en Reposo:</strong> Para mitigar los
+            riesgos asociados a la transferencia internacional de datos, la
+            información sensible y de salud que usted registra en la plataforma
+            se protege mediante cifrado a nivel de aplicación (End-to-End
+            Encryption) o mecanismos de cifrado robustos para datos "en reposo"
+            (at rest), asegurando que, incluso en caso de acceso no autorizado,
+            la información permanezca ilegible.
+          </li>
+        </ul>
+        <p>
+          En caso de producirse una violación de seguridad o brecha de datos,
+          nuestros administradores de sistema tomarán de inmediato todas las
+          medidas necesarias para restablecer la integridad del sistema.
+          Asimismo, se notificará a los usuarios afectados y, en caso de ser
+          necesario, se solicitará la actualización o restablecimiento de
+          contraseñas.
+        </p>
+      </section>
+
+      <section id="derechos" class="privacy-section">
+        <h2>
+          <i class="fas fa-user-shield"></i> 11. Tus derechos sobre los datos
+        </h2>
+
+        <div class="sub-section">
+          <h3>Derechos generales</h3>
+          <p>
+            Si tienes una cuenta registrada en nuestra plataforma o has dejado
+            comentarios, puedes solicitar un archivo exportado con los datos
+            personales que conservamos sobre ti, incluyendo cualquier
+            información adicional que hayas proporcionado.
+          </p>
+          <p>
+            También puedes solicitar la eliminación de tus datos personales en
+            cualquier momento. Esto no incluye información que estemos
+            legalmente obligados a conservar por motivos administrativos,
+            legales o de seguridad.
+          </p>
+          <p>
+            En caso de que solicites la eliminación total de tus datos, te
+            informaremos que ya no podremos ofrecerte acceso a tu cuenta ni a
+            los servicios asociados.
+          </p>
+        </div>
+
+        <div class="sub-section">
+          <h3>Derechos bajo el RGPD</h3>
+          <p>
+            En QuotaSalud respetamos y cumplimos con el Reglamento General de
+            Protección de Datos (RGPD) de la Unión Europea.
+          </p>
+          <p>Como usuario, tienes derecho a:</p>
+          <ul>
+            <li>Acceder a tus datos personales.</li>
+            <li>
+              Solicitar la rectificación de información inexacta o incompleta.
+            </li>
+            <li>
+              Solicitar la supresión de tus datos cuando ya no sean necesarios
+              para los fines para los que fueron recogidos.
+            </li>
+            <li>
+              Limitar el tratamiento de tus datos en determinadas
+              circunstancias.
+            </li>
+            <li>
+              Solicitar la portabilidad de tus datos a otro proveedor de
+              servicios.
+            </li>
+            <li>
+              Oponerte al tratamiento de tus datos personales en casos
+              concretos.
+            </li>
+          </ul>
+          <p>
+            Si deseas ejercer cualquiera de estos derechos, puedes ponerte en
+            contacto con nosotros a través de los canales indicados en esta
+            Política de Privacidad.
+          </p>
+        </div>
+      </section>
+
+      <section id="sitios-terceros" class="privacy-section">
+        <h2>
+          <i class="fas fa-external-link-square-alt"></i> 12. Sitios Web de
+          Terceros
+        </h2>
+        <p>
+          En QuotaSalud podemos incluir enlaces a sitios web de terceros. Estos
+          sitios no son revisados ni supervisados por nosotros en materia de
+          privacidad o seguridad, por lo que QuotaSalud no asume responsabilidad
+          alguna por las prácticas o contenidos de dichos sitios externos.
+        </p>
+        <p>
+          Los enlaces a redes sociales (ya sea en forma de texto o de íconos) no
+          establecen conexión con los servidores de esas plataformas hasta que
+          el usuario haga clic de manera voluntaria en ellos.
+        </p>
+        <p>
+          Ten en cuenta que esta Política de Privacidad se aplica únicamente a
+          los servicios y plataformas de QuotaSalud. Cualquier dato que
+          proporciones en sitios web de terceros se regirá por las políticas de
+          privacidad y términos de uso de dichos sitios. Te recomendamos
+          revisarlos cuidadosamente antes de proporcionar información personal.
+        </p>
+      </section>
+
+      <section id="cesion-legal" class="privacy-section">
+        <h2>
+          <i class="fas fa-balance-scale"></i> 13. Cesión de tus datos por
+          motivos legales
+        </h2>
+        <p>
+          En determinados casos, puede resultar necesario que QuotaSalud
+          comunique tu información personal en respuesta a requerimientos
+          legales de autoridades competentes o en el marco de procedimientos
+          judiciales.
+        </p>
+        <p>Esto puede incluir:</p>
+        <ul>
+          <li>Solicitudes de organismos gubernamentales.</li>
+          <li>Investigaciones civiles o penales.</li>
+          <li>Obligaciones derivadas de normativas legales aplicables.</li>
+        </ul>
+        <p>
+          En tales situaciones, únicamente se revelará la información
+          estrictamente necesaria y siempre en cumplimiento de la legislación
+          vigente del país de residencia del usuario y del Reglamento General de
+          Protección de Datos (RGPD).
+        </p>
+        <p>
+          En caso de ser posible y legalmente permitido, notificaremos al
+          usuario afectado sobre la solicitud recibida antes de compartir sus
+          datos.
+        </p>
+        <p>
+          QuotaSalud nunca cederá datos personales a terceros con fines
+          distintos a los legalmente establecidos.
+        </p>
+      </section>
+
+      <section id="contacto" class="privacy-section">
+        <h2><i class="fas fa-envelope"></i> 14. Contacto</h2>
+        <p>
+          Si tienes alguna pregunta sobre esta Política de Privacidad o deseas
+          ejercer cualquiera de tus derechos sobre tus datos personales, puedes
+          contactarnos a través de:
+        </p>
+        <ul>
+          <li>El formulario de contacto disponible en nuestra aplicación</li>
+          <li>Nuestro servicio de atención al cliente en la app</li>
+          <li>Correo electrónico: [correo de privacidad]</li>
+        </ul>
+        <p>
+          Nos comprometemos a responder todas las solicitudes en un plazo máximo
+          de 30 días hábiles.
+        </p>
+      </section>
+
+      <section id="modificaciones" class="privacy-section">
+        <h2>
+          <i class="fas fa-edit"></i> 15. Modificaciones a la Política de
+          Privacidad
+        </h2>
+        <p>
+          QuotaSalud se reserva el derecho de modificar esta Política de
+          Privacidad en cualquier momento. Cualquier cambio será publicado en
+          esta página con la fecha de última actualización.
+        </p>
+        <p>
+          Te recomendamos revisar periódicamente esta política para estar
+          informado sobre cómo protegemos tu información.
+        </p>
+        <p class="footer-note">Última actualización: 2025/10/04</p>
+      </section>
+    </div>
+
+    <!-- FLOATING ACTION BUTTON FOR MOBILE -->
+    <div class="fab" onclick="scrollToTop()">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+      // Función para volver al inicio
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+
+      // Control del menú desplegable
+      const navToggle = document.getElementById("navToggle");
+      const navDropdown = document.getElementById("navDropdown");
+
+      navToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        navDropdown.classList.toggle("active");
+      });
+
+      // Cerrar menú al hacer clic fuera
+      document.addEventListener("click", function () {
+        navDropdown.classList.remove("active");
+      });
+
+      // Prevenir que el clic en el menú lo cierre
+      navDropdown.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+
+      // Cerrar menú al hacer clic en un enlace
+      const navLinks = document.querySelectorAll(".nav-dropdown .nav-link");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+          navDropdown.classList.remove("active");
+        });
+      });
+
+      // Mostrar/ocultar botón flotante según scroll
+      window.addEventListener("scroll", function () {
+        const fab = document.querySelector(".fab");
+        if (window.scrollY > 300) {
+          fab.style.display = "flex";
+        } else {
+          fab.style.display = "none";
+        }
+      });
+
+      // Inicialmente ocultar el botón flotante
+      document.querySelector(".fab").style.display = "none";
+
+      // Añadir funcionalidad para resaltar sección activa
+      const sections = document.querySelectorAll("section");
+      const options = {
+        rootMargin: "-20% 0px -70% 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      }, options);
+
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+    </script>
+  </body>
+</html>

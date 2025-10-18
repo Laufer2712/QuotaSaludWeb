@@ -14,7 +14,7 @@
         </div>
 
         <div class="legal-links">
-            <a href="/politica-privacidad">Política de Privacidad</a>
+            <a href="politica-privacidad.html">Política de Privacidad</a>
             <a href="terminos-condiciones.html">Términos y Condiciones</a>
         </div>
     </div>
