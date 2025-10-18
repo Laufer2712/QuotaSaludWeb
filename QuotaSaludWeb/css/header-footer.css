@@ -1,21 +1,14 @@
 /* ======================================================= */
-/* HEADER Y FOOTER UNIFICADOS */
+/* HEADER Y FOOTER UNIFICADOS - RESPONSIVE */
 /* ======================================================= */
 
 /* HEADER */
 header {
-  /* 1. Imagen de Fondo: Reemplaza 'ruta/a/tu/imagen.jpg' con la ubicación real de tu archivo. */
   background-image: url("../img/fondoHeader.png");
-
-  /* 2. Propiedades de Control de la Imagen */
-  background-size: cover; /* CLAVE: Asegura que la imagen cubra todo el header sin distorsionarse. */
-  background-position: center center; /* Centra la imagen horizontal y verticalmente. */
-  background-repeat: no-repeat; /* Evita que la imagen se repita si el header es grande. */
-
-  /* Puedes añadir un color de respaldo si la imagen falla en cargar (fallback) */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   background-color: #f8f8f8;
-
-  /* Propiedades que ya tenías */
   padding: 8px 0;
   position: fixed;
   top: 0;
@@ -23,12 +16,9 @@ header {
   width: 100%;
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-  font-family: "Poppins", sans-serif;
 }
 
 .header-content {
-  max-width: 1100px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,35 +26,43 @@ header {
 }
 
 /* Logo */
-header h1 {
-  font-size: 1.6rem;
-  color: #08314a;
-  font-weight: 700;
-  letter-spacing: 0.2px;
+.logo-link {
+  display: inline-block;
+  line-height: 0;
+  z-index: 1001;
+}
+
+.logo-animado {
+  height: 50px;
+  width: auto;
+  transition: transform 0.28s ease;
+  display: block;
+}
+
+.logo-animado:hover {
+  transform: scale(1.05);
 }
 
 /* Navegación */
-.nav {
+nav {
   display: flex;
   align-items: center;
   gap: 30px;
 }
 
 /* Links */
-.nav-link,
-.nav-link2 {
+.nav-link {
   color: #08314a;
   text-decoration: none;
   position: relative;
   font-weight: 600;
   font-size: 0.95rem;
-  margin-left: 20px;
   padding: 6px 0;
   transition: color 0.3s;
 }
 
 /* Efecto de subrayado */
-.nav-link::after {
+.nav-link:not(.cta-link)::after {
   content: "";
   position: absolute;
   left: 0;
@@ -75,11 +73,11 @@ header h1 {
   transition: width 0.3s ease;
 }
 
-.nav-link:hover::after {
+.nav-link:not(.cta-link):hover::after {
   width: 100%;
 }
 
-.nav-link:hover {
+.nav-link:not(.cta-link):hover {
   color: #1729ad;
 }
 
@@ -99,76 +97,122 @@ header h1 {
   transform: translateY(-2px);
 }
 
+/* ======================================================= */
+/* MENÚ HAMBURGUESA PARA MÓVIL */
+/* ======================================================= */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background-color: #08314a;
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+/* Animación del menú hamburguesa cuando está activo */
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* ======================================================= */
 /* RESPONSIVE HEADER */
+/* ======================================================= */
+
+/* Tablets (768px - 1024px) */
 @media (max-width: 1024px) {
   .header-content {
-    flex-direction: column;
     gap: 10px;
   }
 
-  .nav {
-    flex-wrap: wrap;
-    justify-content: center;
+  nav {
     gap: 20px;
   }
 
   .nav-link {
     font-size: 0.9rem;
   }
-
-  .cta-link {
-    margin-top: 6px;
-  }
 }
 
+/* Móviles (hasta 768px) */
 @media (max-width: 768px) {
-  .header-content {
-    flex-direction: column;
-    gap: 8px;
+  body {
+    padding-top: 55px;
   }
 
-  .nav {
+  .header-content {
+    padding: 0 15px;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #f8f8f8;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 0;
+    padding: 20px 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 999;
   }
 
-  .nav-link,
-  .cta-link {
+  nav.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .nav-link {
     width: 100%;
     text-align: center;
+    padding: 12px 0;
+    margin: 0;
+    border-bottom: 1px solid rgba(8, 49, 74, 0.1);
+  }
+
+  .nav-link:last-child {
+    border-bottom: none;
+  }
+
+  .cta-link {
+    margin-top: 10px;
+    width: 90%;
   }
 }
 
-/* LOGO ANIMADO */
-.logo-link {
-  display: inline-block;
-  line-height: 0;
-}
-
-.logo-animado {
-  height: 40px;
-  width: auto;
-  transition: transform 0.28s ease;
-  display: block;
-  animation: fadeInDown 0.7s ease both;
-}
-
-.logo-animado:hover {
-  transform: scale(1.05);
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-12px);
+/* Móviles pequeños (hasta 480px) */
+@media (max-width: 480px) {
+  .logo-animado {
+    height: 40px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .header-content {
+    padding: 0 10px;
   }
 }
-
 /* ======================================================= */
 /* FOOTER (Estilo Moderno y Oscuro) */
 /* ======================================================= */

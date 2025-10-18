@@ -26,10 +26,12 @@ $estado_formulario = $_GET['estado'] ?? null;
     <meta name="description" content="<?php echo $page_description; ?>">
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body id="top">
-
 
     <header>
         <div class="contenedor header-content">
@@ -37,11 +39,50 @@ $estado_formulario = $_GET['estado'] ?? null;
                 <img src="img/QUOTALOGO.png" alt="Quota Salud Logo" class="logo-animado">
             </a>
 
-            <nav>
+            <!-- Menú hamburguesa para móvil -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="nav" id="main-nav">
                 <a href="index.php" class="nav-link">¿Quienes somos?</a>
                 <a href="aliados.php" class="nav-link">Afiliate con nosotros</a>
                 <a href="paciente.php" class="nav-link">Unete a nuestros planes</a>
-                <a href="#formulario-captacion" class="nav-link2 cta-link">Contactanos</a>
+                <a href="#formulario-captacion" class="nav-link cta-link">Contactanos</a>
             </nav>
         </div>
     </header>
+
+    <script>
+        // JavaScript para el menú desplegable en móvil
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const nav = document.getElementById('main-nav');
+
+            mobileMenu.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+
+            // Cerrar el menú al hacer clic en un enlace (en dispositivos móviles)
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        nav.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            // Cerrar el menú al redimensionar la ventana a un tamaño mayor
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    nav.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>

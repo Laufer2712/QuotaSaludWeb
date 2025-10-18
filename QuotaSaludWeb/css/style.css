@@ -74,19 +74,13 @@ section {
 
 #informacion-principal {
   background-image: url("../img/fondo.jpg");
-
   background-size: cover;
-  /* Ancla la imagen a la parte superior, permitiendo que la parte inferior se recorte si el contenedor no es lo suficientemente alto */
   background-position: center top;
-
   background-repeat: no-repeat;
   background-attachment: fixed;
-
   box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.06);
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-
-  /* Puedes reducir esta altura si quieres que el "corte" sea más evidente */
-  min-height: 100vh; /* Por ejemplo, una altura menor para que se recorte más la parte inferior */
+  min-height: 100vh;
   padding: 60px 20px;
 }
 
@@ -161,11 +155,81 @@ section {
   background-position: center center;
   overflow: hidden;
   color: #fff;
+  justify-content: center;
 
-  display: flex;
-  justify-content: center; /* vertical */
-  align-items: center; /* horizontal */
-  min-height: 100vh;
+  /* Optimizaciones para responsividad */
+  background-attachment: scroll; /* Mejor rendimiento en móvil */
+}
+
+/* Ajustes específicos para diferentes dispositivos */
+
+/* Para tablets */
+@media (max-width: 1024px) and (min-width: 769px) {
+  #hero {
+    background-size: cover;
+    background-position: center 30%; /* Ajusta la posición vertical */
+    min-height: 80vh; /* Reduce ligeramente la altura */
+  }
+}
+
+/* Para móviles en orientación horizontal */
+@media (max-width: 768px) and (orientation: landscape) {
+  #hero {
+    min-height: 120vh; /* Más altura para landscape */
+    background-size: cover;
+    background-position: center 20%;
+  }
+}
+
+/* Para móviles grandes */
+@media (max-width: 768px) and (min-width: 577px) {
+  #hero {
+    background-size: cover;
+    background-position: center center;
+    min-height: 80vh;
+  }
+}
+
+/* Para móviles pequeños */
+@media (max-width: 576px) {
+  #hero {
+    background-size: cover;
+    background-position: center center;
+    min-height: 70vh;
+
+    /* Optimización para móviles lentos */
+    background-attachment: scroll;
+  }
+}
+
+/* Para pantallas muy grandes */
+@media (min-width: 1600px) {
+  #hero {
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+/* Optimización para modo retrato en móviles */
+@media (max-width: 768px) and (orientation: portrait) {
+  #hero {
+    background-position: center 25%; /* Enfoca en la parte superior */
+  }
+}
+
+/* Ajustes para cuando el teclado está abierto en móviles */
+@media (max-height: 500px) {
+  #hero {
+    min-height: 100vh;
+    background-position: center 15%;
+  }
+}
+
+/* Mejora de rendimiento para dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+  #hero {
+    background-attachment: scroll;
+  }
 }
 
 .container-hero {
@@ -222,9 +286,8 @@ section {
     rgb(115, 158, 87),
     rgb(112, 182, 66)
   );
-  /* Compatibilidad total */
-  -webkit-background-clip: text; /* Safari/Chrome */
-  background-clip: text; /* Firefox y estándar */
+  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
@@ -318,61 +381,43 @@ section {
 /* ======================================================= */
 /* CINTILLO DE CONFIANZA (Estilo Fino y Desplazable) */
 /* ======================================================= */
-/* Contenedor principal del cintillo */
 .cintillo-container {
   width: 100%;
-  /* Fondo verde por defecto */
   background-color: var(--cintillo-bg, #82c954);
   padding: 4px 0;
-  /* Oculta lo que se desplaza */
   overflow: hidden;
-
-  /* POSICIONAMIENTO CLAVE */
   position: absolute;
   bottom: 0;
   left: 0;
-  /* Evita saltos de línea y el margin-bottom es irrelevante por el bottom: 0 */
   white-space: nowrap;
   margin-bottom: 0;
-
-  /* Detalles estéticos */
   box-shadow: 0 -1px 3px rgb(253, 253, 253);
   border-top: 1px solid var(--cintillo-border-color, rgb(255, 255, 255));
   border-bottom: none;
 }
 
-/* El contenedor que se desplaza (track) */
 .cintillo-track {
   display: inline-flex;
   align-items: center;
-  gap: 50px; /* Espacio grande entre ítems principales */
-
-  /* APLICACIÓN DE LA ANIMACIÓN */
+  gap: 50px;
   animation: scroll-cintillo var(--cintillo-animation-duration, 35s) linear
     infinite;
   will-change: transform;
-
-  /* Pausar animación al pasar el ratón (SASS/PostCSS sintaxis) */
-  /* Nota: Si no usa preprocesadores, cambie esto por: .cintillo-track:hover */
-  &:hover {
-    animation-play-state: paused;
-  }
 }
 
-/* Ítems individuales de Confianza */
+.cintillo-track:hover {
+  animation-play-state: paused;
+}
+
 .confidence-item {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  /* El texto SIEMPRE será blanco, ya sea por la variable o el fallback */
   color: var(--cintillo-text-color, #ffffff);
   font-weight: 600;
-  /* Tamaño de fuente responsivo */
   font-size: clamp(0.8rem, 1.1vw, 0.9rem);
   text-transform: uppercase;
   letter-spacing: 0px;
-
-  /* Espaciado extra si no usa separador */
   padding-right: 20px;
 }
 
@@ -381,75 +426,40 @@ section {
   line-height: 1;
 }
 
-/* Separador vertical */
 .confidence-separator {
-  /* Mismo color blanco que el texto */
   color: rgb(255, 255, 255);
   font-weight: 300;
   font-size: 1rem;
-  padding: 0 8px; /* Espaciado a los lados del separador */
+  padding: 0 8px;
 }
 
-/* -------------------- */
-/* ANIMACIÓN (¡INDISPENSABLE!) */
-/* -------------------- */
 @keyframes scroll-cintillo {
   0% {
     transform: translateX(0);
   }
   100% {
-    /* Mueve el contenido el 50% para el loop perfecto */
     transform: translateX(-50%);
-  }
-}
-
-/* -------------------- */
-/* RESPONSIVE */
-/* -------------------- */
-@media (max-width: 768px) {
-  .cintillo-container {
-    padding: 4px 0;
-  }
-  .cintillo-track {
-    animation-duration: 40s; /* Más lento */
-    gap: 30px; /* Menos espacio */
-    /* Pausamos en móvil por defecto */
-    animation-play-state: paused;
-  }
-  .confidence-item {
-    font-size: 0.8rem;
   }
 }
 
 /* ======================================================= */
 /* PERSONALIZACIÓN DEL SCROLLBAR (WEBKIT) */
 /* ======================================================= */
-
-/* 1. Define el ancho de la barra de desplazamiento */
 ::-webkit-scrollbar {
-  /* Puedes ajustar el valor, 10px es común */
   width: 10px;
 }
 
-/* 2. Estiliza el "track" (la pista o fondo por donde se mueve la barra) */
 ::-webkit-scrollbar-track {
-  /* Usamos el color de fondo de la página para que se integre bien */
   background: var(--color-background);
-  /* Le damos un borde redondeado sutil */
   border-radius: 10px;
 }
 
-/* 3. Estiliza el "thumb" (el agarre que se desliza) */
 ::-webkit-scrollbar-thumb {
-  /* Usamos un color de tu paleta, por ejemplo el primario oscuro */
   background: var(--color-primary-dark);
-  /* Hacemos que la barra de agarre sea redondeada */
   border-radius: 10px;
 }
 
-/* 4. Estiliza el thumb al pasar el ratón para un efecto visual */
 ::-webkit-scrollbar-thumb:hover {
-  /* Un color un poco más claro o acentuado al pasar el ratón */
   background: var(--color-primary-light);
 }
 
@@ -461,17 +471,16 @@ section {
   background-repeat: no-repeat;
   background-attachment: fixed;
   padding: 60px 20px;
-  display: none; /* oculto por defecto */
+  display: none;
   justify-content: center;
   margin: 0;
 }
 
 #ver-mas-section.visible {
-  display: flex; /* se muestra al darle al botón */
+  display: flex;
   animation: slideDown 0.4s ease-in-out;
 }
 
-/* El card ya no necesita display:none */
 #tabs-section {
   max-width: 1000px;
   width: 100%;
@@ -499,24 +508,15 @@ section {
 
 /* ================= VARIABLES CSS - PALETA OPTIMIZADA ================= */
 :root {
-  /* Azules */
-  --color-primary-dark: #171eda; /* Azul oscuro principal */
-  --color-primary-light: #1729ad; /* Azul secundario */
-
-  /* Verdes */
+  --color-primary-dark: #171eda;
+  --color-primary-light: #1729ad;
   --color-secondary-dark: #539e3f;
-  --color-secondary-light: #70b642; /* Verde vibrante para acentos */
-
-  /* Textos y fondos */
+  --color-secondary-light: #70b642;
   --color-text-dark: #2c2c2c;
   --color-text-light: #555;
   --color-background-white: #fff;
-
-  /* Bordes y sombras */
   --color-border-light: #e0e0e0;
   --color-shadow-subtle: rgba(0, 0, 0, 0.05);
-
-  /* Bordes y transiciones */
   --border-radius-lg: 12px;
   --border-radius-sm: 8px;
   --transition-speed: 0.3s;
@@ -562,7 +562,6 @@ section {
   box-shadow: 0 0 0 2px var(--color-primary-light);
 }
 
-/* ================= PESTAÑA ACTIVA ================= */
 .tab-button.active {
   color: var(--color-background-white);
   font-weight: 600;
@@ -572,18 +571,17 @@ section {
   box-shadow: 0 -2px 6px var(--color-shadow-subtle);
 }
 
-/* ================= CONTENIDO PESTAÑAS ================= */
 .tab-content {
   display: none;
   padding: 30px 30px;
   background: var(--color-background-white);
-  border-top: 1px solid var(--color-border-light); /* cambiar de none a border-top */
+  border-top: 1px solid var(--color-border-light);
   border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
-  box-shadow: none; /* quitar sombra extra */
-  margin-top: 0px; /* quitar margen negativo */
+  box-shadow: none;
+  margin-top: 0px;
   transition: all 0.4s ease;
   opacity: 0;
-  transform: translateY(0); /* quitar el desplazamiento */
+  transform: translateY(0);
   text-align: left;
 }
 
@@ -591,12 +589,11 @@ section {
   display: block;
   opacity: 1;
   transform: translateY(0);
-  border: 1px solid var(--color-border-light); /* borde uniforme */
-  border-top: none; /* opcional si quieres continuidad con nav */
-  box-shadow: none; /* nada de sombra que flote */
+  border: 1px solid var(--color-border-light);
+  border-top: none;
+  box-shadow: none;
 }
 
-/* ================= LISTAS INTERACTIVAS ================= */
 .tab-content ul {
   list-style: none;
   padding: 0;
@@ -637,37 +634,6 @@ section {
   font-weight: 700;
 }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-  .tabs-nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 5px;
-  }
-
-  .tab-button {
-    flex: 1 1 100%;
-    margin-bottom: 5px;
-    padding: 12px;
-    font-size: 1rem;
-    border-radius: var(--border-radius-sm);
-  }
-
-  .tab-button.active {
-    border: 1px solid var(--color-secondary-light);
-    border-bottom: 1px solid var(--color-secondary-light);
-    box-shadow: none;
-  }
-
-  .tab-content {
-    padding: 0px;
-  }
-
-  .tab-content li {
-    padding: 10px;
-  }
-}
-
 /* ================= BOTÓN TOGGLE ================= */
 .show-section-btn {
   padding: 12px 25px;
@@ -696,13 +662,307 @@ section {
   transform: rotate(180deg);
 }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-  .tab-content {
-    padding: 0px 0px;
+/* ======================================================= */
+/* MEDIA QUERIES PARA RESPONSIVIDAD */
+/* ======================================================= */
+
+/* TABLET (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .container {
+    max-width: 95%;
+    padding: 0 15px;
   }
+
+  .container-hero {
+    max-width: 95%;
+  }
+
+  .hero-texto {
+    padding: 0 2rem 0 5%;
+    margin-right: 20%;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+  }
+
+  .tabs-nav {
+    justify-content: center;
+  }
+
+  .tab-button {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+  }
+
+  .tab-content {
+    padding: 25px 20px;
+  }
+
+  .section-title h2 {
+    font-size: clamp(2rem, 5vw, 2.2rem);
+  }
+}
+
+/* MÓVIL GRANDE (576px - 768px) */
+@media (max-width: 768px) and (min-width: 577px) {
+  .container {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+
+  .container-hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  .hero-texto {
+    padding: 0;
+    margin-right: 0;
+    text-align: center;
+  }
+
+  .hero-botones {
+    justify-content: center;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .feature-card {
+    padding: 25px;
+  }
+
+  .tabs-nav {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .tab-button {
+    width: 100%;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 0;
+  }
+
+  .tab-content {
+    padding: 20px 15px;
+  }
+
+  section {
+    padding: 25px 15px 40px 15px;
+  }
+
+  #informacion-principal {
+    padding: 40px 15px;
+    min-height: 80vh;
+  }
+
+  .section-title p {
+    font-size: 1.1rem;
+  }
+
+  .cintillo-container {
+    padding: 4px 0;
+  }
+
+  .cintillo-track {
+    animation-duration: 40s;
+    gap: 30px;
+    animation-play-state: paused;
+  }
+
+  .confidence-item {
+    font-size: 0.8rem;
+  }
+
+  .tabs-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 5px;
+  }
+
+  .tab-button {
+    flex: 1 1 100%;
+    margin-bottom: 5px;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: var(--border-radius-sm);
+  }
+
+  .tab-button.active {
+    border: 1px solid var(--color-secondary-light);
+    border-bottom: 1px solid var(--color-secondary-light);
+    box-shadow: none;
+  }
+
+  .tab-content {
+    padding: 0px;
+  }
+
+  .tab-content li {
+    padding: 10px;
+  }
+
   .tab-button {
     font-size: 0.95rem;
     padding: 14px 0;
+  }
+}
+
+/* MÓVIL PEQUEÑO (hasta 576px) */
+@media (max-width: 576px) {
+  .container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .container-hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .hero-texto {
+    padding: 0;
+    margin-right: 0;
+    text-align: center;
+  }
+
+  .hero-texto h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .h2-gradiente {
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+  }
+
+  .hero-texto p {
+    font-size: 1rem;
+  }
+
+  .hero-botones {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-botones a {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 25px;
+  }
+
+  .feature-card {
+    padding: 20px;
+  }
+
+  .tabs-nav {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .tab-button {
+    width: 100%;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 0;
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+
+  .tab-content {
+    padding: 15px 10px;
+  }
+
+  .tab-content li {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  section {
+    padding: 20px 10px 30px 10px;
+  }
+
+  #informacion-principal {
+    padding: 30px 10px;
+    min-height: 70vh;
+  }
+
+  .section-title h2 {
+    font-size: clamp(1.8rem, 7vw, 2.2rem);
+  }
+
+  .section-title p {
+    font-size: 1rem;
+  }
+
+  .show-section-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cintillo-track {
+    gap: 25px;
+  }
+
+  .confidence-item {
+    font-size: 0.75rem;
+  }
+}
+
+/* AJUSTES ESPECÍFICOS PARA DISPOSITIVOS EN MODO HORIZONTAL */
+@media (max-height: 500px) and (orientation: landscape) {
+  #hero {
+    min-height: 120vh;
+  }
+
+  #informacion-principal {
+    min-height: 120vh;
+  }
+}
+
+/* SOPORTE PARA PANTALLAS MUY GRANDES */
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1400px;
+  }
+
+  .container-hero {
+    max-width: 1500px;
+  }
+}
+
+/* MEJORAS DE ACCESIBILIDAD Y USABILIDAD EN MÓVIL */
+@media (max-width: 768px) {
+  .tab-button,
+  .hero-botones a,
+  .show-section-btn {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tab-content p,
+  .feature-card p {
+    line-height: 1.7;
+  }
+
+  .feature-card:hover {
+    transform: none;
+  }
+
+  .tab-content li:hover {
+    transform: none;
   }
 }

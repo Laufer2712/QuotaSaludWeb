@@ -118,4 +118,7 @@ require_once 'includes/header.php';
 <script src="js/script.js"></script>
 <script src="js/aliados.js"></script>
 
+<?php
+include 'includes/floating.php';
+?>
 <?php require_once 'includes/footer.php'; ?>
