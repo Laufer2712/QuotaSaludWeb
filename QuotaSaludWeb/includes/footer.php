@@ -28,7 +28,7 @@
     <div class="legal-disclaimer">
         <div class="legal-links">
             <a href="/politica-privacidad">Política de Privacidad</a>
-            <a href="/terminos-condiciones">Términos y Condiciones</a>
+            <a href="terminos-condiciones.html">Términos y Condiciones</a>
         </div>
         <p style="text-align: center;">
             <strong>Aviso legal:</strong> Quota Salud no es una entidad de ahorro y
