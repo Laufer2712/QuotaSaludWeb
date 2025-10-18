@@ -25,7 +25,7 @@ require_once 'includes/header.php';
                 <p><strong>Descarga nuestra app y descubre cómo podemos facilitar tu bienestar hoy mismo.</strong></p>
 
                 <div class="hero-botones">
-                    <a href="aliados.php" class="cta-link">Quota Salud App</a>
+                    <a href="advertisingApp.php" class="cta-link">Quota Salud App</a>
                     <a href="#informacion-principal" class="cta-secondary">Tus Beneficios</a>
                 </div>
             </div>
@@ -77,6 +77,7 @@ require_once 'includes/header.php';
 
 <!-- ================= SCRIPTS ================= -->
 <script src="js/script.js"></script>
+<script src="js/app-carrusel.js"></script>
 
 <?php
 require_once 'includes/footer.php';
