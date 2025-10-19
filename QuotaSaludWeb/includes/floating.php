@@ -152,7 +152,7 @@
         </a>
 
         <a href="#" class="chat-bubble" title="Chatea con nuestro Asistente">
-            <img src="img/BotQuoticoSalud.png" alt="Bot QuiticoSalud">
+            <img src="img/Bot.png" alt="Bot QuiticoSalud">
         </a>
     </div>
 

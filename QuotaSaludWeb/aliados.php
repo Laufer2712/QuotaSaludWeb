@@ -29,127 +29,132 @@ require_once 'includes/header.php';
     </div>
 </section>
 
-<!-- ================= SECCIÓN PILARES (oculta) ================= -->
+<!-- ================= SECCIÓN PILARES (oculta inicialmente) ================= -->
 <section id="pilares-section" class="is-hidden">
-    <div class="container">
+    <div class="benefits-section-container">
+
         <div class="section-title">
-            <h2>Haciendo posible que más pacientes terminen su tratamiento</h2>
-            <p style="text-align: justify;">8 de cada 10 pacientes abandonan un tratamiento por no poder pagarlo completo.</p>
+            <h2>Conoce tus beneficios como Aliado!</h2>
+            <!-- <p>Conozca los beneficios obtenidos para formar parte de nuestra red de aliados</p>-->
         </div>
-
-        <div class="benefits-section-container">
-            <!-- CARRUSEL COMPACTO -->
-            <div class="centered-carousel-container">
-
-                <!-- Track de slides -->
-                <div class="centered-carousel-track">
-                    <!-- Slide 1 -->
-                    <div class="centered-carousel-slide active" data-index="0">
-                        <div class="centered-carousel-card">
-                            <div class="card-icon">
-                                <img src="assets/ICON-5.gif" alt="Icono de Flujo de Pacientes">
-                            </div>
+        <!-- CARRUSEL COMPACTO -->
+        <div class="centered-carousel-container">
+            <!-- Track de slides -->
+            <div class="centered-carousel-track">
+                <!-- Slide 1 - Mayor Flujo de Pacientes -->
+                <div class="centered-carousel-slide active" data-index="0">
+                    <div class="centered-carousel-card">
+                        <div class="card-image">
+                            <img src="img/MayorFlujo.png" alt="Flujo de Pacientes">
+                        </div>
+                        <div class="card-content">
                             <div class="feature-header">
                                 <h3>Mayor Flujo de Pacientes</h3>
                             </div>
-                            <p class="card-description">Atraiga más clientes al eliminar la barrera financiera, facilitando que los pacientes accedan y paguen sus servicios.</p>
+                            <p class="card-description">Atraiga más clientes al eliminar la barrera financiera, facilitando que los pacientes accedan y paguen sus servicios. Nuestra plataforma conecta su consultorio con una amplia red de pacientes potenciales.</p>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Slide 2 -->
-                    <div class="centered-carousel-slide" data-index="1">
-                        <div class="centered-carousel-card">
-                            <div class="card-icon">
-                                <img src="assets/ICON-6.gif" alt="Icono de Cero Riesgo">
-                            </div>
+                <!-- Slide 2 - Cero Riesgo de Impago -->
+                <div class="centered-carousel-slide" data-index="1">
+                    <div class="centered-carousel-card">
+                        <div class="card-image">
+                            <img src="img/Impago.png" alt="Cero Riesgo de Impago">
+                        </div>
+                        <div class="card-content">
                             <div class="feature-header">
                                 <h3>Cero Riesgo de Impago</h3>
                             </div>
-                            <p class="card-description">Garantía de pago total por sus servicios. Quota Salud asume el riesgo de cobranza y mora.</p>
+                            <p class="card-description">Garantía de pago total por sus servicios. Quota Salud asume el riesgo de cobranza y mora, permitiéndole enfocarse en lo que realmente importa: la salud de sus pacientes.</p>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Slide 3 -->
-                    <div class="centered-carousel-slide" data-index="2">
-                        <div class="centered-carousel-card">
-                            <div class="card-icon">
-                                <img src="assets/ICON_2-1.gif" alt="Icono de Alto Costo">
-                            </div>
+                <!-- Slide 3 - Potencial de Alto Costo -->
+                <div class="centered-carousel-slide" data-index="2">
+                    <div class="centered-carousel-card">
+                        <div class="card-image">
+                            <img src="img/Potencial.png" alt="Potencial de Alto Costo">
+                        </div>
+                        <div class="card-content">
                             <div class="feature-header">
                                 <h3>Potencial de Alto Costo</h3>
                             </div>
-                            <p class="card-description">Aumente la realización de tratamientos de mayor valor, premiando a los pacientes con buen historial de pago.</p>
+                            <p class="card-description">Aumente la realización de tratamientos de mayor valor, premiando a los pacientes con buen historial de pago. Quota Salud incentiva mediante:</p>
+                            <ul class="benefits-list">
+                                <li>Pagos adelantados</li>
+                                <li>Pagos realizados a tiempo</li>
+                                <li>Transacciones realizadas a través de Quota Salud</li>
+                            </ul>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Slide 4 -->
-                    <div class="centered-carousel-slide" data-index="3">
-                        <div class="centered-carousel-card">
-                            <div class="card-icon">
-                                <img src="assets/ICON_3.gif" alt="Icono de Marketing Digital">
-                            </div>
+
+                <!-- Slide 4 -->
+                <div class="centered-carousel-slide" data-index="3">
+                    <div class="centered-carousel-card">
+                        <div class="card-image">
+                            <img src="img/Apoyo.png" alt="Apoyo en Marketing Digital">
+                        </div>
+                        <div class="card-content">
                             <div class="feature-header">
                                 <h3>Apoyo en Marketing Digital</h3>
                             </div>
-                            <p class="card-description">Reciba soporte estratégico para el posicionamiento de su centro o práctica y generación de nuevos leads.</p>
+                            <p class="card-description">Reciba soporte estratégico para el posicionamiento de su centro o práctica y generación de nuevos leads. Le ayudamos a destacar en el competitivo mercado de la salud.</p>
                         </div>
                     </div>
-
-                    <!-- Slide 5 -->
-                    <div class="centered-carousel-slide" data-index="4">
-                        <div class="centered-carousel-card">
-                            <div class="card-icon">
-                                <img src="assets/ICON_4-1.gif" alt="Icono de Ventajas Adicionales">
-                            </div>
+                </div>
+                <!-- Slide 5 -->
+                <div class="centered-carousel-slide" data-index="4">
+                    <div class="centered-carousel-card">
+                        <div class="card-image">
+                            <img src="img/ventajas.png" alt="Ventajas Adicionales">
+                        </div>
+                        <div class="card-content">
                             <div class="feature-header">
                                 <h3>Ventajas Adicionales</h3>
                             </div>
-                            <p class="card-description">Acceda a alianzas para adquirir insumos médicos y recibir mejoramiento profesional con facilidades de pago.</p>
+                            <p class="card-description">Acceda a beneficios exclusivos para su crecimiento profesional y operativo:</p>
+                            <ul class="benefits-list">
+                                <li>Adquisición de insumos médicos</li>
+                                <li>Mejoramiento profesional continuo</li>
+                                <li>Alianzas estratégicas preferenciales</li>
+                                <li>Facilidades de pago exclusivas</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <!-- Controles compactos -->
-                <div class="centered-carousel-controls">
-                    <button class="centered-carousel-btn prev-btn" aria-label="Anterior">
-                        <i class="fas fa-chevron-left"></i>
+            </div>
+
+            <!-- Indicadores numéricos compactos -->
+            <div class="numeric-indicators">
+                <div class="numeric-indicators-container">
+                    <button class="numeric-indicator active" data-index="0" aria-pressed="true">
+                        <span class="indicator-number"></span>
+                        <span class="indicator-label">Flujo</span>
                     </button>
 
-                    <div class="slide-counter">
-                        <span id="current-slide">1</span>/<span id="total-slides">5</span>
-                    </div>
-
-                    <button class="centered-carousel-btn next-btn" aria-label="Siguiente">
-                        <i class="fas fa-chevron-right"></i>
+                    <button class="numeric-indicator" data-index="1" aria-pressed="false">
+                        <span class="indicator-number"></span>
+                        <span class="indicator-label">Riesgo</span>
                     </button>
-                </div>
-                <!-- Indicadores numéricos compactos -->
-                <div class="numeric-indicators">
-                    <div class="numeric-indicators-container">
-                        <button class="numeric-indicator active" data-index="0" aria-pressed="true">
-                            <span class="indicator-number">1</span>
-                            <span class="indicator-label">Flujo</span>
-                        </button>
 
-                        <button class="numeric-indicator" data-index="1" aria-pressed="false">
-                            <span class="indicator-number">2</span>
-                            <span class="indicator-label">Riesgo</span>
-                        </button>
+                    <button class="numeric-indicator" data-index="2" aria-pressed="false">
+                        <span class="indicator-number"></span>
+                        <span class="indicator-label">Costo</span>
+                    </button>
 
-                        <button class="numeric-indicator" data-index="2" aria-pressed="false">
-                            <span class="indicator-number">3</span>
-                            <span class="indicator-label">Costo</span>
-                        </button>
+                    <button class="numeric-indicator" data-index="3" aria-pressed="false">
+                        <span class="indicator-number"></span>
+                        <span class="indicator-label">Marketing</span>
+                    </button>
 
-                        <button class="numeric-indicator" data-index="3" aria-pressed="false">
-                            <span class="indicator-number">4</span>
-                            <span class="indicator-label">Marketing</span>
-                        </button>
-
-                        <button class="numeric-indicator" data-index="4" aria-pressed="false">
-                            <span class="indicator-number">5</span>
-                            <span class="indicator-label">Ventajas</span>
-                        </button>
-                    </div>
+                    <button class="numeric-indicator" data-index="4" aria-pressed="false">
+                        <span class="indicator-number"></span>
+                        <span class="indicator-label">Ventajas</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -171,37 +176,40 @@ require_once 'includes/header.php';
             <p>Conozca los requisitos necesarios para formar parte de nuestra red de aliados</p>
         </div>
 
-        <div class="requisitos-content">
-            <div class="requisitos-grid">
-                <div class="requisito-item">
-                    <div class="requisito-icon">📋</div>
+        <ul class="requisitos-list requisitos-grid">
+            <li class="requisito-item">
+                <span class="requisito-icon">📋</span>
+                <div class="requisito-text">
                     <h3>Registro Formal</h3>
                     <p>Estar registrados como prestadores formales de salud.</p>
                 </div>
+            </li>
 
-                <div class="requisito-item">
-                    <div class="requisito-icon">🏥</div>
+            <li class="requisito-item">
+                <span class="requisito-icon">🏥</span>
+                <div class="requisito-text">
                     <h3>Acuerdo de Colaboración</h3>
                     <p>Firmar un acuerdo de colaboración (Contrato entre las partes).</p>
                 </div>
+            </li>
 
-                <div class="requisito-item">
-                    <div class="requisito-icon">💼</div>
+            <li class="requisito-item">
+                <span class="requisito-icon">💼</span>
+                <div class="requisito-text">
                     <h3>Punto de Contacto</h3>
                     <p>Asignar un punto de contacto para la comunicación</p>
                 </div>
+            </li>
 
-                <div class="requisito-item">
-                    <div class="requisito-icon">📍</div>
+            <li class="requisito-item">
+                <span class="requisito-icon">📍</span>
+                <div class="requisito-text">
                     <h3>Difusión Digital</h3>
                     <p>Colaborar en la difusión digital de la alianza.</p>
                 </div>
+            </li>
+        </ul>
 
-
-            </div>
-        </div>
-
-        <!-- BOTÓN PARA CERRAR REQUISITOS -->
         <div class="requisitos-btn-container">
             <button class="hide-requisitos-btn cta-link" data-target="#seccion-requisitos">
                 Cerrar Requisitos
