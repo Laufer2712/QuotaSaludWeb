@@ -17,7 +17,7 @@ require_once 'includes/header.php';
 
         <!-- Botón grande en el centro -->
         <div class="cta-central">
-            <a href="aliados.php" class="cta-link cta-large">Afíliarme</a>
+            <a href="form.php" class="cta-link cta-large">Afíliarme</a>
         </div>
 
         <!-- Flecha para mostrar/ocultar sección -->
@@ -173,12 +173,12 @@ require_once 'includes/header.php';
     <div class="container">
         <div class="section-title">
             <h2>Requisitos para Afiliación</h2>
-            <p>Conozca los requisitos necesarios para formar parte de nuestra red de aliados</p>
+            <p>Conozca los requisitos necesarios para formar parte de nuestra red de aliados.</p>
         </div>
 
         <ul class="requisitos-list requisitos-grid">
             <li class="requisito-item">
-                <span class="requisito-icon">📋</span>
+                <span class="requisito-icon">1</span>
                 <div class="requisito-text">
                     <h3>Registro Formal</h3>
                     <p>Estar registrados como prestadores formales de salud.</p>
@@ -186,7 +186,7 @@ require_once 'includes/header.php';
             </li>
 
             <li class="requisito-item">
-                <span class="requisito-icon">🏥</span>
+                <span class="requisito-icon">2</span>
                 <div class="requisito-text">
                     <h3>Acuerdo de Colaboración</h3>
                     <p>Firmar un acuerdo de colaboración (Contrato entre las partes).</p>
@@ -194,7 +194,7 @@ require_once 'includes/header.php';
             </li>
 
             <li class="requisito-item">
-                <span class="requisito-icon">💼</span>
+                <span class="requisito-icon">3</span>
                 <div class="requisito-text">
                     <h3>Punto de Contacto</h3>
                     <p>Asignar un punto de contacto para la comunicación</p>
@@ -202,7 +202,7 @@ require_once 'includes/header.php';
             </li>
 
             <li class="requisito-item">
-                <span class="requisito-icon">📍</span>
+                <span class="requisito-icon">4</span>
                 <div class="requisito-text">
                     <h3>Difusión Digital</h3>
                     <p>Colaborar en la difusión digital de la alianza.</p>
@@ -214,6 +214,9 @@ require_once 'includes/header.php';
             <button class="hide-requisitos-btn cta-link" data-target="#seccion-requisitos">
                 Cerrar Requisitos
             </button>
+            <a href="form.php" class="cta-link cta-large afiliate-btn">
+                Afíliarme
+            </a>
         </div>
     </div>
 </section>
