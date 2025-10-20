@@ -124,7 +124,7 @@ require_once 'includes/header.php';
                                 <h3>Soporte Estratégico y Beneficios</h3>
                             </div>
                             <p class="card-description">
-                                Crecimiento Operativo y Logística de Valor. Accede a beneficios exclusivos que optimizan tu operación y proyectan tu crecimiento:
+                                Crecimiento Operativo y Logística de Valor. t5 a beneficios exclusivos que optimizan tu operación y proyectan tu crecimiento:
                             </p>
                             <ul class="benefits-list">
                                 <li>Apoyo en Marketing Digital para tu posicionamiento y atracción de nuevos pacientes.</li>
