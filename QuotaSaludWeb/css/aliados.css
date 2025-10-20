@@ -56,7 +56,7 @@ section {
 /* ======================================================= */
 #aliados-section {
   position: relative;
-  width: 100%;
+  width: 110%;
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -70,8 +70,8 @@ section {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  width: 100%;
-  max-width: 1400vh;
+  width: 180%;
+  max-width: 1600vh;
   min-height: 90vh;
   border-radius: 0;
   overflow: hidden;
