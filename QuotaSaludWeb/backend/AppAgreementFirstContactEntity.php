@@ -14,30 +14,41 @@ class AppAgreementFirstContactEntity implements JsonSerializable
     // PROPIEDADES (Type Hints y Nullable)
     // -------------------------------------------------------------------
     
-    private int $id = 0; // Se inicializa para asegurar el tipo si no se carga desde DB
-    private ?string $name = null;
-    private ?string $lastName = null;
-    private ?string $phone = null;
-    private ?string $email = null;
-    private ?string $mainRole = null;
-    private ?int $healthSector = null;
-    private ?string $approximateBilling = null; // String para precisión (BigDecimal)
-    private ?string $socialMedia = null;
-    private ?int $numberOfBranches = null;
-    private ?int $numberOfWorkers = null;
-    private ?string $locationAddress = null;
-    private ?string $mapsLink = null;
-    private ?int $usesBillingSystem = null;
-    private ?string $billingSystemName = null;
-    private ?int $billingSystemAdaptable = null;
-    private ?string $legalFigure = null;
-    private ?string $rifNumber = null;
-    private ?string $ciNumber = null;
-    private ?int $deliversFiscalInvoice = null;
-    private ?int $termsAccepted = null;
-    private ?string $documentRifCiPath = null;
-    private ?DateTime $createdAt = null;
+// -------------------------------------------------------------------
+    // PROPIEDADES (Comentarios Cortos)
+    // -------------------------------------------------------------------
 
+    private int $id = 0; // Identificador único del registro (BIGINT)
+    
+    // DATOS DE CONTACTO
+    private ?string $name = null; // Nombre del contacto o representante
+    private ?string $lastName = null; // Apellido del contacto
+    private ?string $phone = null; // Número de teléfono (VARCHAR 50)
+    private ?string $email = null; // Correo electrónico del contacto
+    private ?string $mainRole = null; // Cargo o función principal
+    private ?int $healthSector = null; // Código del Sector de la Salud
+    private ?string $approximateBilling = null; // Facturación aproximada (DECIMAL / string)
+    private ?string $socialMedia = null; // Red social principal
+    private ?int $numberOfBranches = null; // Número de sucursales (BIGINT)
+    private ?int $numberOfWorkers = null; // Cantidad de trabajadores (BIGINT)
+
+    // UBICACIÓN
+    private ?string $locationAddress = null; // Dirección completa (LONGTEXT)
+    private ?string $mapsLink = null; // Link a Google Maps (LONGTEXT)
+
+    // CUESTIONARIO
+    private ?int $usesBillingSystem = null; // Usa sistema de facturación (1=Sí, 0=No)
+    private ?string $billingSystemName = null; // Nombre del sistema de facturación
+    private ?int $billingSystemAdaptable = null; // Sistema adaptable a nuevos pagos (1=Sí, 0=No)
+    private ?string $legalFigure = null; // Figura legal ('Sociedad' o 'Persona natural')
+    private ?string $rifNumber = null; // Número de RIF (Sociedad)
+    private ?string $ciNumber = null; // Cédula de Identidad (Persona natural)
+    private ?int $deliversFiscalInvoice = null; // Entrega factura fiscal (1=Sí, 0=No)
+    private ?int $termsAccepted = null; // Aceptación de Términos y Condiciones (1=Aceptado, 0=No)
+
+    // ARCHIVOS Y METADATOS
+    private ?string $documentRifCiPath = null; // Ruta del archivo adjunto (RIF/CI)
+    private ?DateTime $createdAt = null; // Fecha y hora de registro (DATETIME)
     // -------------------------------------------------------------------
     // CONSTRUCTOR (Útil para inicializar la entidad desde un array de datos)
     // -------------------------------------------------------------------
