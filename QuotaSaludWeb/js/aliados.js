@@ -92,7 +92,7 @@ function initializeCenteredCarousel() {
     function startAutoPlay() {
         autoPlayInterval = setInterval(() => {
             nextSlide();
-        }, 5000);
+        }, 8000);
     }
 
     function pauseAutoPlay() {
