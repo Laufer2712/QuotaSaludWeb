@@ -31,7 +31,9 @@ function setupSectionNavigation() {
 
             // Cambiar ícono de flecha
             const arrowIcon = togglePilaresBtn.querySelector('.arrow-icon');
-            arrowIcon.textContent = isHidden ? '▲' : '▼';
+
+            togglePilaresBtn.classList.toggle('active', isHidden);
+
         });
     }
 

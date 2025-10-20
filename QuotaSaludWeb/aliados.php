@@ -9,39 +9,48 @@ require_once 'includes/header.php';
 
 <!-- ================= SECCIÓN ALIADOS ================= -->
 <section id="aliados-section">
-    <div class="container">
-        <div class="section-title">
-            <h2>Impulsa tu Crecimiento y Asegura tu Ingreso</h2>
-            <p>Atrae más Pacientes y Garantiza tu Flujo de Caja. Crecimiento Sin Riesgos con la Tecnología de Quota Salud</p>
+    <div class="container-aliados">
+        <!-- COLUMNA DE TEXTO -->
+        <div class="aliados-texto-columna">
+            <div class="aliados-texto">
+                <h2>Impulsa tu Crecimiento y Asegura tu Ingreso</h2>
+                <p>Atrae más Pacientes y Garantiza tu Flujo de Caja. Crecimiento sin riesgos con la Tecnología de Quota Salud.</p>
+
+                <div class="cta-central">
+                    <a href="form.php" class="cta-link">Quiero ser Aliado y Garantizar Mis Ingresos</a>
+                </div>
+
+                <div class="arrow-container">
+                    <button class="show-section-btn arrow-btn" data-target="#pilares-section" aria-label="Mostrar más">
+                        <span class="arrow-icon"></span>
+                    </button>
+                </div>
+
+            </div>
         </div>
 
-        <!-- Botón grande en el centro -->
-        <div class="cta-central">
-            <a href="form.php" class="cta-link cta-large">Quiero ser Aliado y Garantizar Mis Ingresos</a>
-        </div>
-
-        <!-- Flecha para mostrar/ocultar sección -->
-        <div class="arrow-container">
-            <button class="show-section-btn arrow-btn" data-target="#pilares-section">
-                <span class="arrow-icon">&#x25BC;</span>
-            </button>
-        </div>
+        <!-- COLUMNA DE IMAGEN -->
+        <div class="aliados-imagen"></div>
     </div>
 </section>
+
+
+
 
 <!-- ================= SECCIÓN PILARES (oculta inicialmente) ================= -->
 <section id="pilares-section" class="is-hidden">
     <div class="benefits-section-container">
 
+        <!-- Título de sección -->
         <div class="section-title">
             <h2>Conoce tus beneficios como Aliado!</h2>
-            <!-- <p>Conozca los beneficios obtenidos para formar parte de nuestra red de aliados</p>-->
+            <!-- <p>Conozca los beneficios obtenidos para formar parte de nuestra red de aliados</p> -->
         </div>
+
         <!-- CARRUSEL COMPACTO -->
         <div class="centered-carousel-container">
-            <!-- Track de slides -->
             <div class="centered-carousel-track">
-                <!-- Slide 1 - Mayor Flujo de Pacientes -->
+                <!-- Slide 1 -->
                 <div class="centered-carousel-slide active" data-index="0">
                     <div class="centered-carousel-card">
                         <div class="card-image">
@@ -49,14 +58,20 @@ require_once 'includes/header.php';
                         </div>
                         <div class="card-content">
                             <div class="feature-header">
-                                <h3>Mayor Flujo de Pacientes</h3>
+                                <h3>Cobro Total Garantizado</h3>
                             </div>
-                            <p class="card-description">Atraiga más clientes al eliminar la barrera financiera, facilitando que los pacientes accedan y paguen sus servicios. Nuestra plataforma conecta su consultorio con una amplia red de pacientes potenciales.</p>
+                            <p class="card-description">
+                                Nos ocupamos de todo. Tú enfócate en la salud.
+                            </p>
+                            <ul class="benefits-list">
+                                <li>Cero Riesgo de Impago (Asumimos el riesgo).</li>
+                                <li>Sin complicación de papeleo bancario.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slide 2 - Cero Riesgo de Impago -->
+                <!-- Slide 2 -->
                 <div class="centered-carousel-slide" data-index="1">
                     <div class="centered-carousel-card">
                         <div class="card-image">
@@ -64,14 +79,20 @@ require_once 'includes/header.php';
                         </div>
                         <div class="card-content">
                             <div class="feature-header">
-                                <h3>Cero Riesgo de Impago</h3>
+                                <h3>Fideliza y Atrae Nuevos Pacientes</h3>
                             </div>
-                            <p class="card-description">Garantía de pago total por sus servicios. Quota Salud asume el riesgo de cobranza y mora, permitiéndole enfocarse en lo que realmente importa: la salud de sus pacientes.</p>
+                            <p class="card-description">
+                                Abre tu centro a nuevos pacientes que buscan flexibilidad de pago.
+                            </p>
+                            <ul class="benefits-list">
+                                <li>Retienes a tus pacientes actuales.</li>
+                                <li>Aumenta la tasa de cierre de tratamientos (ticket promedio).</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slide 3 - Potencial de Alto Costo -->
+                <!-- Slide 3 -->
                 <div class="centered-carousel-slide" data-index="2">
                     <div class="centered-carousel-card">
                         <div class="card-image">
@@ -79,18 +100,18 @@ require_once 'includes/header.php';
                         </div>
                         <div class="card-content">
                             <div class="feature-header">
-                                <h3>Potencial de Alto Costo</h3>
+                                <h3>Gestión 100% Digital y Simple</h3>
                             </div>
-                            <p class="card-description">Aumente la realización de tratamientos de mayor valor, premiando a los pacientes con buen historial de pago. Quota Salud incentiva mediante:</p>
+                            <p class="card-description">
+                                Nos encargamos del proceso completo - validación del paciente y organización de la división de pagos.
+                            </p>
                             <ul class="benefits-list">
-                                <li>Pagos adelantados</li>
-                                <li>Pagos realizados a tiempo</li>
-                                <li>Transacciones realizadas a través de Quota Salud</li>
+                                <li>Transferencia de fondos a tu cuenta.</li>
+                                <li>Tú solo te enfocas en lo que mejor haces: brindar salud.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-
 
                 <!-- Slide 4 -->
                 <div class="centered-carousel-slide" data-index="3">
@@ -100,28 +121,15 @@ require_once 'includes/header.php';
                         </div>
                         <div class="card-content">
                             <div class="feature-header">
-                                <h3>Apoyo en Marketing Digital</h3>
+                                <h3>Soporte Estratégico y Beneficios</h3>
                             </div>
-                            <p class="card-description">Reciba soporte estratégico para el posicionamiento de su centro o práctica y generación de nuevos leads. Le ayudamos a destacar en el competitivo mercado de la salud.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Slide 5 -->
-                <div class="centered-carousel-slide" data-index="4">
-                    <div class="centered-carousel-card">
-                        <div class="card-image">
-                            <img src="img/ventajas.png" alt="Ventajas Adicionales">
-                        </div>
-                        <div class="card-content">
-                            <div class="feature-header">
-                                <h3>Ventajas Adicionales</h3>
-                            </div>
-                            <p class="card-description">Acceda a beneficios exclusivos para su crecimiento profesional y operativo:</p>
+                            <p class="card-description">
+                                Crecimiento Operativo y Logística de Valor. Accede a beneficios exclusivos que optimizan tu operación y proyectan tu crecimiento:
+                            </p>
                             <ul class="benefits-list">
-                                <li>Adquisición de insumos médicos</li>
-                                <li>Mejoramiento profesional continuo</li>
-                                <li>Alianzas estratégicas preferenciales</li>
-                                <li>Facilidades de pago exclusivas</li>
+                                <li>Apoyo en Marketing Digital para tu posicionamiento y atracción de nuevos pacientes.</li>
+                                <li>Adquisición de insumos y equipos médicos con un sistema de pago programado en cuotas.</li>
+                                <li>Facilidades de pago exclusivas para el mejoramiento profesional y operativo (ej. certificaciones o equipos).</li>
                             </ul>
                         </div>
                     </div>
@@ -133,40 +141,57 @@ require_once 'includes/header.php';
                 <div class="numeric-indicators-container">
                     <button class="numeric-indicator active" data-index="0" aria-pressed="true">
                         <span class="indicator-number"></span>
-                        <span class="indicator-label">Flujo</span>
+                        <span class="indicator-label">Cobro</span>
                     </button>
-
                     <button class="numeric-indicator" data-index="1" aria-pressed="false">
                         <span class="indicator-number"></span>
-                        <span class="indicator-label">Riesgo</span>
+                        <span class="indicator-label">Fideliza</span>
                     </button>
-
                     <button class="numeric-indicator" data-index="2" aria-pressed="false">
                         <span class="indicator-number"></span>
-                        <span class="indicator-label">Costo</span>
+                        <span class="indicator-label">Gestión</span>
                     </button>
-
                     <button class="numeric-indicator" data-index="3" aria-pressed="false">
                         <span class="indicator-number"></span>
-                        <span class="indicator-label">Marketing</span>
+                        <span class="indicator-label">Soporte</span>
                     </button>
 
-                    <button class="numeric-indicator" data-index="4" aria-pressed="false">
-                        <span class="indicator-number"></span>
-                        <span class="indicator-label">Ventajas</span>
-                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- BOTÓN PARA MOSTRAR REQUISITOS -->
-        <div class="requisitos-btn-container">
-            <button class="show-requisitos-btn cta-link" data-target="#seccion-requisitos">
-                Ver Requisitos para Afiliarme
-            </button>
+        <!-- Mensaje motivador y CTA -->
+        <div class="benefits-cta">
+
+
+            <ul class="nota-grid">
+                <li class="nota-item">
+                    <div class="nota-text">
+                        <h3>Convierte tu Centro en un Aliado Estratégico.</h3>
+                        <p>Únete hoy para aumentar tu flujo de pacientes y asegurar cada ingreso.</p>
+                    </div>
+                </li>
+            </ul>
+
+
+            <!-- Contenedor de botones juntos -->
+            <div class="requisitos-btn-container">
+                <!-- Botón CTA -->
+                <a href="form.php" class="show-requisitos-btn cta-link">
+                    Quiero ser Aliado y Garantizar Mis Ingresos
+                </a>
+
+                <!-- Botón para mostrar requisitos -->
+                <button class="show-requisitos-btn cta-link" data-target="#seccion-requisitos">
+                    Ver Requisitos para Afiliarme
+                </button>
+            </div>
+
         </div>
+
     </div>
 </section>
+
 
 <!-- ================= SECCIÓN REQUISITOS (oculta inicialmente) ================= -->
 <section id="seccion-requisitos" class="is-hidden">

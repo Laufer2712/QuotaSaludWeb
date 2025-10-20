@@ -30,13 +30,13 @@ require_once 'includes/header.php';
 
     <!-- ================= CINTILLO MOVIBLE ================= -->
     <div class="cintillo-container">
-        <div class="cintillo-track" data-duplicate="Pago Fraccionado Seguro | Sin Cargos Adicionales | Red de Aliados Certificados | Pago Fraccionado Seguro | Sin Cargos Adicionales | Red de Aliados Certificados">
-
+        <div class="cintillo-track">
             <div class="confidence-item"><span class="confidence-icon">✔️</span>Pago Fraccionado Seguro</div>
             <span class="confidence-separator">|</span>
             <div class="confidence-item"><span class="confidence-icon">✔️</span>Sin Cargos Adicionales</div>
             <span class="confidence-separator">|</span>
             <div class="confidence-item"><span class="confidence-icon">✔️</span>Red de Aliados Certificados</div>
+            <span class="confidence-separator">|</span>
             <div class="confidence-item"><span class="confidence-icon">✔️</span>Pago Fraccionado Seguro</div>
             <span class="confidence-separator">|</span>
             <div class="confidence-item"><span class="confidence-icon">✔️</span>Sin Cargos Adicionales</div>
@@ -44,6 +44,7 @@ require_once 'includes/header.php';
             <div class="confidence-item"><span class="confidence-icon">✔️</span>Red de Aliados Certificados</div>
         </div>
     </div>
+
 </section>
 
 

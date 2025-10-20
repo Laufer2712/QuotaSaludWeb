@@ -32,6 +32,7 @@ section {
   position: relative;
   width: 100%;
   min-height: 60vh;
+  overflow: hidden;
 }
 
 #aliados-section,
@@ -40,25 +41,148 @@ section {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 80px 20px;
+  padding: 0; /* 👈 eliminamos padding global porque la estructura interna ya lo maneja */
+}
+/* ======================================================= */
+/* SECCIÓN ALIADOS - ALTURA MEDIA / TEXTO IZQ + IMAGEN DER */
+/* ======================================================= */
+#aliados-section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  background-color: #f5fff0;
+  padding: 0;
+  overflow: hidden;
 }
 
-/* Sección Aliados */
-#aliados-section {
-  background-image: url("../img/aliadosFondo.png");
-  min-height: 100vh;
+/* Contenedor principal */
+.container-aliados {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1400px;
+  min-height: 90vh; /* ⚡️ Más altura sin ser pantalla completa */
+  border-radius: 0;
+  overflow: hidden;
+  background-color: #fff;
+  margin-top: 60px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* ================== COLUMNA DE TEXTO (IZQUIERDA) ================== */
+.aliados-texto-columna {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  /* 🟢 CAMBIO DE COLOR AQUÍ: Usamos un verde oscuro */
+  background-color: #294baa;
+  color: #fff;
+  padding: 60px 70px;
+  box-sizing: border-box;
+}
+.aliados-texto {
+  max-width: 520px;
+  width: 100%;
+  text-align: left;
 }
 
-#aliados-section::before {
+.aliados-texto h2 {
+  font-size: clamp(2.2rem, 3vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.aliados-texto p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  color: #e8f5ef;
+}
+
+/* ================== BOTÓN CTA ================== */
+.cta-central .cta-link {
+  font-size: 1rem;
+  padding: 20px 70px;
+  border-radius: var(--border-radius-pill);
+  background: linear-gradient(135deg, #70b642, #739e57);
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+}
+
+.cta-central .cta-link:hover {
+  background: linear-gradient(135deg, #739e57, #70b642);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(39, 174, 96, 0.5);
+}
+
+/* ================== COLUMNA DE IMAGEN (DERECHA) ================== */
+.aliados-imagen {
+  flex: 1;
+  background-image: url("../img/aliadosFondo.png");
+  background-size: cover;
+  background-position: center;
+  min-height: 75vh; /* 🔹 sincronizada con el texto */
+  position: relative;
+}
+
+.aliados-imagen::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 0;
-  background-color: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* ======================================================= */
+/* RESPONSIVIDAD */
+/* ======================================================= */
+@media (max-width: 1024px) {
+  .aliados-texto-columna {
+    padding: 50px 40px;
+  }
+  .aliados-texto h2 {
+    font-size: 2rem;
+  }
+  .aliados-texto p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-aliados {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .aliados-texto-columna,
+  .aliados-imagen {
+    width: 100%;
+    min-height: 60vh;
+  }
+
+  .aliados-texto {
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .cta-central {
+    display: flex;
+    justify-content: center;
+  }
+
+  .aliados-imagen::after {
+    background: rgba(0, 0, 0, 0.3);
+  }
 }
 
 /* Sección Pilares */
@@ -148,31 +272,73 @@ section .container {
   box-shadow: 0 15px 35px rgba(39, 174, 96, 0.5);
 }
 
-/* ================== FLECHAS ================== */
+/* ================== FLECHA SÓLIDA VERDE Y BLANCA (FORZADA) ================== */
 .arrow-container {
   display: flex;
   justify-content: center;
-  margin-top: 250px;
+  margin-top: 35px;
 }
 
 .arrow-btn {
-  font-size: 3rem;
-  background: transparent;
+  /* 🎯 AJUSTE CLAVE 1: Color de fondo SOLIDO (Verde principal) con !important para sobrescribir */
+  background-color: #4caf50 !important;
+  /* 💡 Añadimos background-image: none para anular cualquier degradado anterior */
+  background-image: none !important;
+
+  /* 🎯 AJUSTE CLAVE 2: Eliminamos el borde */
   border: none;
-  color: var(--color-primary-dark);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   cursor: pointer;
-  transition: transform 0.3s ease, color 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+  position: relative;
+  transition: all 0.3s ease;
+
+  /* 🎯 AJUSTE CLAVE 3: Color de la flecha en BLANCO */
+  color: #ffffff;
+
+  /* Sombra sutil para dar relieve sobre el color de fondo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.arrow-btn::before {
+  content: "";
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  /* La flecha usa el color blanco del padre */
+  border-left: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  transition: all 0.3s ease;
+}
+
+/* Efecto hover: Simplemente oscurecemos el fondo y levantamos un poco el botón */
 .arrow-btn:hover {
-  transform: translateY(5px);
-  color: var(--color-primary-dark);
+  /* 🎯 AJUSTE HOVER: Oscurecemos ligeramente el color de fondo SOLIDO con !important */
+  background-color: #45a049 !important;
+  background-image: none !important;
+
+  /* La flecha se mantiene blanca */
+  color: #ffffff;
+  transform: translateY(-2px);
+
+  /* Sombra más pronunciada al hacer hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
+/* Flecha invertida al activar */
+.arrow-btn.active::before {
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+/* Efecto al hacer clic */
+.arrow-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
 /* ================== SECCIONES OCULTAS ================== */
 .is-hidden {
   display: none !important;
@@ -190,7 +356,7 @@ section .container {
 .centered-carousel-container {
   position: relative;
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   overflow: hidden;
   border-radius: 12px;
@@ -294,7 +460,7 @@ section .container {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-align: justify;
+  text-align: center;
 }
 
 .card-description {
@@ -561,6 +727,9 @@ section .container {
   white-space: nowrap;
   min-width: 200px;
   text-align: center;
+  /* Quitar subrayado del link */
+  text-decoration: none;
+  display: inline-block; /* Asegura que el padding funcione igual que un botón */
 }
 
 .show-requisitos-btn:hover {
@@ -1159,4 +1328,105 @@ section .container {
   .card-description {
     font-size: 1rem;
   }
+}
+
+/* Contenedor de la lista - tipo grid compacto */
+.nota-grid {
+  list-style: none;
+  padding: 0;
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: 1fr; /* Solo un bloque centrado */
+  gap: 15px;
+  justify-items: center; /* Centra horizontalmente los items */
+}
+
+/* Tarjeta tipo requisito */
+.nota-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto gradiente de fondo sutil */
+.nota-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(84, 111, 201, 0.02) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  z-index: 0;
+}
+
+/* Hover de la tarjeta */
+.nota-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(84, 111, 201, 0.12);
+  border-color: var(--color-blue-main);
+}
+
+/* Texto dentro de la tarjeta */
+.nota-text {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  text-align: center; /* Centra texto */
+}
+
+.nota-text h3 {
+  margin: 0 0 8px 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-main),
+    var(--color-blue-dark)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nota-text p {
+  margin: 0;
+  color: #5a6c7d;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* Efecto de borde superior */
+.nota-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-blue-main),
+    var(--color-blue-dark)
+  );
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nota-item:hover::after {
+  transform: scaleX(1);
 }
