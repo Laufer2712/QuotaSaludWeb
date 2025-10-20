@@ -21,6 +21,8 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Información del proceso */
@@ -74,6 +76,7 @@
 .process-info ul {
   list-style: none;
   margin-top: 1rem;
+  padding: 0;
 }
 
 .process-info li {
@@ -121,6 +124,7 @@
 
 .investment-info ul {
   list-style: none;
+  padding: 0;
 }
 
 .investment-info li {
@@ -151,6 +155,8 @@
   border: 1px solid var(--light-gray);
   position: relative;
   margin-bottom: 50px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Secciones del formulario */
@@ -191,6 +197,7 @@
 .form-group {
   margin-bottom: 1.5rem;
   position: relative;
+  width: 100%;
 }
 
 label {
@@ -218,6 +225,7 @@ textarea {
   transition: var(--transition);
   background: white;
   font-family: inherit;
+  box-sizing: border-box;
 }
 
 input:focus,
@@ -237,6 +245,7 @@ textarea:focus {
   padding: 0.5rem;
   border-radius: 6px;
   transition: var(--transition);
+  width: 100%;
 }
 
 .checkbox-group:hover {
@@ -255,11 +264,13 @@ textarea:focus {
   flex-wrap: wrap;
   gap: 1rem;
   margin: 0;
+  width: 100%;
 }
 
 .form-col {
   flex: 1 1 calc(50% - 0.5rem);
   min-width: 280px;
+  box-sizing: border-box;
 }
 
 /* Upload de archivos */
@@ -272,6 +283,8 @@ textarea:focus {
   transition: var(--transition);
   background: #fafbfc;
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .file-upload:hover {
@@ -311,6 +324,8 @@ textarea:focus {
   transition: var(--transition);
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(44, 127, 184, 0.3);
+  width: auto;
+  box-sizing: border-box;
 }
 
 .btn:hover {
@@ -343,6 +358,8 @@ textarea:focus {
   max-height: 200px;
   overflow-y: auto;
   border: 1px solid var(--light-gray);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .terms p {
@@ -429,6 +446,8 @@ textarea:focus {
   border-radius: var(--border-radius);
   margin-bottom: 1.5rem;
   font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .alert-error {
@@ -443,89 +462,11 @@ textarea:focus {
   border: 1px solid #cfc;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .form-page-container {
-    padding: 1rem 0.5rem;
-  }
-
-  .process-info,
-  .investment-info,
-  .form-container {
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .form-col {
-    flex: 1 1 100%;
-  }
-
-  .form-row {
-    gap: 0;
-  }
-
-  .btn-block {
-    padding: 1rem 1.5rem;
-  }
-
-  .section-title {
-    font-size: 1.15rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .form-page-container {
-    padding: 0.5rem;
-  }
-
-  .process-info,
-  .investment-info,
-  .form-container {
-    padding: 1.25rem;
-    border-radius: 6px;
-  }
-
-  .file-upload {
-    padding: 1.5rem;
-  }
-
-  .section-title {
-    font-size: 1.1rem;
-    margin-bottom: 1.25rem;
-  }
-}
-
-/* Mejoras de accesibilidad */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-    animation: none !important;
-  }
-}
-
-/* Focus visible para mejor accesibilidad */
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-.btn:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
-}
-
-/* Estados de deshabilitado */
-input:disabled,
-select:disabled,
-textarea:disabled,
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none !important;
-}
-
 /* ===== PAGINACIÓN DE FORMULARIO POR PASOS ===== */
 .form-step {
   display: none;
   animation: fadeIn 0.5s ease-in-out;
+  width: 100%;
 }
 
 .form-step.active {
@@ -536,16 +477,21 @@ textarea:disabled,
   display: flex;
   justify-content: space-between;
   margin-top: 2rem;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .form-navigation .btn {
   width: 48%;
+  min-width: 120px;
 }
 
 /* Progreso */
 .form-progress {
   position: relative;
   margin-bottom: 2rem;
+  width: 100%;
 }
 
 .progress-bar {
@@ -567,6 +513,7 @@ textarea:disabled,
   z-index: 1;
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 
 .progress-steps li {
@@ -609,4 +556,218 @@ textarea:disabled,
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ===== MEDIA QUERIES PARA RESPONSIVIDAD ===== */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+  .form-page-container {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .form-container {
+    padding: 2rem;
+  }
+
+  .process-info,
+  .investment-info {
+    padding: 1.75rem;
+  }
+}
+
+/* Tablets pequeñas */
+@media (max-width: 768px) {
+  .form-page-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .process-info,
+  .investment-info,
+  .form-container {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .process-info {
+    margin-top: 60px;
+  }
+
+  .form-col {
+    flex: 1 1 100%;
+  }
+
+  .form-row {
+    gap: 0;
+  }
+
+  .btn-block {
+    padding: 1rem 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.15rem;
+  }
+
+  .form-navigation .btn {
+    width: 100%;
+  }
+
+  .form-navigation {
+    flex-direction: column;
+  }
+
+  .progress-steps li {
+    font-size: 0.8rem;
+  }
+
+  .progress-steps li::before {
+    width: 16px;
+    height: 16px;
+  }
+
+  .progress-bar {
+    top: 18px;
+  }
+}
+
+/* Teléfonos móviles */
+@media (max-width: 480px) {
+  .form-page-container {
+    padding: 0.5rem;
+  }
+
+  .process-info,
+  .investment-info,
+  .form-container {
+    padding: 1.25rem;
+    border-radius: 6px;
+  }
+
+  .file-upload {
+    padding: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .form-section {
+    margin-bottom: 30px;
+    padding-bottom: 1.5rem;
+  }
+
+  .btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .progress-steps li {
+    font-size: 0.7rem;
+  }
+
+  .progress-steps li::before {
+    width: 14px;
+    height: 14px;
+    margin-bottom: 5px;
+  }
+
+  .progress-bar {
+    top: 16px;
+    height: 3px;
+  }
+
+  .form-progress {
+    margin-bottom: 1.5rem;
+  }
+
+  .terms {
+    max-height: 150px;
+    padding: 1rem;
+  }
+}
+
+/* Teléfonos muy pequeños */
+@media (max-width: 360px) {
+  .form-page-container {
+    padding: 0.25rem;
+  }
+
+  .process-info,
+  .investment-info,
+  .form-container {
+    padding: 1rem;
+  }
+
+  .section-title {
+    font-size: 1rem;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.95rem;
+  }
+
+  .progress-steps li {
+    font-size: 0.65rem;
+  }
+
+  .progress-steps li::before {
+    width: 12px;
+    height: 12px;
+  }
+
+  .progress-bar {
+    top: 14px;
+  }
+}
+
+/* Orientación horizontal en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+  .form-page-container {
+    padding: 0.5rem;
+  }
+
+  .process-info {
+    margin-top: 60px;
+  }
+
+  .form-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Focus visible para mejor accesibilidad */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Estados de deshabilitado */
+input:disabled,
+select:disabled,
+textarea:disabled,
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
 }
