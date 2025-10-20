@@ -163,7 +163,7 @@ require_once 'includes/header.php';
         </div>
     </div>-->
 
-    <br><br>
+    <br>
     <div class="hero-botones">
         <a href="aliados.php" class="cta-aliado">Soy Centro de Salud</a>
         <a href="paciente.php" class="cta-usuario">Soy Usuario</a>
