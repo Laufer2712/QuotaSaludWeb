@@ -1,5 +1,7 @@
 <?php
+
 namespace QuotaSaludWeb\Backend;
+
 use DateTime;
 use JsonSerializable;
 use Exception;
@@ -13,7 +15,7 @@ class AppAgreementFirstContactEntity implements JsonSerializable
     // -------------------------------------------------------------------
     // PROPIEDADES (Type Hints y Nullable)
     // -------------------------------------------------------------------
-    
+
     private int $id = 0; // Se inicializa para asegurar el tipo si no se carga desde DB
     private ?string $name = null;
     private ?string $lastName = null;
@@ -82,7 +84,7 @@ class AppAgreementFirstContactEntity implements JsonSerializable
         if (array_key_exists('termsAccepted', $data)) $this->setTermsAccepted($data['termsAccepted']);
         if (array_key_exists('documentRifCiPath', $data)) $this->setDocumentRifCiPath($data['documentRifCiPath']);
         if (array_key_exists('createdAt', $data)) $this->setCreatedAt($data['createdAt']);
-        
+
         return $this;
     }
 
@@ -135,82 +137,239 @@ class AppAgreementFirstContactEntity implements JsonSerializable
             'termsAccepted' => $this->termsAccepted,
             'documentRifCiPath' => $this->documentRifCiPath,
             // Formatear la fecha para que sea legible en JSON
-            'createdAt' => $this->createdAt ? $this->createdAt->format('Y-m-d H:i:s') : null, 
+            'createdAt' => $this->createdAt ? $this->createdAt->format('Y-m-d H:i:s') : null,
         ];
     }
-    
+
     // -------------------------------------------------------------------
     // GETTERS Y SETTERS
     // -------------------------------------------------------------------
 
-    public function getId(): int { return $this->id; }
-    public function setId(int $id): self { $this->id = $id; return $this; }
+    public function getId(): int
+    {
+        return $this->id;
+    }
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
 
-    public function getName(): ?string { return $this->name; }
-    public function setName(?string $name): self { $this->name = $name; return $this; }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
 
-    public function getLastName(): ?string { return $this->lastName; }
-    public function setLastName(?string $lastName): self { $this->lastName = $lastName; return $this; }
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+    public function setLastName(?string $lastName): self
+    {
+        $this->lastName = $lastName;
+        return $this;
+    }
 
-    public function getPhone(): ?string { return $this->phone; }
-    public function setPhone(?string $phone): self { $this->phone = $phone; return $this; }
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
+        return $this;
+    }
 
-    public function getEmail(): ?string { return $this->email; }
-    public function setEmail(?string $email): self { $this->email = $email; return $this; }
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+        return $this;
+    }
 
-    public function getMainRole(): ?string { return $this->mainRole; }
-    public function setMainRole(?string $mainRole): self { $this->mainRole = $mainRole; return $this; }
+    public function getMainRole(): ?string
+    {
+        return $this->mainRole;
+    }
+    public function setMainRole(?string $mainRole): self
+    {
+        $this->mainRole = $mainRole;
+        return $this;
+    }
 
-    public function getHealthSector(): ?int { return $this->healthSector; }
-    public function setHealthSector(?int $healthSector): self { $this->healthSector = $healthSector; return $this; }
+    public function getHealthSector(): ?int
+    {
+        return $this->healthSector;
+    }
+    public function setHealthSector(?int $healthSector): self
+    {
+        $this->healthSector = $healthSector;
+        return $this;
+    }
 
     /** Retorna la facturación aproximada como string para mantener la precisión de BigDecimal. */
-    public function getApproximateBilling(): ?string { return $this->approximateBilling; }
-    public function setApproximateBilling(?string $approximateBilling): self { $this->approximateBilling = $approximateBilling; return $this; }
+    public function getApproximateBilling(): ?string
+    {
+        return $this->approximateBilling;
+    }
+    public function setApproximateBilling(?string $approximateBilling): self
+    {
+        $this->approximateBilling = $approximateBilling;
+        return $this;
+    }
 
-    public function getSocialMedia(): ?string { return $this->socialMedia; }
-    public function setSocialMedia(?string $socialMedia): self { $this->socialMedia = $socialMedia; return $this; }
+    public function getSocialMedia(): ?string
+    {
+        return $this->socialMedia;
+    }
+    public function setSocialMedia(?string $socialMedia): self
+    {
+        $this->socialMedia = $socialMedia;
+        return $this;
+    }
 
-    public function getNumberOfBranches(): ?int { return $this->numberOfBranches; }
-    public function setNumberOfBranches(?int $numberOfBranches): self { $this->numberOfBranches = $numberOfBranches; return $this; }
+    public function getNumberOfBranches(): ?int
+    {
+        return $this->numberOfBranches;
+    }
+    public function setNumberOfBranches(?int $numberOfBranches): self
+    {
+        $this->numberOfBranches = $numberOfBranches;
+        return $this;
+    }
 
-    public function getNumberOfWorkers(): ?int { return $this->numberOfWorkers; }
-    public function setNumberOfWorkers(?int $numberOfWorkers): self { $this->numberOfWorkers = $numberOfWorkers; return $this; }
+    public function getNumberOfWorkers(): ?int
+    {
+        return $this->numberOfWorkers;
+    }
+    public function setNumberOfWorkers(?int $numberOfWorkers): self
+    {
+        $this->numberOfWorkers = $numberOfWorkers;
+        return $this;
+    }
 
-    public function getLocationAddress(): ?string { return $this->locationAddress; }
-    public function setLocationAddress(?string $locationAddress): self { $this->locationAddress = $locationAddress; return $this; }
+    public function getLocationAddress(): ?string
+    {
+        return $this->locationAddress;
+    }
+    public function setLocationAddress(?string $locationAddress): self
+    {
+        $this->locationAddress = $locationAddress;
+        return $this;
+    }
 
-    public function getMapsLink(): ?string { return $this->mapsLink; }
-    public function setMapsLink(?string $mapsLink): self { $this->mapsLink = $mapsLink; return $this; }
+    public function getMapsLink(): ?string
+    {
+        return $this->mapsLink;
+    }
+    public function setMapsLink(?string $mapsLink): self
+    {
+        $this->mapsLink = $mapsLink;
+        return $this;
+    }
 
-    public function getUsesBillingSystem(): ?int { return $this->usesBillingSystem; }
-    public function setUsesBillingSystem(?int $usesBillingSystem): self { $this->usesBillingSystem = $usesBillingSystem; return $this; }
+    public function getUsesBillingSystem(): ?int
+    {
+        return $this->usesBillingSystem;
+    }
+    public function setUsesBillingSystem(?int $usesBillingSystem): self
+    {
+        $this->usesBillingSystem = $usesBillingSystem;
+        return $this;
+    }
 
-    public function getBillingSystemName(): ?string { return $this->billingSystemName; }
-    public function setBillingSystemName(?string $billingSystemName): self { $this->billingSystemName = $billingSystemName; return $this; }
+    public function getBillingSystemName(): ?string
+    {
+        return $this->billingSystemName;
+    }
+    public function setBillingSystemName(?string $billingSystemName): self
+    {
+        $this->billingSystemName = $billingSystemName;
+        return $this;
+    }
 
-    public function getBillingSystemAdaptable(): ?int { return $this->billingSystemAdaptable; }
-    public function setBillingSystemAdaptable(?int $billingSystemAdaptable): self { $this->billingSystemAdaptable = $billingSystemAdaptable; return $this; }
+    public function getBillingSystemAdaptable(): ?int
+    {
+        return $this->billingSystemAdaptable;
+    }
+    public function setBillingSystemAdaptable(?int $billingSystemAdaptable): self
+    {
+        $this->billingSystemAdaptable = $billingSystemAdaptable;
+        return $this;
+    }
 
-    public function getLegalFigure(): ?string { return $this->legalFigure; }
-    public function setLegalFigure(?string $legalFigure): self { $this->legalFigure = $legalFigure; return $this; }
+    public function getLegalFigure(): ?string
+    {
+        return $this->legalFigure;
+    }
+    public function setLegalFigure(?string $legalFigure): self
+    {
+        $this->legalFigure = $legalFigure;
+        return $this;
+    }
 
-    public function getRifNumber(): ?string { return $this->rifNumber; }
-    public function setRifNumber(?string $rifNumber): self { $this->rifNumber = $rifNumber; return $this; }
+    public function getRifNumber(): ?string
+    {
+        return $this->rifNumber;
+    }
+    public function setRifNumber(?string $rifNumber): self
+    {
+        $this->rifNumber = $rifNumber;
+        return $this;
+    }
 
-    public function getCiNumber(): ?string { return $this->ciNumber; }
-    public function setCiNumber(?string $ciNumber): self { $this->ciNumber = $ciNumber; return $this; }
+    public function getCiNumber(): ?string
+    {
+        return $this->ciNumber;
+    }
+    public function setCiNumber(?string $ciNumber): self
+    {
+        $this->ciNumber = $ciNumber;
+        return $this;
+    }
 
-    public function getDeliversFiscalInvoice(): ?int { return $this->deliversFiscalInvoice; }
-    public function setDeliversFiscalInvoice(?int $deliversFiscalInvoice): self { $this->deliversFiscalInvoice = $deliversFiscalInvoice; return $this; }
+    public function getDeliversFiscalInvoice(): ?int
+    {
+        return $this->deliversFiscalInvoice;
+    }
+    public function setDeliversFiscalInvoice(?int $deliversFiscalInvoice): self
+    {
+        $this->deliversFiscalInvoice = $deliversFiscalInvoice;
+        return $this;
+    }
 
-    public function getTermsAccepted(): ?int { return $this->termsAccepted; }
-    public function setTermsAccepted(?int $termsAccepted): self { $this->termsAccepted = $termsAccepted; return $this; }
+    public function getTermsAccepted(): ?int
+    {
+        return $this->termsAccepted;
+    }
+    public function setTermsAccepted(?int $termsAccepted): self
+    {
+        $this->termsAccepted = $termsAccepted;
+        return $this;
+    }
 
-    public function getDocumentRifCiPath(): ?string { return $this->documentRifCiPath; }
-    public function setDocumentRifCiPath(?string $documentRifCiPath): self { $this->documentRifCiPath = $documentRifCiPath; return $this; }
+    public function getDocumentRifCiPath(): ?string
+    {
+        return $this->documentRifCiPath;
+    }
+    public function setDocumentRifCiPath(?string $documentRifCiPath): self
+    {
+        $this->documentRifCiPath = $documentRifCiPath;
+        return $this;
+    }
 
-    public function getCreatedAt(): ?DateTime { return $this->createdAt; }
+    public function getCreatedAt(): ?DateTime
+    {
+        return $this->createdAt;
+    }
 
     /**
      * Establece la fecha de creación. Acepta objeto DateTime o string (que intenta convertir).
@@ -225,7 +384,7 @@ class AppAgreementFirstContactEntity implements JsonSerializable
                 // Intenta crear un objeto DateTime a partir de la cadena
                 $this->createdAt = new DateTime($createdAt);
             } catch (Exception $e) {
-                $this->createdAt = null; 
+                $this->createdAt = null;
             }
         } else {
             $this->createdAt = null;

@@ -27,223 +27,163 @@ include('includes/header.php');
             <li>Capacitación inicial para tu equipo</li>
         </ul>
     </div>
+    <form class="form-container" action="catch.php" method="POST" enctype="multipart/form-data" id="form-afiliacion">
+        <!-- ===========================
+         BARRA DE PROGRESO
+    ============================ -->
+        <div class="form-progress">
+            <div class="progress-bar" id="progress-bar"></div>
+            <ul class="progress-steps">
+                <li class="active">Contacto</li>
+                <li>Negocio</li>
+                <li>Cuestionario</li>
+                <li>Términos</li>
+            </ul>
+        </div>
 
-    <form class="form-container" action="procesar_afiliacion.php" method="POST" enctype="multipart/form-data" id="form-afiliacion">
-        <!-- Sección: Datos de Contacto -->
-        <div class="form-section">
-            <h2 class="section-title">Datos de Contacto</h2>
+        <!-- ===========================
+         PASO 1: DATOS DE CONTACTO
+    ============================ -->
+        <div class="form-step active">
+            <div class="form-section">
+                <h2 class="section-title">Datos de Contacto</h2>
 
-            <div class="form-row">
-                <div class="form-col">
-                    <div class="form-group">
+                <div class="form-row">
+                    <div class="form-col">
                         <label for="nombre" class="required">Nombre y Apellido</label>
                         <input type="text" id="nombre" name="nombre" required>
                     </div>
-                </div>
-                <div class="form-col">
-                    <div class="form-group">
+                    <div class="form-col">
                         <label for="whatsapp" class="required">Número de Whatsapp</label>
                         <input type="tel" id="whatsapp" name="whatsapp" required>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-row">
-                <div class="form-col">
-                    <div class="form-group">
+                <div class="form-row">
+                    <div class="form-col">
                         <label for="email" class="required">Correo Electrónico</label>
                         <input type="email" id="email" name="email" required>
-                        <small>Se enviará por este medio los pasos más importantes y requisitos</small>
                     </div>
-                </div>
-                <div class="form-col">
-                    <div class="form-group">
+                    <div class="form-col">
                         <label for="cargo" class="required">Cargo o función principal</label>
                         <input type="text" id="cargo" name="cargo" required>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="ubicacion" class="required">Ubicación</label>
-                <input type="text" id="ubicacion" name="ubicacion" placeholder="Estado, Ciudad / Localidad, Calle" required>
-                <small>Preferiblemente incluir Link Google Maps</small>
+                <div class="form-group">
+                    <label for="ubicacion" class="required">Ubicación</label>
+                    <input type="text" id="ubicacion" name="ubicacion" placeholder="Estado, Ciudad, Calle o enlace de Google Maps" required>
+                </div>
             </div>
         </div>
 
-        <!-- Sección: Información del Negocio -->
-        <div class="form-section">
-            <h2 class="section-title">Información del Negocio</h2>
+        <!-- ===========================
+         PASO 2: INFORMACIÓN DEL NEGOCIO
+    ============================ -->
+        <div class="form-step">
+            <div class="form-section">
+                <h2 class="section-title">Información del Negocio</h2>
 
-            <div class="form-group">
-                <label for="sector" class="required">Sector de la Salud que representa</label>
-                <select id="sector" name="sector" required>
+                <label for="sector" class="required">Sector al que pertenece</label>
+                <select name="sector" id="sector" required>
                     <option value="">Seleccione una opción</option>
                     <option value="clinica">Clínica</option>
                     <option value="centro_imagenologia">Centro de Imagenología</option>
                     <option value="profesional_salud">Profesional de la Salud</option>
                     <option value="laboratorio">Laboratorio</option>
-                    <option value="distribuidor_insumos">Distribuidor de Insumos médicos</option>
+                    <option value="distribuidor_insumos">Distribuidor de Insumos</option>
                     <option value="otro">Otro</option>
                 </select>
-            </div>
 
-            <div class="form-group" id="especialidad-container" style="display: none;">
-                <label for="especialidad">Especialidad</label>
-                <input type="text" id="especialidad" name="especialidad">
-            </div>
+                <label for="facturacion">Facturación aproximada (mensual o anual)</label>
+                <input type="text" id="facturacion" name="facturacion" placeholder="Ejemplo: 1000 USD / mes">
 
-            <div class="form-group" id="servicios-container" style="display: none;">
-                <label for="servicios">Servicios</label>
-                <textarea id="servicios" name="servicios" rows="3"></textarea>
-            </div>
+                <label for="presentacion">¿Dónde nos conociste?</label><br>
+                <label><input type="checkbox" name="presentacion[]" value="Instagram"> Instagram</label><br>
+                <label><input type="checkbox" name="presentacion[]" value="Facebook"> Facebook</label><br>
+                <label><input type="checkbox" name="presentacion[]" value="Evento"> Evento</label><br>
+                <label><input type="checkbox" name="presentacion[]" value="Otro"> Otro</label>
 
-            <div class="form-group" id="insumos-container" style="display: none;">
-                <label for="insumos">Insumos</label>
-                <textarea id="insumos" name="insumos" rows="3"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="facturacion" class="required">Facturación aproximada en dólares en un año</label>
-                <select id="facturacion" name="facturacion" required>
-                    <option value="">Seleccione un rango</option>
-                    <option value="menos_50k">Menos de $50,000</option>
-                    <option value="50k_100k">$50,000 - $100,000</option>
-                    <option value="100k_500k">$100,000 - $500,000</option>
-                    <option value="500k_1m">$500,000 - $1,000,000</option>
-                    <option value="mas_1m">Más de $1,000,000</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="presentacion">¿Cómo se presenta al público?</label>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="presentacion_ig" name="presentacion[]" value="instagram">
-                    <label for="presentacion_ig">Instagram</label>
-                </div>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="presentacion_fb" name="presentacion[]" value="facebook">
-                    <label for="presentacion_fb">Facebook</label>
-                </div>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="presentacion_directorio" name="presentacion[]" value="directorio_medico">
-                    <label for="presentacion_directorio">Directorio Médico</label>
-                </div>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="presentacion_otro" name="presentacion[]" value="otro">
-                    <label for="presentacion_otro">Otro</label>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-col">
-                    <div class="form-group">
-                        <label for="sucursales" class="required">¿Cuántas sucursales o puntos de venta tiene?</label>
-                        <input type="number" id="sucursales" name="sucursales" min="1" required>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="sucursales">Número de sucursales</label>
+                        <input type="number" id="sucursales" name="sucursales" min="0">
                     </div>
-                </div>
-                <div class="form-col">
-                    <div class="form-group">
-                        <label for="empleados" class="required">¿Cuántas personas trabajan actualmente?</label>
-                        <input type="number" id="empleados" name="empleados" min="1" required>
+                    <div class="form-col">
+                        <label for="empleados">Número de empleados</label>
+                        <input type="number" id="empleados" name="empleados" min="0">
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Sección: Cuestionario -->
-        <div class="form-section">
-            <h2 class="section-title">Cuestionario</h2>
+        <!-- ===========================
+         PASO 3: CUESTIONARIO
+    ============================ -->
+        <div class="form-step">
+            <div class="form-section">
+                <h2 class="section-title">Cuestionario</h2>
 
-            <div class="form-group">
-                <label for="sistema_facturacion">¿Utiliza algún sistema de facturación?</label>
-                <input type="text" id="sistema_facturacion" name="sistema_facturacion" placeholder="Nombre del sistema">
-            </div>
+                <label for="sistema_facturacion">Nombre del sistema de facturación (si aplica)</label>
+                <input type="text" id="sistema_facturacion" name="sistema_facturacion">
 
-            <div class="form-group">
-                <label for="adaptacion_pago">¿Tu sistema de facturación se puede adaptar a nuevos métodos de pago?</label>
-                <select id="adaptacion_pago" name="adaptacion_pago">
-                    <option value="">Seleccione una opción</option>
-                    <option value="si">Sí</option>
-                    <option value="no">No</option>
-                    <option value="no_se">No sé</option>
+                <p>¿El sistema permite adaptarse a distintos métodos de pago?</p>
+                <label><input type="radio" name="adaptacion_pago" value="si"> Sí</label>
+                <label><input type="radio" name="adaptacion_pago" value="no"> No</label>
+
+                <label for="figura_legal">Figura legal</label>
+                <select id="figura_legal" name="figura_legal">
+                    <option value="">Seleccione</option>
+                    <option value="Natural">Natural</option>
+                    <option value="Jurídica">Jurídica</option>
                 </select>
-            </div>
 
-            <div class="form-group">
-                <label for="figura_legal" class="required">¿Cuál es tu figura legal?</label>
-                <select id="figura_legal" name="figura_legal" required>
-                    <option value="">Seleccione una opción</option>
-                    <option value="sociedad">Sociedad constituida</option>
-                    <option value="persona_natural">Persona natural</option>
-                </select>
-            </div>
-
-            <div class="form-row">
-                <div class="form-col" id="rif-container" style="display: none;">
-                    <div class="form-group">
-                        <label for="rif" class="required">Número de RIF</label>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="rif">Número de RIF</label>
                         <input type="text" id="rif" name="rif">
                     </div>
-                </div>
-                <div class="form-col" id="razon_social-container" style="display: none;">
-                    <div class="form-group">
-                        <label for="razon_social" class="required">Razón Social</label>
-                        <input type="text" id="razon_social" name="razon_social">
-                    </div>
-                </div>
-                <div class="form-col" id="cedula-container" style="display: none;">
-                    <div class="form-group">
-                        <label for="cedula" class="required">Cédula de Identidad</label>
+                    <div class="form-col">
+                        <label for="cedula">Cédula de identidad</label>
                         <input type="text" id="cedula" name="cedula">
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="documentos" class="required">Adjuntar documentos</label>
-                <div class="file-upload" id="file-upload-area">
-                    <p>Haga clic aquí para subir sus documentos (RIF y/o Cédula)</p>
-                    <input type="file" id="documentos" name="documentos[]" multiple required>
+                <p>¿Emite facturas fiscales?</p>
+                <label><input type="radio" name="factura_fiscal" value="si"> Sí</label>
+                <label><input type="radio" name="factura_fiscal" value="no"> No</label>
+
+                <div class="form-group">
+                    <label for="documentos">Documentos (RIF / CI / Certificados)</label>
+                    <input type="file" id="documentos" name="documentos[]" multiple accept="application/pdf,image/*">
                 </div>
-                <small>Formatos aceptados: PDF, JPG, PNG (Máximo 5MB por archivo)</small>
-            </div>
-
-            <div class="form-group">
-                <label for="factura_fiscal">¿Entrega factura fiscal?</label>
-                <select id="factura_fiscal" name="factura_fiscal" required>
-                    <option value="">Seleccione una opción</option>
-                    <option value="si">Sí</option>
-                    <option value="no">No</option>
-                </select>
             </div>
         </div>
 
-        <!-- Sección: Términos y Condiciones -->
-        <div class="form-section">
-            <h2 class="section-title">Términos y Condiciones</h2>
-
-            <div class="terms">
-                <p>Al enviar este formulario, acepta los términos y condiciones de afiliación a QS, que incluyen:</p>
-                <ul>
-                    <li>La inversión única de USD 100 + IVA para la activación de servicios</li>
-                    <li>El proceso de validación de información que puede tomar hasta 20 días</li>
-                    <li>La firma de contrato de afiliación posterior a la validación</li>
-                    <li>La apertura de cuenta bancaria para recibir pagos</li>
-                    <li>La recepción y uso adecuado del kit de afiliación</li>
-                    <li>La participación en las capacitaciones programadas</li>
-                    <li>El cumplimiento de las políticas de servicio y calidad establecidas por QS</li>
-                </ul>
-            </div>
-
-            <div class="checkbox-group" style="margin-top: 20px;">
-                <input type="checkbox" id="terminos" name="terminos" required>
-                <label for="terminos" class="required">Acepto los Términos y Condiciones</label>
+        <!-- ===========================
+         PASO 4: TÉRMINOS
+    ============================ -->
+        <div class="form-step">
+            <div class="form-section">
+                <h2 class="section-title">Términos y Condiciones</h2>
+                <p>Declaro que la información proporcionada es verídica y autorizo el uso de mis datos con fines administrativos.</p>
+                <label>
+                    <input type="checkbox" id="terminos" name="terminos" required> Acepto los términos y condiciones.
+                </label>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-block">Enviar Solicitud</button>
+        <!-- ===========================
+         BOTONES DE NAVEGACIÓN
+    ============================ -->
+        <div class="form-navigation">
+            <button type="button" id="prevBtn" class="btn" disabled>Anterior</button>
+            <button type="button" id="nextBtn" class="btn">Siguiente</button>
+            <button type="submit" id="submitBtn" class="btn btn-block" style="display:none;">Enviar Solicitud</button>
+        </div>
     </form>
+
+
 </div>
 <script src="js/form.js" defer></script>
 <?php

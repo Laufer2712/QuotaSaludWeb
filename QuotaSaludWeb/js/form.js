@@ -289,3 +289,67 @@ window.addEventListener('load', function () {
         updateFileUploadDisplay(fileInput.files);
     }
 });
+
+
+// ======== FORMULARIO POR PASOS ========
+document.addEventListener("DOMContentLoaded", () => {
+    const steps = document.querySelectorAll(".form-step");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const submitBtn = document.getElementById("submitBtn");
+    const progressBar = document.getElementById("progress-bar");
+    const progressSteps = document.querySelectorAll(".progress-steps li");
+
+    let currentStep = 0;
+
+    function updateStep() {
+        steps.forEach((step, index) => {
+            step.classList.toggle("active", index === currentStep);
+        });
+
+        progressSteps.forEach((step, index) => {
+            step.classList.toggle("active", index === currentStep);
+            step.classList.toggle("completed", index < currentStep);
+        });
+
+        const progressPercent = (currentStep / (steps.length - 1)) * 100;
+        progressBar.style.width = progressPercent + "%";
+
+        prevBtn.disabled = currentStep === 0;
+        nextBtn.style.display = currentStep === steps.length - 1 ? "none" : "inline-block";
+        submitBtn.style.display = currentStep === steps.length - 1 ? "block" : "none";
+    }
+
+    nextBtn.addEventListener("click", () => {
+        if (validateCurrentStep()) {
+            currentStep++;
+            updateStep();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    });
+
+    prevBtn.addEventListener("click", () => {
+        currentStep--;
+        updateStep();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    function validateCurrentStep() {
+        const currentInputs = steps[currentStep].querySelectorAll("input, select, textarea");
+        let valid = true;
+
+        currentInputs.forEach(input => {
+            if (!input.checkValidity()) {
+                input.classList.add("invalid");
+                valid = false;
+            } else {
+                input.classList.remove("invalid");
+            }
+        });
+
+        if (!valid) showError("Por favor, completa todos los campos requeridos antes de continuar.");
+        return valid;
+    }
+
+    updateStep();
+});

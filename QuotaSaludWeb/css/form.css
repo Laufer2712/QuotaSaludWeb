@@ -521,3 +521,92 @@ textarea:disabled,
   cursor: not-allowed;
   transform: none !important;
 }
+
+/* ===== PAGINACIÓN DE FORMULARIO POR PASOS ===== */
+.form-step {
+  display: none;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.form-step.active {
+  display: block;
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.form-navigation .btn {
+  width: 48%;
+}
+
+/* Progreso */
+.form-progress {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: var(--primary);
+  transition: width 0.3s ease;
+  z-index: 0;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+}
+
+.progress-steps li {
+  text-align: center;
+  width: 25%;
+  color: var(--dark-light);
+  font-weight: 600;
+  font-size: 0.9rem;
+  position: relative;
+}
+
+.progress-steps li::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: var(--light-gray);
+  border-radius: 50%;
+  margin: 0 auto 8px;
+  transition: var(--transition);
+  border: 2px solid var(--light-gray);
+}
+
+.progress-steps li.active::before,
+.progress-steps li.completed::before {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.progress-steps li.completed {
+  color: var(--primary);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
