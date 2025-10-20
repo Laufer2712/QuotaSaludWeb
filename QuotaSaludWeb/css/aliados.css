@@ -51,9 +51,143 @@ section {
   padding: 0;
 }
 
-/* ======================================================= */
-/* SECCIÓN ALIADOS - ALTURA MEDIA / TEXTO IZQ + IMAGEN DER */
-/* ======================================================= */
+/* ================== TIPOGRAFÍA ================== */
+.section-title h2 {
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  background-image: linear-gradient(
+    to right,
+    var(--color-primary-dark),
+    var(--color-primary-light),
+    var(--color-accent-light),
+    var(--color-primary-light),
+    var(--color-primary-dark)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradient-animation 6s ease-in-out infinite;
+  background-size: 200% auto;
+}
+
+@keyframes gradient-animation {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.section-title p {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  color: var(--color-text-light);
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* ================== BOTONES Y CTAs ================== */
+.cta-central {
+  margin-top: 50px;
+}
+
+.cta-link.cta-large {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  padding: clamp(16px, 3vw, 20px) clamp(50px, 8vw, 70px);
+  border-radius: var(--border-radius-pill);
+  background: linear-gradient(135deg, #70b642, #739e57);
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  text-align: center;
+}
+
+.cta-link.cta-large:hover {
+  background: linear-gradient(135deg, #739e57, #70b642);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(39, 174, 96, 0.5);
+}
+
+.cta-central .cta-link {
+  font-size: 1rem;
+  padding: 20px 70px;
+  border-radius: var(--border-radius-pill);
+  background: linear-gradient(135deg, #70b642, #739e57);
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+}
+
+.cta-central .cta-link:hover {
+  background: linear-gradient(135deg, #739e57, #70b642);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(39, 174, 96, 0.5);
+}
+
+/* ================== FLECHA SÓLIDA VERDE Y BLANCA ================== */
+.arrow-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.arrow-btn {
+  background-color: #4caf50 !important;
+  background-image: none !important;
+  border: none;
+  width: clamp(50px, 8vw, 60px);
+  height: clamp(50px, 8vw, 60px);
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.arrow-btn::before {
+  content: "";
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  width: clamp(12px, 3vw, 16px);
+  height: clamp(12px, 3vw, 16px);
+  border-left: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  transition: all 0.3s ease;
+}
+
+.arrow-btn:hover {
+  background-color: #45a049 !important;
+  background-image: none !important;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.arrow-btn.active::before {
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.arrow-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* ================== SECCIÓN ALIADOS ================== */
 #aliados-section {
   position: relative;
   width: 110%;
@@ -65,13 +199,12 @@ section {
   overflow: hidden;
 }
 
-/* Contenedor principal */
 .container-aliados {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  width: 180%;
-  max-width: 1600vh;
+  width: 100%;
+  max-width: 1400vh;
   min-height: 90vh;
   border-radius: 0;
   overflow: hidden;
@@ -80,7 +213,7 @@ section {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* ================== COLUMNA DE TEXTO (IZQUIERDA) ================== */
+/* Columna de texto (izquierda) */
 .aliados-texto-columna {
   flex: 1;
   display: flex;
@@ -89,9 +222,10 @@ section {
   align-items: flex-start;
   background-color: #294baa;
   color: #fff;
-  padding: 60px 70px;
+  padding: 50px 70px;
   box-sizing: border-box;
 }
+
 .aliados-texto {
   max-width: 520px;
   width: 100%;
@@ -112,30 +246,10 @@ section {
   color: #e8f5ef;
 }
 
-/* ================== BOTÓN CTA ================== */
-.cta-central .cta-link {
-  font-size: 1rem;
-  padding: 20px 70px;
-  border-radius: var(--border-radius-pill);
-  background: linear-gradient(135deg, #70b642, #739e57);
-  color: #fff;
-  font-weight: 800;
-  text-decoration: none;
-  box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
-  transition: all 0.3s ease-in-out;
-  display: inline-block;
-}
-
-.cta-central .cta-link:hover {
-  background: linear-gradient(135deg, #739e57, #70b642);
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 15px 35px rgba(39, 174, 96, 0.5);
-}
-
-/* ================== COLUMNA DE IMAGEN (DERECHA) ================== */
+/* Columna de imagen (derecha) */
 .aliados-imagen {
   flex: 1;
-  background-image: url("../img/aliadosFondo.png");
+  background-image: url("../img/Aliados-B2B.png");
   background-size: cover;
   background-position: center;
   min-height: 75vh;
@@ -148,10 +262,539 @@ section {
   inset: 0;
   background: rgba(0, 0, 0, 0.15);
 }
+/* ================== SECCIÓN PILARES MINIMALISTA ================== */
+#pilares-section {
+  background: url("../img/fondo.jpg") center top / cover no-repeat fixed;
+  box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  padding: 25px 15px;
+  min-height: auto;
+}
 
-/* ======================================================= */
-/* RESPONSIVIDAD MEJORADA */
-/* ======================================================= */
+/* Contenedor centrado */
+section .container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 1000px;
+  width: 100%;
+  padding: 0 10px;
+}
+
+/* ================== BENEFITS ULTRA-COMPACTO ================== */
+.benefits-section-container {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 8px 6px;
+  text-align: center;
+}
+
+/* GRID 2X2 con gap minimalista */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  margin: 15px 0;
+}
+
+/* CARD MINIMALISTA */
+.card-item {
+  background-color: #fff;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeInUp 0.5s ease forwards;
+  cursor: pointer;
+  will-change: transform, box-shadow;
+}
+
+/* Hover sofisticado */
+.card-item:hover {
+  transform: translateY(-6px) scale(1.03) rotateZ(0.3deg);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+  filter: brightness(1.05);
+}
+
+/* Imagen compacta con efecto hover */
+.card-image {
+  width: 100%;
+  height: 130px;
+  overflow: hidden;
+  border-bottom: 1px solid #eee;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card-item:hover .card-image img {
+  transform: scale(1.08);
+}
+
+/* Contenido reducido y centrado */
+.card-content {
+  padding: 0.5rem 0.6rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.feature-header h3 {
+  font-size: 0.95rem;
+  margin: 0.15rem 0 0.3rem;
+  color: #1f4d6e;
+  font-weight: 700;
+  text-align: center;
+}
+
+.card-description {
+  color: #555;
+  font-size: 0.65rem;
+  line-height: 1.25;
+  margin: 0 0 0.3rem;
+  text-align: left;
+}
+
+/* ================== LISTA DE BENEFICIOS MINIMALISTA ================== */
+.benefits-list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0 0 0 0.5rem;
+  font-size: 0.75rem;
+}
+
+.benefits-list li {
+  padding: 6px 0;
+  color: #5a6c7d;
+  line-height: 1.4;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.benefits-list li:last-child {
+  border-bottom: none;
+}
+
+.benefits-list li::before {
+  content: "•";
+  color: var(--color-green-main);
+  font-weight: bold;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.benefits-list li:hover {
+  transform: translateX(5px);
+  color: var(--color-green-dark);
+}
+
+/* CTA compacto */
+.benefits-cta {
+  margin-top: 15px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeInUp 0.5s ease 0.4s forwards;
+}
+
+/* Animación */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Botones minimalistas */
+.requisitos-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.show-requisitos-btn {
+  padding: 0.35rem 0.9rem;
+  background: linear-gradient(135deg, #82c954, #6ab83d);
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.65rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(130, 201, 84, 0.3);
+}
+
+.show-requisitos-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(130, 201, 84, 0.4);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+  .card-image {
+    height: 110px;
+  }
+  .feature-header h3 {
+    font-size: 0.85rem;
+  }
+  .card-description {
+    font-size: 0.6rem;
+  }
+  .benefits-list {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-image {
+    height: 90px;
+  }
+  .feature-header h3 {
+    font-size: 0.8rem;
+  }
+  .card-description {
+    font-size: 0.55rem;
+  }
+  .benefits-list {
+    font-size: 0.6rem;
+  }
+}
+
+/* ================== BOTÓN REQUISITOS ================== */
+.requisitos-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+/* Botón Ver Requisitos */
+.show-requisitos-btn {
+  background: linear-gradient(
+    135deg,
+    var(--color-green-main),
+    var(--color-green-dark)
+  );
+  color: white;
+  border: none;
+  padding: 14px 35px;
+  border-radius: var(--border-radius-pill);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(130, 201, 84, 0.3);
+  white-space: nowrap;
+  min-width: 200px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.show-requisitos-btn:hover {
+  background: linear-gradient(
+    135deg,
+    var(--color-green-dark),
+    var(--color-green-main)
+  );
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(130, 201, 84, 0.4);
+}
+
+/* Botón Cerrar Requisitos */
+.hide-requisitos-btn {
+  background: linear-gradient(135deg, #6c757d, #495057);
+  color: white;
+  border: none;
+  padding: 14px 35px;
+  border-radius: var(--border-radius-pill);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+  white-space: nowrap;
+  min-width: 160px;
+}
+
+.hide-requisitos-btn:hover {
+  background: linear-gradient(135deg, #495057, #343a40);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+}
+
+/* Botón Afíliarme dentro del contenedor */
+.requisitos-btn-container .cta-central {
+  margin: 0;
+}
+
+.requisitos-btn-container .cta-link.cta-large {
+  font-size: 1.1rem;
+  padding: 14px 35px;
+  border-radius: var(--border-radius-pill);
+  background: linear-gradient(
+    135deg,
+    var(--color-green-main),
+    var(--color-green-dark)
+  );
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(130, 201, 84, 0.3);
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  white-space: nowrap;
+  min-width: 160px;
+  text-align: center;
+}
+
+.requisitos-btn-container .cta-link.cta-large:hover {
+  background: linear-gradient(
+    135deg,
+    var(--color-green-dark),
+    var(--color-green-main)
+  );
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(130, 201, 84, 0.4);
+}
+
+/* ================== SECCIÓN REQUISITOS ================== */
+#seccion-requisitos {
+  background-image: url("../img/fondo.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  min-height: auto;
+  padding: 30px 20px;
+}
+
+#seccion-requisitos::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(84, 111, 201, 0.03) 0%,
+    rgba(255, 255, 255, 0.98) 60%,
+    rgba(240, 248, 255, 0.95) 100%
+  );
+  z-index: 0;
+}
+
+#seccion-requisitos .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Contenedor de la lista de requisitos */
+.requisitos-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.requisitos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: 30px 0;
+}
+
+/* Tarjetas de requisitos compactas */
+.requisito-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.requisito-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(84, 111, 201, 0.02) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  z-index: 0;
+}
+
+.requisito-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(84, 111, 201, 0.12);
+  border-color: var(--color-blue-main);
+}
+
+/* Iconos de requisitos compactos */
+.requisito-icon {
+  font-size: 1.8rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-main),
+    var(--color-blue-dark)
+  );
+  color: white;
+  box-shadow: 0 3px 8px rgba(84, 111, 201, 0.3);
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.requisito-item:hover .requisito-icon {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(84, 111, 201, 0.4);
+}
+
+/* Texto de requisitos compacto */
+.requisito-text {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.requisito-text h3 {
+  margin: 0 0 8px 0;
+  color: #2c3e50;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-main),
+    var(--color-blue-dark)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.requisito-text p {
+  margin: 0;
+  color: #5a6c7d;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* Efecto de borde superior compacto */
+.requisito-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-blue-main),
+    var(--color-blue-dark)
+  );
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.requisito-item:hover::after {
+  transform: scaleX(1);
+}
+
+/* ================== UTILIDADES ================== */
+/* Secciones ocultas */
+.is-hidden {
+  display: none !important;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.requisito-item {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.requisito-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.requisito-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.requisito-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.requisito-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* Sección visible */
+#pilares-section {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.5s ease;
+}
+
+#pilares-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================== RESPONSIVE DESIGN ================== */
+
+/* Responsive para Aliados */
 @media (max-width: 1200px) {
   .container-aliados {
     max-width: 95%;
@@ -284,673 +927,39 @@ section {
   }
 }
 
-/* Sección Pilares */
-#pilares-section {
-  background-image: url("../img/fondo.jpg");
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.06);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  min-height: 100vh;
-  padding: 40px 20px;
-}
-
-/* Contenedores */
-section .container {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  max-width: 1000px;
-  width: 100%;
-  padding: 0 15px;
-}
-
-/* ================== TIPOGRAFÍA ================== */
-.section-title h2 {
-  font-size: clamp(1.5rem, 6vw, 2.5rem);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 10px;
-  background-image: linear-gradient(
-    to right,
-    var(--color-primary-dark),
-    var(--color-primary-light),
-    var(--color-accent-light),
-    var(--color-primary-light),
-    var(--color-primary-dark)
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: gradient-animation 6s ease-in-out infinite;
-  background-size: 200% auto;
-}
-
-@keyframes gradient-animation {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.section-title p {
-  font-size: clamp(1rem, 2vw, 1.1rem);
-  color: var(--color-text-light);
-  line-height: 1.7;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 0 20px;
-}
-
-/* ================== BOTONES Y CTAs ================== */
-.cta-central {
-  margin-top: 50px;
-}
-
-.cta-link.cta-large {
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  padding: clamp(16px, 3vw, 20px) clamp(50px, 8vw, 70px);
-  border-radius: var(--border-radius-pill);
-  background: linear-gradient(135deg, #70b642, #739e57);
-  color: #fff;
-  font-weight: 800;
-  text-decoration: none;
-  box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
-  transition: all 0.3s ease-in-out;
-  display: inline-block;
-  text-align: center;
-}
-
-.cta-link.cta-large:hover {
-  background: linear-gradient(135deg, #739e57, #70b642);
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 15px 35px rgba(39, 174, 96, 0.5);
-}
-
-/* ================== FLECHA SÓLIDA VERDE Y BLANCA (FORZADA) ================== */
-.arrow-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 35px;
-}
-
-.arrow-btn {
-  background-color: #4caf50 !important;
-  background-image: none !important;
-  border: none;
-  width: clamp(50px, 8vw, 60px);
-  height: clamp(50px, 8vw, 60px);
-  border-radius: 50%;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.3s ease;
-  color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.arrow-btn::before {
-  content: "";
-  position: absolute;
-  top: 48%;
-  left: 50%;
-  width: clamp(12px, 3vw, 16px);
-  height: clamp(12px, 3vw, 16px);
-  border-left: 3px solid currentColor;
-  border-bottom: 3px solid currentColor;
-  transform: translate(-50%, -50%) rotate(-45deg);
-  transition: all 0.3s ease;
-}
-
-.arrow-btn:hover {
-  background-color: #45a049 !important;
-  background-image: none !important;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-}
-
-.arrow-btn.active::before {
-  transform: translate(-50%, -50%) rotate(135deg);
-}
-
-.arrow-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-}
-
-/* ================== SECCIONES OCULTAS ================== */
-.is-hidden {
-  display: none !important;
-}
-
-/* ================== LAYOUT GENERAL COMPACTO ================== */
-.benefits-section-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px 15px;
-  text-align: center;
-}
-
-/* ================== CARRUSEL PRINCIPAL COMPACTO ================== */
-.centered-carousel-container {
-  position: relative;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  background: white;
-}
-
-.centered-carousel-track {
-  position: relative;
-}
-
-.centered-carousel-slide {
-  width: 100%;
-  padding: 25px 20px;
-  display: none;
-}
-
-.centered-carousel-slide.active {
-  display: block;
-  animation: fadeIn 0.4s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ================== TARJETA COMPACTA ================== */
-.centered-carousel-card {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  text-align: left;
-}
-
-.card-image {
-  flex: 0 0 42%;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-}
-
-.card-image img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.card-image:hover img {
-  transform: scale(1.03);
-}
-
-.card-content {
-  flex: 1;
-  padding: 10px 0;
-  text-align: justify;
-}
-
-.card-icon {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 15px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(
-    135deg,
-    var(--color-green-main),
-    var(--color-green-dark)
-  );
-  color: white;
-  font-size: 1.3rem;
-  box-shadow: 0 3px 8px rgba(130, 201, 84, 0.25);
-}
-
-.feature-header h3 {
-  font-size: clamp(1.3rem, 4vw, 1.8rem);
-  line-height: 1.2;
-  letter-spacing: -0.5px;
-  font-weight: 800;
-  margin: 0 0 12px 0;
-  background-image: linear-gradient(
-    to right,
-    var(--color-primary-dark),
-    var(--color-primary-light),
-    var(--color-accent-light),
-    var(--color-primary-light),
-    var(--color-primary-dark)
-  );
-  background-size: 200% auto;
-  animation: gradient-animation 10s ease-in-out infinite;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-align: center;
-}
-
-.card-description {
-  color: #5a6c7d;
-  font-size: clamp(0.9rem, 2vw, 0.95rem);
-  line-height: 1.5;
-  margin: 0;
-  text-align: justify;
-}
-
-/* ================== INDICADORES NUMÉRICOS COMPACTOS ================== */
-.numeric-indicators {
-  padding: 20px 0;
-  background: rgba(248, 249, 250, 0.9);
-  border-top: 1px solid #e9ecef;
-}
-
-.numeric-indicators-container {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.numeric-indicator {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: white;
-  border: 2px solid #e9ecef;
-  padding: 8px 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  min-width: 60px;
-}
-
-.numeric-indicator:hover {
-  background-color: rgba(130, 201, 84, 0.05);
-  border-color: var(--color-green-main);
-  transform: translateY(-1px);
-}
-
-.numeric-indicator.active {
-  background-color: var(--color-green-main);
-  border-color: var(--color-green-main);
-  color: white;
-  transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(130, 201, 84, 0.25);
-}
-
-.indicator-number {
-  font-size: clamp(1rem, 2vw, 1.1rem);
-  font-weight: bold;
-  margin-bottom: 3px;
-}
-
-.indicator-label {
-  font-size: clamp(0.7rem, 1.5vw, 0.75rem);
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  font-weight: 600;
-}
-
-/* ================== RESPONSIVE COMPACTO MEJORADO ================== */
-@media (max-width: 1024px) {
-  .benefits-section-container {
-    padding: 20px;
-  }
-
-  .centered-carousel-card {
-    gap: 20px;
-  }
-
-  .card-image {
-    flex: 0 0 38%;
-  }
-
-  .card-image img {
-    height: 200px;
-  }
-}
-
-@media (max-width: 900px) {
-  .centered-carousel-card {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
-  }
-
-  .card-image {
-    flex: 0 0 auto;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  .card-content {
-    text-align: center;
-    padding: 0;
-  }
-
-  .card-description {
-    text-align: center;
-  }
-}
-
+/* Responsive para Beneficios */
 @media (max-width: 768px) {
-  .benefits-section-container {
-    padding: 15px 10px;
+  .cards-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
   }
-
-  .centered-carousel-container {
-    border-radius: 10px;
-    max-width: 100%;
-  }
-
-  .centered-carousel-slide {
-    padding: 20px 15px;
-  }
-
-  .centered-carousel-card {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-  }
-
   .card-image {
-    flex: 0 0 auto;
-    width: 100%;
-    max-width: 350px;
-    margin: 0 auto;
+    height: 100px;
   }
-
-  .card-image img {
-    height: 180px;
-  }
-
-  .card-content {
-    padding: 0;
-    text-align: center;
-  }
-
-  .card-icon {
-    margin: 0 auto 15px;
-  }
-
   .feature-header h3 {
-    text-align: center;
-    font-size: clamp(1.2rem, 5vw, 1.6rem);
-    margin-bottom: 10px;
+    font-size: 0.8rem;
   }
-
   .card-description {
-    text-align: justify;
-    font-size: 0.9rem;
-    line-height: 1.4;
-  }
-
-  .numeric-indicators {
-    padding: 15px 0;
-  }
-
-  .numeric-indicators-container {
-    gap: 6px;
-    max-width: 100%;
-  }
-
-  .numeric-indicator {
-    padding: 6px 10px;
-    min-width: 55px;
-  }
-
-  .indicator-number {
-    font-size: 1rem;
-  }
-
-  .indicator-label {
-    font-size: 0.7rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .centered-carousel-slide {
-    padding: 15px 12px;
-  }
-
-  .card-image img {
-    height: 160px;
-  }
-
-  .card-icon {
-    width: 45px;
-    height: 45px;
-    font-size: 1.1rem;
-  }
-
-  .numeric-indicators-container {
-    gap: 4px;
-  }
-
-  .numeric-indicator {
-    min-width: 50px;
-    padding: 5px 8px;
+    font-size: 0.6rem;
   }
 }
 
 @media (max-width: 480px) {
-  .benefits-section-container {
-    padding: 10px 8px;
+  .cards-grid {
+    grid-template-columns: 1fr;
   }
-
-  .centered-carousel-slide {
-    padding: 15px 12px;
+  .card-image {
+    height: 80px;
   }
-
-  .centered-carousel-card {
-    gap: 15px;
-  }
-
-  .card-image img {
-    height: 150px;
-  }
-
-  .card-icon {
-    width: 45px;
-    height: 45px;
-    font-size: 1.1rem;
-    margin-bottom: 12px;
-  }
-
   .feature-header h3 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
+    font-size: 0.75rem;
   }
-
   .card-description {
-    font-size: 0.85rem;
-    line-height: 1.4;
-  }
-
-  .numeric-indicators {
-    padding: 12px 0;
-  }
-
-  .numeric-indicator {
-    padding: 5px 8px;
-    min-width: 50px;
-  }
-
-  .indicator-number {
-    font-size: 0.9rem;
-  }
-
-  .indicator-label {
-    font-size: 0.65rem;
+    font-size: 0.5rem;
   }
 }
 
-@media (max-width: 360px) {
-  .centered-carousel-slide {
-    padding: 12px 10px;
-  }
-
-  .card-image img {
-    height: 130px;
-  }
-
-  .feature-header h3 {
-    font-size: 1rem;
-  }
-
-  .card-description {
-    font-size: 0.8rem;
-  }
-
-  .numeric-indicator {
-    min-width: 45px;
-    padding: 4px 6px;
-  }
-
-  .indicator-label {
-    display: none;
-  }
-}
-
-/* Optimización para tablets en landscape */
-@media (max-width: 1024px) and (orientation: landscape) {
-  .centered-carousel-card {
-    gap: 20px;
-  }
-
-  .card-image img {
-    height: 200px;
-  }
-
-  .card-description {
-    font-size: 0.9rem;
-    line-height: 1.4;
-  }
-}
-
-/* ================== BOTÓN REQUISITOS ================== */
-.requisitos-btn-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 40px;
-  flex-wrap: wrap;
-}
-
-/* Botón Ver Requisitos */
-.show-requisitos-btn {
-  background: linear-gradient(
-    135deg,
-    var(--color-green-main),
-    var(--color-green-dark)
-  );
-  color: white;
-  border: none;
-  padding: 14px 35px;
-  border-radius: var(--border-radius-pill);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 4px 15px rgba(130, 201, 84, 0.3);
-  white-space: nowrap;
-  min-width: 200px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.show-requisitos-btn:hover {
-  background: linear-gradient(
-    135deg,
-    var(--color-green-dark),
-    var(--color-green-main)
-  );
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(130, 201, 84, 0.4);
-}
-
-/* Botón Cerrar Requisitos */
-.hide-requisitos-btn {
-  background: linear-gradient(135deg, #6c757d, #495057);
-  color: white;
-  border: none;
-  padding: 14px 35px;
-  border-radius: var(--border-radius-pill);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
-  white-space: nowrap;
-  min-width: 160px;
-}
-
-.hide-requisitos-btn:hover {
-  background: linear-gradient(135deg, #495057, #343a40);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
-}
-
-/* Botón Afíliarme dentro del contenedor */
-.requisitos-btn-container .cta-central {
-  margin: 0;
-}
-
-.requisitos-btn-container .cta-link.cta-large {
-  font-size: 1.1rem;
-  padding: 14px 35px;
-  border-radius: var(--border-radius-pill);
-  background: linear-gradient(
-    135deg,
-    var(--color-green-main),
-    var(--color-green-dark)
-  );
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 0 4px 15px rgba(130, 201, 84, 0.3);
-  transition: all 0.3s ease-in-out;
-  display: inline-block;
-  white-space: nowrap;
-  min-width: 160px;
-  text-align: center;
-}
-
-.requisitos-btn-container .cta-link.cta-large:hover {
-  background: linear-gradient(
-    135deg,
-    var(--color-green-dark),
-    var(--color-green-main)
-  );
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(130, 201, 84, 0.4);
-}
-
-/* ================== RESPONSIVE PARA BOTONES MEJORADO ================== */
+/* Responsive para Botones */
 @media (max-width: 1024px) {
   .requisitos-btn-container {
     gap: 15px;
@@ -1024,170 +1033,7 @@ section .container {
   }
 }
 
-/* ================== SECCIÓN REQUISITOS ================== */
-#seccion-requisitos {
-  background-image: url("../img/fondo.jpg");
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.06);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  min-height: auto;
-  padding: 30px 20px;
-}
-
-#seccion-requisitos::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(84, 111, 201, 0.03) 0%,
-    rgba(255, 255, 255, 0.98) 60%,
-    rgba(240, 248, 255, 0.95) 100%
-  );
-  z-index: 0;
-}
-
-#seccion-requisitos .container {
-  position: relative;
-  z-index: 1;
-}
-
-/* Contenedor de la lista de requisitos - Más compacto */
-.requisitos-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.requisitos-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  margin: 30px 0;
-}
-
-/* Tarjetas de requisitos compactas */
-.requisito-item {
-  display: flex;
-  align-items: flex-start;
-  padding: 20px;
-  border: 1px solid #e8e8e8;
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.requisito-item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(84, 111, 201, 0.02) 0%,
-    rgba(255, 255, 255, 0) 70%
-  );
-  z-index: 0;
-}
-
-.requisito-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(84, 111, 201, 0.12);
-  border-color: var(--color-blue-main);
-}
-
-/* Iconos de requisitos compactos */
-.requisito-icon {
-  font-size: 1.8rem;
-  margin-right: 1rem;
-  flex-shrink: 0;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    var(--color-blue-main),
-    var(--color-blue-dark)
-  );
-  color: white;
-  box-shadow: 0 3px 8px rgba(84, 111, 201, 0.3);
-  transition: all 0.2s ease;
-  position: relative;
-  z-index: 1;
-}
-
-.requisito-item:hover .requisito-icon {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(84, 111, 201, 0.4);
-}
-
-/* Texto de requisitos compacto */
-.requisito-text {
-  flex: 1;
-  position: relative;
-  z-index: 1;
-}
-
-.requisito-text h3 {
-  margin: 0 0 8px 0;
-  color: #2c3e50;
-  font-size: 1.1rem;
-  font-weight: 600;
-  line-height: 1.2;
-  background: linear-gradient(
-    135deg,
-    var(--color-blue-main),
-    var(--color-blue-dark)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.requisito-text p {
-  margin: 0;
-  color: #5a6c7d;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  font-weight: 400;
-}
-
-/* Efecto de borde superior compacto */
-.requisito-item::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    var(--color-blue-main),
-    var(--color-blue-dark)
-  );
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.requisito-item:hover::after {
-  transform: scaleX(1);
-}
-
-/* ================== RESPONSIVE COMPACTO MEJORADO ================== */
+/* Responsive para Requisitos */
 @media (max-width: 1024px) {
   .requisitos-grid {
     gap: 20px;
@@ -1308,368 +1154,7 @@ section .container {
   }
 }
 
-/* Botones de requisitos mejorados */
-.requisitos-btn-container {
-  text-align: center;
-  margin-top: 50px;
-}
-
-.hide-requisitos-btn {
-  background: linear-gradient(135deg, #6c757d, #495057);
-  color: white;
-  border: none;
-  padding: 16px 45px;
-  border-radius: var(--border-radius-pill);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 700;
-  font-size: 1.1rem;
-  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.hide-requisitos-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: left 0.6s ease;
-}
-
-.hide-requisitos-btn:hover {
-  background: linear-gradient(135deg, #495057, #343a40);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
-}
-
-.hide-requisitos-btn:hover::before {
-  left: 100%;
-}
-
-/* ================== RESPONSIVE PARA REQUISITOS ================== */
-@media (max-width: 992px) {
-  .requisitos-grid {
-    grid-template-columns: 1fr;
-    gap: 25px;
-    margin: 40px 0;
-  }
-
-  .requisito-item {
-    padding: 30px 25px;
-  }
-
-  .requisito-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 2rem;
-    margin-right: 1.25rem;
-  }
-
-  .requisito-text h3 {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 768px) {
-  #seccion-requisitos {
-    padding: 60px 20px;
-    background-attachment: scroll;
-  }
-
-  .requisitos-grid {
-    gap: 20px;
-    margin: 35px 0;
-  }
-
-  .requisito-item {
-    padding: 25px 20px;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
-
-  .requisito-icon {
-    margin-right: 0;
-    margin-bottom: 15px;
-    width: 55px;
-    height: 55px;
-    font-size: 1.8rem;
-  }
-
-  .requisito-text h3 {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
-  }
-
-  .requisito-text p {
-    font-size: 1rem;
-  }
-
-  .hide-requisitos-btn {
-    padding: 14px 35px;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  #seccion-requisitos {
-    padding: 50px 15px;
-  }
-
-  .requisitos-grid {
-    gap: 15px;
-  }
-
-  .requisito-item {
-    padding: 20px 15px;
-    border-radius: 12px;
-  }
-
-  .requisito-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.6rem;
-  }
-
-  .requisito-text h3 {
-    font-size: 1.2rem;
-  }
-
-  .requisito-text p {
-    font-size: 0.95rem;
-  }
-
-  .requisitos-btn-container {
-    margin-top: 40px;
-  }
-
-  .hide-requisitos-btn {
-    padding: 12px 30px;
-    font-size: 0.95rem;
-  }
-}
-
-/* Animaciones para la sección de requisitos */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.requisito-item {
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-.requisito-item:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.requisito-item:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.requisito-item:nth-child(3) {
-  animation-delay: 0.3s;
-}
-.requisito-item:nth-child(4) {
-  animation-delay: 0.4s;
-}
-
-/* ================== LISTA DE BENEFICIOS ================== */
-.benefits-list {
-  list-style: none;
-  padding: 0;
-  margin: 15px 0 0 0;
-  text-align: left;
-}
-
-.benefits-list li {
-  padding: 8px 0;
-  color: #5a6c7d;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-bottom: 1px solid #f0f0f0;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.benefits-list li:last-child {
-  border-bottom: none;
-}
-
-.benefits-list li::before {
-  content: "•";
-  color: var(--color-green-main);
-  font-weight: bold;
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-/* Mejora el texto de descripción */
-.card-description {
-  color: #5a6c7d;
-  font-size: 1.1rem;
-  line-height: 1.7;
-  margin: 0 0 15px 0;
-}
-
-/* Ajustes para el título de la sección */
-.section-title h2 {
-  font-size: clamp(1.8rem, 5vw, 2.8rem);
-  margin-bottom: 15px;
-}
-
-.section-title p {
-  font-size: 1.1rem;
-  color: var(--color-text-light);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* Mejora los indicadores numéricos */
-.numeric-indicator {
-  border: 2px solid #e0e0e0;
-  background: white;
-}
-
-.numeric-indicator:hover {
-  border-color: var(--color-green-main);
-  background: rgba(130, 201, 84, 0.05);
-}
-
-.numeric-indicator.active {
-  background: var(--color-green-main);
-  border-color: var(--color-green-main);
-  color: white;
-}
-
-/* Responsive para listas de beneficios */
-@media (max-width: 768px) {
-  .benefits-list li {
-    font-size: 0.95rem;
-    padding: 6px 0;
-  }
-
-  .card-description {
-    font-size: 1rem;
-  }
-}
-
-/* Contenedor de la lista - tipo grid compacto */
-.nota-grid {
-  list-style: none;
-  padding: 0;
-  margin: 30px auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 15px;
-  justify-items: center;
-}
-
-/* Tarjeta tipo requisito */
-.nota-item {
-  display: flex;
-  align-items: flex-start;
-  padding: 20px;
-  border: 1px solid #e8e8e8;
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Efecto gradiente de fondo sutil */
-.nota-item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(84, 111, 201, 0.02) 0%,
-    rgba(255, 255, 255, 0) 70%
-  );
-  z-index: 0;
-}
-
-/* Hover de la tarjeta */
-.nota-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(84, 111, 201, 0.12);
-  border-color: var(--color-blue-main);
-}
-
-/* Texto dentro de la tarjeta */
-.nota-text {
-  flex: 1;
-  position: relative;
-  z-index: 1;
-  text-align: center;
-}
-
-.nota-text h3 {
-  margin: 0 0 8px 0;
-  color: #2c3e50;
-  font-size: 1.2rem;
-  font-weight: 600;
-  line-height: 1.2;
-  background: linear-gradient(
-    135deg,
-    var(--color-blue-main),
-    var(--color-blue-dark)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.nota-text p {
-  margin: 0;
-  color: #5a6c7d;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  font-weight: 400;
-}
-
-/* Efecto de borde superior */
-.nota-item::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    var(--color-blue-main),
-    var(--color-blue-dark)
-  );
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.nota-item:hover::after {
-  transform: scaleX(1);
-}
-
-/* ================== MEJORAS RESPONSIVAS GLOBALES ================== */
+/* Responsive Global */
 @media (max-width: 1024px) {
   section {
     min-height: 50vh;

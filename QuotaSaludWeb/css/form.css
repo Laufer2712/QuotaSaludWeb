@@ -771,3 +771,50 @@ textarea:disabled,
   cursor: not-allowed;
   transform: none !important;
 }
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-col {
+  min-width: 250px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .form-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.file-preview img {
+  max-width: 150px;
+  max-height: 150px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.file-preview p {
+  font-size: 0.9em;
+  color: #555;
+}
+
+input.invalid {
+  border-color: red;
+}
+
+input.valid {
+  border-color: green;
+}

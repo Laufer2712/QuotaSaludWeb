@@ -21,6 +21,7 @@ require_once 'includes/header.php';
             <h2 style="color: #ffffffff;">Acceso Completo y Pagos Flexibles.</h2>
             <p>Te conectamos con una red integral de servicios de bienestar <strong> tratamientos y consultas hasta exámenes de laboratorio e imagenología</strong> facilitamos la división digital de tus pagos para que accedas a ellos de inmediato. Tu tranquilidad no tiene que esperar.</p>
 
+
             <div class="hero-botones">
                 <a href="aliados.php" class="cta-aliado">Soy Centro de Salud</a>
                 <a href="paciente.php" class="cta-usuario">Soy Usuario</a>
@@ -42,6 +43,18 @@ require_once 'includes/header.php';
             <div class="confidence-item"><span class="confidence-icon">✔️</span>Sin Cargos Adicionales</div>
             <span class="confidence-separator">|</span>
             <div class="confidence-item"><span class="confidence-icon">✔️</span>Red de Aliados Certificados</div>
+            <div class="confidence-item"><span class="confidence-icon">✔️</span>Pago Fraccionado Seguro</div>
+            <span class="confidence-separator">|</span>
+            <div class="confidence-item"><span class="confidence-icon">✔️</span>Sin Cargos Adicionales</div>
+            <span class="confidence-separator">|</span>
+            <div class="confidence-item"><span class="confidence-icon">✔️</span>Red de Aliados Certificados</div>
+            <span class="confidence-separator">|</span>
+            <div class="confidence-item"><span class="confidence-icon">✔️</span>Pago Fraccionado Seguro</div>
+            <span class="confidence-separator">|</span>
+            <div class="confidence-item"><span class="confidence-icon">✔️</span>Sin Cargos Adicionales</div>
+            <span class="confidence-separator">|</span>
+            <div class="confidence-item"><span class="confidence-icon">✔️</span>Red de Aliados Certificados</div>
+
         </div>
     </div>
 
@@ -116,13 +129,13 @@ require_once 'includes/header.php';
         <div class="feature-card1">
             <img src="img/Valores.png" alt="Valores" class="card-img">
             <h3>Nuestros Valores</h3>
-            <p>Humanidad, Acceso Genuino y Confianza Digital guían cada acción, conectando personas y proveedores en un ecosistema confiable.</p>
+            <p>La Humanidad guía nuestro propósito. La Confianza Digital asegura tu tranquilidad. Juntos, Democratizamos el Acceso a tu bienestar.</p>
         </div>
 
-        <!-- CARD 4: Aliados -->
+        <!-- CARD 4: Aliados 
         <div class="feature-card2">
             <img src="img/aliados-b2b.png" alt="Aliados B2B" class="card-img">
-        </div>
+        </div>-->
 
     </div>
 

@@ -36,134 +36,97 @@ require_once 'includes/header.php';
 
 
 
-
-<!-- ================= SECCIÓN PILARES (oculta inicialmente) ================= -->
+<!-- ================= SECCIÓN PILARES (Beneficios) ================= -->
 <section id="pilares-section" class="is-hidden">
     <div class="benefits-section-container">
 
-        <!-- Título de sección -->
+        <!-- Título -->
         <div class="section-title">
             <h2>Conoce tus beneficios como Aliado!</h2>
-            <!-- <p>Conozca los beneficios obtenidos para formar parte de nuestra red de aliados</p> -->
         </div>
 
-        <!-- CARRUSEL COMPACTO -->
-        <div class="centered-carousel-container">
-            <div class="centered-carousel-track">
-                <!-- Slide 1 -->
-                <div class="centered-carousel-slide active" data-index="0">
-                    <div class="centered-carousel-card">
-                        <div class="card-image">
-                            <img src="img/MayorFlujo.png" alt="Flujo de Pacientes">
-                        </div>
-                        <div class="card-content">
-                            <div class="feature-header">
-                                <h3>Cobro Total Garantizado</h3>
-                            </div>
-                            <p class="card-description">
-                                Nos ocupamos de todo. Tú enfócate en la salud.
-                            </p>
-                            <ul class="benefits-list">
-                                <li>Cero Riesgo de Impago (Asumimos el riesgo).</li>
-                                <li>Sin complicación de papeleo bancario.</li>
-                            </ul>
-                        </div>
-                    </div>
+        <!-- GRID DE CARDS -->
+        <div class="cards-grid">
+            <!-- Card 1 -->
+            <div class="card-item">
+                <div class="card-image">
+                    <img src="img/MayorFlujo.png" alt="Flujo de Pacientes">
                 </div>
-
-                <!-- Slide 2 -->
-                <div class="centered-carousel-slide" data-index="1">
-                    <div class="centered-carousel-card">
-                        <div class="card-image">
-                            <img src="img/Impago.png" alt="Cero Riesgo de Impago">
-                        </div>
-                        <div class="card-content">
-                            <div class="feature-header">
-                                <h3>Fideliza y Atrae Nuevos Pacientes</h3>
-                            </div>
-                            <p class="card-description">
-                                Abre tu centro a nuevos pacientes que buscan flexibilidad de pago.
-                            </p>
-                            <ul class="benefits-list">
-                                <li>Retienes a tus pacientes actuales.</li>
-                                <li>Aumenta la tasa de cierre de tratamientos (ticket promedio).</li>
-                            </ul>
-                        </div>
+                <div class="card-content">
+                    <div class="feature-header">
+                        <h3>Cobro Total Garantizado</h3>
                     </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="centered-carousel-slide" data-index="2">
-                    <div class="centered-carousel-card">
-                        <div class="card-image">
-                            <img src="img/Potencial.png" alt="Potencial de Alto Costo">
-                        </div>
-                        <div class="card-content">
-                            <div class="feature-header">
-                                <h3>Gestión 100% Digital y Simple</h3>
-                            </div>
-                            <p class="card-description">
-                                Nos encargamos del proceso completo - validación del paciente y organización de la división de pagos.
-                            </p>
-                            <ul class="benefits-list">
-                                <li>Transferencia de fondos a tu cuenta.</li>
-                                <li>Tú solo te enfocas en lo que mejor haces: brindar salud.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 4 -->
-                <div class="centered-carousel-slide" data-index="3">
-                    <div class="centered-carousel-card">
-                        <div class="card-image">
-                            <img src="img/Apoyo.png" alt="Apoyo en Marketing Digital">
-                        </div>
-                        <div class="card-content">
-                            <div class="feature-header">
-                                <h3>Soporte Estratégico y Beneficios</h3>
-                            </div>
-                            <p class="card-description">
-                                Crecimiento Operativo y Logística de Valor. t5 a beneficios exclusivos que optimizan tu operación y proyectan tu crecimiento:
-                            </p>
-                            <ul class="benefits-list">
-                                <li>Apoyo en Marketing Digital para tu posicionamiento y atracción de nuevos pacientes.</li>
-                                <li>Adquisición de insumos y equipos médicos con un sistema de pago programado en cuotas.</li>
-                                <li>Facilidades de pago exclusivas para el mejoramiento profesional y operativo (ej. certificaciones o equipos).</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <p class="card-description">
+                        Nos ocupamos de todo. Tú enfócate en la salud.
+                    </p>
+                    <ul class="benefits-list">
+                        <li>Cero Riesgo de Impago (Asumimos el riesgo).</li>
+                        <li>Sin complicación de papeleo bancario.</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Indicadores numéricos compactos -->
-            <div class="numeric-indicators">
-                <div class="numeric-indicators-container">
-                    <button class="numeric-indicator active" data-index="0" aria-pressed="true">
-                        <span class="indicator-number"></span>
-                        <span class="indicator-label">Cobro</span>
-                    </button>
-                    <button class="numeric-indicator" data-index="1" aria-pressed="false">
-                        <span class="indicator-number"></span>
-                        <span class="indicator-label">Fideliza</span>
-                    </button>
-                    <button class="numeric-indicator" data-index="2" aria-pressed="false">
-                        <span class="indicator-number"></span>
-                        <span class="indicator-label">Gestión</span>
-                    </button>
-                    <button class="numeric-indicator" data-index="3" aria-pressed="false">
-                        <span class="indicator-number"></span>
-                        <span class="indicator-label">Soporte</span>
-                    </button>
+            <!-- Card 2 -->
+            <div class="card-item">
+                <div class="card-image">
+                    <img src="img/Impago.png" alt="Cero Riesgo de Impago">
+                </div>
+                <div class="card-content">
+                    <div class="feature-header">
+                        <h3>Fideliza y Atrae Nuevos Pacientes</h3>
+                    </div>
+                    <p class="card-description">
+                        Abre tu centro a nuevos pacientes que buscan flexibilidad de pago.
+                    </p>
+                    <ul class="benefits-list">
+                        <li>Retienes a tus pacientes actuales.</li>
+                        <li>Aumenta la tasa de cierre de tratamientos (ticket promedio).</li>
+                    </ul>
+                </div>
+            </div>
 
+            <!-- Card 3 -->
+            <div class="card-item">
+                <div class="card-image">
+                    <img src="img/Potencial.png" alt="Potencial de Alto Costo">
+                </div>
+                <div class="card-content">
+                    <div class="feature-header">
+                        <h3>Gestión 100% Digital y Simple</h3>
+                    </div>
+                    <p class="card-description">
+                        Nos encargamos del proceso completo: validación del paciente y organización de pagos.
+                    </p>
+                    <ul class="benefits-list">
+                        <li>Transferencia de fondos a tu cuenta.</li>
+                        <li>Tú solo te enfocas en lo que mejor haces: brindar salud.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card-item">
+                <div class="card-image">
+                    <img src="img/Apoyo.png" alt="Apoyo en Marketing Digital">
+                </div>
+                <div class="card-content">
+                    <div class="feature-header">
+                        <h3>Soporte Estratégico y Beneficios</h3>
+                    </div>
+                    <p class="card-description">
+                        Crecimiento operativo y beneficios exclusivos que optimizan tu operación y proyectan tu crecimiento:
+                    </p>
+                    <ul class="benefits-list">
+                        <li>Apoyo en Marketing Digital para posicionamiento y atracción de nuevos pacientes.</li>
+                        <li>Adquisición de insumos y equipos médicos con pago programado en cuotas.</li>
+                        <li>Facilidades de pago exclusivas para mejoramiento profesional y operativo.</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
         <!-- Mensaje motivador y CTA -->
         <div class="benefits-cta">
-
-
             <ul class="nota-grid">
                 <li class="nota-item">
                     <div class="nota-text">
@@ -173,22 +136,13 @@ require_once 'includes/header.php';
                 </li>
             </ul>
 
-
-            <!-- Contenedor de botones juntos -->
             <div class="requisitos-btn-container">
-                <!-- Botón CTA -->
-                <a href="form.php" class="show-requisitos-btn cta-link">
-                    Quiero ser Aliado y Garantizar Mis Ingresos
-                </a>
-
-                <!-- Botón para mostrar requisitos -->
+                <a href="form.php" class="show-requisitos-btn cta-link">Quiero ser Aliado</a>
                 <button class="show-requisitos-btn cta-link" data-target="#seccion-requisitos">
                     Ver Requisitos para Afiliarme
                 </button>
             </div>
-
         </div>
-
     </div>
 </section>
 
@@ -240,7 +194,7 @@ require_once 'includes/header.php';
                 Cerrar Requisitos
             </button>
             <a href="form.php" class="cta-link cta-large afiliate-btn">
-                Afíliarme
+                Quiero ser aliado
             </a>
         </div>
     </div>

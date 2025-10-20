@@ -1,11 +1,28 @@
-// Lógica del carrusel centrado
 document.addEventListener('DOMContentLoaded', function () {
-    // 1. Inicializar el carrusel
-    initializeCenteredCarousel();
-
-    // 2. Configurar navegación entre secciones
+    initializeCardsAnimation();
     setupSectionNavigation();
+    enhanceCardsInteractivity();
 });
+
+function initializeCardsAnimation() {
+    const cardsSection = document.getElementById('pilares-section');
+    const cards = document.querySelectorAll('.card-item');
+    if (!cardsSection || cards.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.animationPlayState = 'running';
+                    }, index * 150);
+                });
+            }
+        });
+    }, { threshold: 0.3 });
+
+    observer.observe(cardsSection);
+}
 
 function setupSectionNavigation() {
     const togglePilaresBtn = document.querySelector('.show-section-btn[data-target="#pilares-section"]');
@@ -14,126 +31,116 @@ function setupSectionNavigation() {
     const hideRequisitosBtn = document.querySelector('.hide-requisitos-btn[data-target="#seccion-requisitos"]');
     const requisitosSection = document.getElementById('seccion-requisitos');
 
-    // Evento para la flecha (muestra/oculta Pilares)
     if (togglePilaresBtn && pilaresSection) {
         togglePilaresBtn.addEventListener('click', () => {
             const isHidden = pilaresSection.classList.contains('is-hidden');
+            pilaresSection.classList.toggle('is-hidden', !isHidden);
+            pilaresSection.classList.toggle('is-visible', isHidden);
 
-            if (isHidden) {
-                pilaresSection.classList.remove('is-hidden');
-                // Scroll suave a la sección
-                setTimeout(() => {
-                    pilaresSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
-            } else {
-                pilaresSection.classList.add('is-hidden');
-            }
+            if (isHidden) setTimeout(() => pilaresSection.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
 
-            // Cambiar ícono de flecha
             const arrowIcon = togglePilaresBtn.querySelector('.arrow-icon');
-
-            togglePilaresBtn.classList.toggle('active', isHidden);
-
+            if (arrowIcon) togglePilaresBtn.classList.toggle('active', isHidden);
         });
     }
 
-    // Eventos para Requisitos
     if (showRequisitosBtn && requisitosSection) {
         showRequisitosBtn.addEventListener('click', () => {
             requisitosSection.classList.remove('is-hidden');
-            setTimeout(() => {
-                requisitosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
+            setTimeout(() => requisitosSection.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
         });
     }
 
     if (hideRequisitosBtn && requisitosSection) {
         hideRequisitosBtn.addEventListener('click', () => {
             requisitosSection.classList.add('is-hidden');
-            // Volver al carrusel si está visible
             if (pilaresSection && !pilaresSection.classList.contains('is-hidden')) {
-                setTimeout(() => {
-                    pilaresSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
+                setTimeout(() => pilaresSection.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
             }
         });
     }
 }
 
-// FUNCIÓN COMPLETA DEL CARRUSEL
-function initializeCenteredCarousel() {
-    const slides = document.querySelectorAll('.centered-carousel-slide');
-    const numericIndicators = document.querySelectorAll('.numeric-indicator');
+function resetCardsAnimation() {
+    document.querySelectorAll('.card-item').forEach(card => {
+        card.style.animation = 'none';
+        void card.offsetWidth;
+        card.style.animation = null;
+    });
+}
 
-    if (slides.length === 0) return;
-
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-    let autoPlayInterval;
-
-    // Iniciar autoplay
-    startAutoPlay();
-
-    // Event listeners para indicadores
-    numericIndicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-            goToSlide(index);
-            resetAutoPlay();
+function enhanceCardsInteractivity() {
+    document.querySelectorAll('.card-item').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-8px) scale(1.02)';
+            card.style.boxShadow = '0 15px 30px rgba(0,0,0,0.15)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(-5px) scale(1)';
+            card.style.boxShadow = '0 12px 25px rgba(0,0,0,0.12)';
+        });
+        card.addEventListener('click', () => card.focus());
+        card.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
         });
     });
-
-    // Pausar/reanudar al hacer hover
-    const carouselContainer = document.querySelector('.centered-carousel-container');
-    if (carouselContainer) {
-        carouselContainer.addEventListener('mouseenter', pauseAutoPlay);
-        carouselContainer.addEventListener('mouseleave', resumeAutoPlay);
-    }
-
-    function startAutoPlay() {
-        autoPlayInterval = setInterval(() => {
-            nextSlide();
-        }, 8000);
-    }
-
-    function pauseAutoPlay() {
-        clearInterval(autoPlayInterval);
-    }
-
-    function resumeAutoPlay() {
-        startAutoPlay();
-    }
-
-    function resetAutoPlay() {
-        pauseAutoPlay();
-        resumeAutoPlay();
-    }
-
-    function goToSlide(index) {
-        if (index < 0 || index >= totalSlides) return;
-
-        // Ocultar slide actual
-        slides[currentIndex].classList.remove('active');
-        numericIndicators[currentIndex].classList.remove('active');
-        numericIndicators[currentIndex].setAttribute('aria-pressed', 'false');
-
-        currentIndex = index;
-
-        // Mostrar nuevo slide
-        slides[currentIndex].classList.add('active');
-        numericIndicators[currentIndex].classList.add('active');
-        numericIndicators[currentIndex].setAttribute('aria-pressed', 'true');
-    }
-
-    function nextSlide() {
-        const nextIndex = (currentIndex + 1) % totalSlides;
-        goToSlide(nextIndex);
-    }
-
-    // Limpiar intervalo al salir
-    window.addEventListener('beforeunload', () => {
-        clearInterval(autoPlayInterval);
-    });
-
-    // Inicializar primer slide
-    goToSlide(0);
 }
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth < 768) resetCardsAnimation();
+});
+
+
+// ================= INTERACTIVIDAD DE CARDS =================
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.card-item');
+
+    cards.forEach(card => {
+        // Hover avanzado
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-6px) scale(1.03)';
+            card.style.boxShadow = '0 15px 30px rgba(0,0,0,0.12)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) scale(1)';
+            card.style.boxShadow = '0 6px 18px rgba(0,0,0,0.08)';
+        });
+
+        // Click en card para foco/accesibilidad
+        card.addEventListener('click', () => {
+            card.focus();
+        });
+
+        // Navegación por teclado
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                card.click();
+            }
+        });
+    });
+});
+
+// ================= ANIMACIÓN AL APARECER CON INTERSECTION OBSERVER =================
+document.addEventListener('DOMContentLoaded', () => {
+    const cardsSection = document.getElementById('pilares-section');
+    const cards = document.querySelectorAll('.card-item');
+
+    if (!cardsSection || cards.length === 0) return;
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 150); // retraso escalonado
+                });
+            }
+        });
+    }, { threshold: 0.3 });
+
+    observer.observe(cardsSection);
+});

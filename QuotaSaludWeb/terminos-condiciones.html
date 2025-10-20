@@ -35,26 +35,23 @@
         line-height: 1.6;
         color: var(--text-color);
         background-color: var(--light-bg);
-        padding-top: 140px; /* Aumentado para el header más grande */
+        padding-top: 100px;
       }
 
-      /* ================== CÓDIGO DEL HEADER (Sin cambios) ================== */
-
+      /* ================== HEADER ================== */
       .page-header {
+        background-image: url("../img/fondoHeader.png");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-color: #f8f8f8;
+        padding: 8px 0;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        background: linear-gradient(
-          to right,
-          rgb(23, 30, 218),
-          rgb(117, 158, 87),
-          rgb(112, 182, 66)
-        );
-        color: var(--white);
-        padding: 15px 0; /* Contribuye a la altura total */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
       }
 
       .header-content {
@@ -62,6 +59,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 0 20px;
+        height: 50px;
       }
 
       .logo-container {
@@ -85,6 +83,7 @@
         display: flex;
         align-items: center;
         gap: 20px;
+        position: relative;
       }
 
       .nav-toggle {
@@ -93,27 +92,32 @@
         color: var(--black);
         font-size: 1.2rem;
         cursor: pointer;
-        padding: 8px;
+        padding: 8px 12px;
         border-radius: 4px;
         transition: background-color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
 
       .nav-toggle:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(255, 255, 255, 0.2);
       }
+
       .nav-dropdown {
         position: absolute;
         top: 100%;
-        right: 20px;
+        right: 0;
         background: white;
         border-radius: 8px;
         box-shadow: var(--shadow);
         padding: 15px;
-        min-width: 250px;
+        min-width: 280px;
         z-index: 1001;
         display: none;
         flex-direction: column;
         gap: 10px;
+        margin-top: 10px;
       }
 
       .nav-dropdown.active {
@@ -127,11 +131,13 @@
         display: flex;
         align-items: center;
         gap: 8px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
       }
 
       .nav-dropdown .nav-link {
-        background: #f0f0f0;
-        padding: 10px 15px;
+        background: #f8f9fa;
+        padding: 12px 15px;
         border-radius: 6px;
         text-decoration: none;
         color: var(--text-color);
@@ -139,7 +145,7 @@
         transition: all 0.3s ease;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
       }
 
       .nav-dropdown .nav-link:hover {
@@ -178,11 +184,13 @@
       /* MAIN CONTENT */
       .container {
         max-width: 900px;
-        margin: 0px auto;
+        margin: 0 auto;
         padding: 30px;
         background-color: var(--white);
         box-shadow: var(--shadow);
         border-radius: 8px;
+        position: relative;
+        z-index: 1;
       }
 
       header h1 {
@@ -193,11 +201,25 @@
         font-size: 2.2em;
       }
 
+      /* CORRECCIÓN PARA LOS TÍTULOS DE SECCIÓN */
       section {
         margin-bottom: 30px;
         padding: 20px;
         border-radius: 8px;
         transition: all 0.3s ease;
+        /* Añadimos un padding superior adicional y margen negativo */
+        scroll-margin-top: 10px; /* Esto asegura que el scroll se detenga con espacio para el header */
+      }
+
+      section:target {
+        background-color: rgba(26, 115, 232, 0.05);
+        padding: 20px;
+        border-left: 4px solid var(--primary-color);
+        transition: all 0.3s ease;
+        /* Aseguramos que las secciones objetivo tengan suficiente espacio */
+        padding-top: 30px;
+        margin-top: -20px; /* Compensa el espacio del header */
+        padding-top: 10px; /* Añade espacio para que el título sea visible */
       }
 
       section:hover {
@@ -211,6 +233,8 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        /* Aseguramos que los títulos tengan suficiente espacio */
+        padding-top: 10px;
       }
 
       h2 i {
@@ -246,34 +270,37 @@
         color: #555;
       }
 
-      /* TABLE STYLES */
-      .categories-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        overflow: hidden;
+      /* Privacy policy specific styles */
+      .privacy-section {
+        background-color: rgba(112, 182, 66, 0.05);
+        border-left: 4px solid var(--accent-color);
       }
 
-      .categories-table thead {
-        background-color: var(--primary-color);
-        color: white;
+      .privacy-section h2 {
+        color: var(--accent-color);
       }
 
-      .categories-table th,
-      .categories-table td {
-        border: 1px solid #ddd;
-        padding: 12px;
-        text-align: left;
+      .sub-section {
+        margin-left: 20px;
+        padding-left: 15px;
+        border-left: 2px solid #e0e0e0;
+        margin-bottom: 20px;
       }
 
-      .categories-table tbody tr:nth-child(even) {
-        background-color: #f9f9f9;
+      .sub-section h3 {
+        color: var(--secondary-color);
+        margin-bottom: 10px;
+        font-size: 1.2em;
       }
 
-      .categories-table tbody tr:hover {
-        background-color: #f1f1f1;
+      .external-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .external-link:hover {
+        text-decoration: underline;
       }
 
       /* FLOATING ACTION BUTTON FOR MOBILE */
@@ -321,16 +348,15 @@
         }
 
         .header-nav {
-          order: 3;
-          width: 100%;
-          justify-content: center;
-          margin-top: 10px;
+          display: flex;
+          align-items: center;
+          gap: 15px;
         }
 
         .nav-dropdown {
-          right: 15px;
-          left: 15px;
-          min-width: auto;
+          right: 0;
+          left: auto;
+          min-width: 250px;
         }
 
         .back-button {
@@ -355,17 +381,14 @@
           font-size: 1.3em;
         }
 
-        /* Make table responsive */
-        .categories-table {
-          display: block;
-          overflow-x: auto;
-          white-space: nowrap;
+        /* Ajustes para móviles */
+        section {
+          scroll-margin-top: 120px; /* Mayor espacio para el header en móviles */
         }
 
-        .categories-table th,
-        .categories-table td {
-          padding: 8px;
-          font-size: 0.9rem;
+        section:target {
+          margin-top: -100px;
+          padding-top: 130px;
         }
 
         .fab {
@@ -383,19 +406,25 @@
         }
 
         .header-content {
-          flex-direction: column;
+          flex-direction: row;
           gap: 10px;
-          text-align: center;
+          text-align: left;
         }
 
         .logo-container {
-          justify-content: center;
+          justify-content: flex-start;
         }
 
         .header-nav {
           order: 2;
           width: auto;
           margin-top: 0;
+        }
+
+        .nav-dropdown {
+          right: 0;
+          left: 0;
+          min-width: auto;
         }
 
         .container {
@@ -411,40 +440,28 @@
           font-size: 1.2em;
         }
 
-        .categories-table th,
-        .categories-table td {
-          padding: 6px;
-          font-size: 0.8rem;
+        /* Ajustes adicionales para móviles pequeños */
+        section {
+          scroll-margin-top: 110px;
+        }
+
+        section:target {
+          margin-top: -90px;
+          padding-top: 120px;
         }
       }
 
       /* Smooth scrolling */
       html {
         scroll-behavior: smooth;
+        /* Añadimos padding para el scroll suave */
+        scroll-padding-top: 100px;
       }
 
-      /* Section highlighting for better navigation */
-      section:target {
-        background-color: rgba(26, 115, 232, 0.05);
-        padding: 20px;
-        border-left: 4px solid var(--primary-color);
-        transition: all 0.3s ease;
-      }
-
-      /* Definition list styling */
-      .definition-list {
-        margin: 20px 0;
-      }
-
-      .definition-item {
-        margin-bottom: 15px;
-        padding-left: 10px;
-        border-left: 3px solid var(--accent-color);
-      }
-
-      .definition-term {
-        font-weight: bold;
-        color: var(--secondary-color);
+      /* Mejoramos el resaltado de sección activa */
+      section:target h2 {
+        color: var(--primary-color);
+        transition: color 0.3s ease;
       }
     </style>
   </head>
@@ -453,8 +470,12 @@
     <header class="page-header">
       <div class="header-content">
         <div class="logo-container">
-          <img src="img/QUOTALOGO.png" alt="QuotaSalud Logo" class="logo" />
+          <img src="img/LOGO-ICON.png" alt="QuotaSalud Logo" class="logo" />
         </div>
+        <button class="back-button" onclick="window.location.href='index.php'">
+          <i class="fas fa-home"></i>
+          <span class="button-text">Ir a la web</span>
+        </button>
 
         <div class="header-nav">
           <button class="nav-toggle" id="navToggle">
@@ -485,14 +506,6 @@
               Aceptación Final
             </a>
           </div>
-
-          <button
-            class="back-button"
-            onclick="window.location.href='index.php'"
-          >
-            <i class="fas fa-home"></i>
-            <span class="button-text">Ir a la web</span>
-          </button>
         </div>
       </div>
     </header>

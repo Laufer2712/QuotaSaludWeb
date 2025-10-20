@@ -398,6 +398,9 @@ section {
   margin: 0;
   max-width: none;
 }
+/* ======================================================= */
+/* FEATURE CARDS VERTICALES */
+
 .cards-wrapper-vertical {
   display: flex;
   justify-content: center;
@@ -510,7 +513,7 @@ section {
   display: inline-flex;
   align-items: center;
   gap: clamp(25px, 5vw, 60px);
-  animation: scroll-cintillo 30s linear infinite;
+  animation: scroll-cintillo 50s linear infinite;
   will-change: transform;
   padding-left: 100%;
 }

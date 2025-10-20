@@ -5,7 +5,7 @@ include('includes/header.php');
 <link rel="stylesheet" href="css/form.css">
 <div class="container">
     <div class="process-info">
-        <h2>Pasos para la afiliación y activación como afiliado a QS</h2>
+        <h2>Ruta de activación: Pasos para unirte a la red de Aliados Quota Salud</h2>
         <p>Para comenzar, se requiere una inversión única de USD 100 + IVA, que incluye todo lo necesario para prestar su servicio de salud con la facilidad del manejo de CxC que ofrece QS.</p>
         <p>El proceso completo de activación puede demorar hasta 20 días, dentro de los cuales QS ejecuta las siguientes acciones:</p>
         <ul>
@@ -20,8 +20,8 @@ include('includes/header.php');
     <div class="investment-info">
         <h3>¿Qué incluye esta inversión?</h3>
         <ul>
-            <li>Kit de afiliación (código QR, etiquetas, hablador y material promocional)</li>
-            <li>Acceso a la plataforma de Afiliado</li>
+            <li>Kit de Inducción para Aliados (código QR, etiquetas, hablador y material promocional)</li>
+            <li>Acceso a la plataforma de Aliado</li>
             <li>Acompañamiento durante todo el proceso de integración</li>
             <li>Apertura de una cuenta bancaria para recibir tus pagos de las cuotas</li>
             <li>Capacitación inicial para tu equipo</li>
@@ -46,22 +46,20 @@ include('includes/header.php');
         <div class="form-step active">
             <div class="form-section">
                 <h2 class="section-title">Datos de Contacto</h2>
-
                 <div class="form-row">
                     <div class="form-col">
                         <label for="nombre" class="required">Nombre y Apellido</label>
-                        <input type="text" id="nombre" name="nombre" required>
+                        <input type="text" id="nombre" name="nombre" required pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$" title="Solo letras y espacios">
                     </div>
                     <div class="form-col">
                         <label for="whatsapp" class="required">Número de Whatsapp</label>
-                        <input type="tel" id="whatsapp" name="whatsapp" required>
+                        <input type="tel" id="whatsapp" name="whatsapp" required pattern="^\d{10,15}$" title="Solo números, 10 a 15 dígitos">
                     </div>
                     <div class="form-col">
                         <label for="email" class="required">Correo Electrónico</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-col">
                         <label for="cargo" class="required">Cargo o función principal</label>
@@ -90,7 +88,6 @@ include('includes/header.php');
         <div class="form-step">
             <div class="form-section">
                 <h2 class="section-title">Información del Negocio</h2>
-
                 <div class="form-row">
                     <div class="form-col">
                         <label for="sector" class="required">Sector al que pertenece</label>
@@ -126,7 +123,6 @@ include('includes/header.php');
                         </select>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-col">
                         <label for="sucursales" class="required">Número de sucursales</label>
@@ -157,13 +153,11 @@ include('includes/header.php');
         <div class="form-step">
             <div class="form-section">
                 <h2 class="section-title">Cuestionario</h2>
-
                 <div class="form-row">
                     <div class="form-col">
                         <label for="sistema_facturacion" class="required">Sistema de facturación</label>
                         <input type="text" id="sistema_facturacion" name="sistema_facturacion" placeholder="Escribe el nombre del sistema" required>
                     </div>
-
                     <div class="form-col">
                         <label for="adaptacion_pago" class="required">¿Permite distintos métodos de pago?</label>
                         <select name="adaptacion_pago" id="adaptacion_pago" required>
@@ -181,15 +175,14 @@ include('includes/header.php');
                         </select>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-col">
                         <label for="rif" class="required">Número de RIF</label>
-                        <input type="text" id="rif" name="rif" required>
+                        <input type="text" id="rif" name="rif" required pattern="^[JGVE]{1}-\d{8}-\d$" maxlength="12" title="Formato válido: J-12345678-9">
                     </div>
                     <div class="form-col">
                         <label for="cedula" class="required">Cédula de identidad</label>
-                        <input type="text" id="cedula" name="cedula" required>
+                        <input type="text" id="cedula" name="cedula" required pattern="^\d{6,8}$" maxlength="8" title="Solo números, 6 a 8 dígitos">
                     </div>
                     <div class="form-col">
                         <label for="factura_fiscal" class="required">¿Emite facturas fiscales?</label>
@@ -200,23 +193,35 @@ include('includes/header.php');
                         </select>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-col">
                         <label for="documentos" class="required">Documentos (RIF / CI / Certificados)</label>
                         <input type="file" id="documentos" name="documentos[]" multiple accept="application/pdf,image/*" required>
+                        <div id="file-preview" class="file-preview"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ===== Paso 4: Términos ===== -->
+        <!-- ===== Paso 4: Términos y Condiciones ===== -->
         <div class="form-step">
             <div class="form-section">
                 <h2 class="section-title">Términos y Condiciones</h2>
-                <p>Declaro que la información proporcionada es verídica y autorizo el uso de mis datos con fines administrativos.</p>
-                <label>
-                    <input type="checkbox" id="terminos" name="terminos" required> Acepto los términos y condiciones.
+                <p>
+                    Al completar y enviar este formulario, usted confirma la aceptación de los
+                    <strong>Términos del Acuerdo de Colaboración con Quota Salud</strong>, los cuales incluyen:
+                </p>
+                <ul class="terms-list">
+                    <li>La veracidad de la información proporcionada.</li>
+                    <li>La formalización del Acuerdo de Colaboración posterior a la validación de la información.</li>
+                    <li>La recepción y correcta implementación del Kit de Inducción para Aliados.</li>
+                    <li>La autorización para el uso de sus datos con fines administrativos.</li>
+                    <li>La aceptación de las políticas de privacidad y manejo de datos personales.</li>
+                    <li>El compromiso de cumplir con las obligaciones y procedimientos descritos en el acuerdo.</li>
+                </ul>
+                <label class="terms-checkbox">
+                    <input type="checkbox" id="terminos" name="terminos" required>
+                    Acepto los términos y condiciones del Acuerdo de Colaboración con Quota Salud.
                 </label>
             </div>
         </div>
@@ -229,34 +234,7 @@ include('includes/header.php');
         </div>
     </form>
 
-    <!-- ===== CSS ===== -->
-    <style>
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            width: 100%;
-            box-sizing: border-box;
-        }
 
-        .form-col {
-            min-width: 250px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        @media (max-width: 1024px) {
-            .form-row {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 
 </div>
 <script src="js/form.js" defer></script>
