@@ -16,16 +16,16 @@ require_once 'includes/header.php';
     <div class="hero-imagen"></div>
 
     <div class="hero-texto-columna">
-        <div class="container-hero"> 
+        <div class="container-hero">
             <div class="hero-texto">
                 <h2>Quota Salud <span style="color: #82c954;">App</span></h2>
                 <h2></h2>
                 <p>No pospongas tu salud un día más. Descarga Quota App y planifica tu bienestar hoy</p>
-                
+
 
                 <div class="hero-botones">
                     <a href="descarga.php" class="cta-link">Descarga la App Ahora</a>
-                    <a href="#nuestra-solucion" class="cta-secondary">Mas Informacion</a> 
+                    <a href="#nuestra-solucion" class="cta-secondary">Mas Informacion</a>
                 </div>
             </div>
         </div>
@@ -38,24 +38,24 @@ require_once 'includes/header.php';
 
 <section id="nuestra-solucion">
     <div class="container">
-        
+
         <div class="section-title">
             <h2>Titulo</h2>
             <p>Conoce los beneficios que te ofrece nuestra App para tener control total sobre tu bienestar financiero y tu salud.</p>
         </div>
 
-        <div class="content-row content-row-default"> 
+        <div class="content-row content-row-default">
             <div class="content-column content-text">
                 <h3>titulo1</h3>
                 <p>ed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
             <div class="content-column content-image">
-                </div>
+            </div>
         </div>
 
-        <div class="content-row content-row-reverse"> 
+        <div class="content-row content-row-reverse">
             <div class="content-column content-image">
-                </div>
+            </div>
             <div class="content-column content-text">
                 <h3>Directo y Simple</h3>
                 <p>Disfruta de la tranquilidad de cuidar tu salud. Quota App organiza tus pagos y te conecta, sin complicaciones, con nuestra Red de Especialistas y Centros Aliados.</p>
@@ -66,7 +66,9 @@ require_once 'includes/header.php';
 </section>
 <script src="js/script.js"></script>
 <script src="js/app-carrusel.js"></script>
-
+<?php
+include 'includes/floating.php';
+?>
 <?php
 require_once 'includes/footer.php';
 ?>

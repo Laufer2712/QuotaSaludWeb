@@ -34,10 +34,11 @@
         line-height: 1.6;
         color: var(--text-color);
         background-color: var(--light-bg);
-        padding-top: 140px;
+        padding-top: 80px;
       }
 
-      /* HEADER FIXED CON NAVEGACIÓN */
+      /* ================== CÓDIGO DEL HEADER (Sin cambios) ================== */
+
       .page-header {
         position: fixed;
         top: 0;
@@ -45,12 +46,12 @@
         width: 100%;
         background: linear-gradient(
           to right,
-          rgba(23, 30, 218, 0.247),
-          rgba(116, 158, 87, 0.37),
-          rgba(112, 182, 66, 0.438)
+          rgba(23, 30, 218, 0),
+          rgba(117, 158, 87, 0),
+          rgba(112, 182, 66, 0)
         );
         color: var(--white);
-        padding: 15px 0;
+        padding: 15px 0; /* Contribuye a la altura total */
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
       }
@@ -59,10 +60,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
         padding: 0 20px;
-        position: relative;
       }
 
       .logo-container {
@@ -325,11 +323,11 @@
           height: 35px;
         }
 
+        /* NAVEGACIÓN EN HEADER */
         .header-nav {
-          order: 3;
-          width: 100%;
-          justify-content: center;
-          margin-top: 10px;
+          display: flex;
+          align-items: center;
+          gap: 20px;
         }
 
         .nav-dropdown {
@@ -348,10 +346,16 @@
         }
 
         .container {
-          margin: 20px 15px;
-          padding: 20px;
+          max-width: 900px;
+          margin: 0 auto;
+          padding: 30px;
+          background-color: var(--white);
+          box-shadow: var(--shadow);
+          border-radius: 8px;
+          /* Asegura que el contenido esté por debajo del header */
+          position: relative;
+          z-index: 1;
         }
-
         header h1 {
           font-size: 1.8em;
         }
@@ -424,7 +428,15 @@
     <header class="page-header">
       <div class="header-content">
         <div class="logo-container">
-          <img src="img/QUOTALOGO.png" alt="QuotaSalud Logo" class="logo" />
+          <img src="img/LOGO-ICON.png" alt="QuotaSalud Logo" class="logo" />
+
+          <button
+            class="back-button"
+            onclick="window.location.href='index.php'"
+          >
+            <i class="fas fa-home"></i>
+            <span class="button-text">Ir a la web</span>
+          </button>
         </div>
 
         <div class="header-nav">
@@ -460,14 +472,6 @@
               Tus Derechos
             </a>
           </div>
-
-          <button
-            class="back-button"
-            onclick="window.location.href='index.php'"
-          >
-            <i class="fas fa-home"></i>
-            <span class="button-text">Ir a la web</span>
-          </button>
         </div>
       </div>
     </header>

@@ -11,13 +11,13 @@ require_once 'includes/header.php';
 <section id="aliados-section">
     <div class="container">
         <div class="section-title">
-            <h2>Nuestra Red de Aliados</h2>
-            <p>Explora nuestros aliados certificados por categoría y descubre cómo podemos ayudarte a tu bienestar.</p>
+            <h2>Impulsa tu Crecimiento y Asegura tu Ingreso</h2>
+            <p>Atrae más Pacientes y Garantiza tu Flujo de Caja. Crecimiento Sin Riesgos con la Tecnología de Quota Salud</p>
         </div>
 
         <!-- Botón grande en el centro -->
         <div class="cta-central">
-            <a href="form.php" class="cta-link cta-large">Afíliarme</a>
+            <a href="form.php" class="cta-link cta-large">Quiero ser Aliado y Garantizar Mis Ingresos</a>
         </div>
 
         <!-- Flecha para mostrar/ocultar sección -->

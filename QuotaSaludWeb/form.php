@@ -242,7 +242,7 @@ include('includes/header.php');
             </div>
         </div>
 
-        <button type="submit" class="btn btn-block">Enviar Solicitud de Afiliación</button>
+        <button type="submit" class="btn btn-block">Enviar Solicitud</button>
     </form>
 </div>
 <script src="js/form.js" defer></script>

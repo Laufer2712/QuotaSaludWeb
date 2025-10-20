@@ -17,7 +17,7 @@ require_once 'includes/header.php';
     <div class="hero-imagen"></div>
 
     <div class="hero-texto-columna">
-        <div class="container-hero"> 
+        <div class="container-hero">
             <div class="hero-texto">
                 <h2>Quota <span style="color: #82c954;">Salud</span></h2>
                 <h2>La Tecnología que Transforma el Acceso a tu Bienestar</h2>
@@ -33,7 +33,7 @@ require_once 'includes/header.php';
     </div>
 
     <div class="cintillo-container">
-        </div>
+    </div>
 </section>
 
 
@@ -43,11 +43,12 @@ require_once 'includes/header.php';
     <div class="container">
         <div class="section-title">
             <h2>Tus beneficios con <br>Quota Salud</h2>
-            <p>Somos el  <strong>ecosistema digital</strong> diseñado para que nunca pospongas tu cuidado.
-                 <strong>Organizamos el costo de tratamientos</strong> y servicios con nuestra Red de Aliados,
-                  garantizando un <strong>acceso ágil y sin complicaciones económicas.</strong>
-                   No somos una institución financiera:
-                    somos tu <strong>organizador de pagos de salud</strong> y tu conexión directa con la mejor atención.</p>
+            <p>Somos el <strong>ecosistema digital</strong> diseñado para que nunca pospongas tu cuidado.
+                <strong>Organizamos el costo de tratamientos</strong> y servicios con nuestra Red de Aliados,
+                garantizando un <strong>acceso ágil y sin complicaciones económicas.</strong>
+                No somos una institución financiera:
+                somos tu <strong>organizador de pagos de salud</strong> y tu conexión directa con la mejor atención.
+            </p>
         </div>
 
         <div class="feature-grid">
@@ -79,6 +80,9 @@ require_once 'includes/header.php';
 <script src="js/script.js"></script>
 <script src="js/app-carrusel.js"></script>
 
+<?php
+include 'includes/floating.php';
+?>
 <?php
 require_once 'includes/footer.php';
 ?>
