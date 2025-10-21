@@ -31,8 +31,7 @@ include('includes/header.php');
     <!-- ===========================
          FORMULARIO DE AFILIACIÓN   
     ============================ -->
-    <form class="form-container" action="catch.php" method="POST" enctype="multipart/form-data" id="form-afiliacion">
-        <!-- Barra de progreso -->
+    <form class="form-container" action="backend/test.php" method="POST" enctype="multipart/form-data" id="form-afiliacion">
         <div class="form-progress">
             <div class="progress-bar" id="progress-bar"></div>
             <ul class="progress-steps">
@@ -198,7 +197,7 @@ include('includes/header.php');
                 </div>
                 <div class="form-col">
                     <label for="documentRifCiPath" class="required">Documentos (RIF / CI / Certificados)</label>
-                    <input type="file" id="documentRifCiPath" name="documentRifCiPath[]" multiple accept="application/pdf,image/*" required>
+                    <input type="file" id="documentRifCiPath" name="documentRifCiPath" multiple>
                     <div id="file-preview" class="file-preview"></div>
                 </div>
             </div>
