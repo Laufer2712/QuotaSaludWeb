@@ -1,5 +1,10 @@
 <?php
 // ----------------------------------------------------
+// Desactivar warnings y notices
+// ----------------------------------------------------
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+ini_set('display_errors', 0);
+// ----------------------------------------------------
 // Iniciar búfer para evitar output no deseado
 // ----------------------------------------------------
 ob_start();

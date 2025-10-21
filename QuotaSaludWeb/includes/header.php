@@ -317,13 +317,12 @@ $estado_formulario = $_GET['estado'] ?? null;
 
                 // Enviar datos via AJAX
                 fetch('backend/enviar-correo.php', {
+
+
                         method: 'POST',
                         body: formData
                     })
-                    .then(response => response.text()) // <--- temporal para ver qué devuelve PHP
-                    .then(text => {
-                        console.log(text);
-                    })
+                    .then(response => response.text())
                     .then(data => {
                         if (data.success) {
                             formMessage.textContent = data.message;
