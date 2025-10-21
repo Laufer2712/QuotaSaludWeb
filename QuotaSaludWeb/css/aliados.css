@@ -351,16 +351,38 @@ section .container {
 }
 
 .feature-header h3 {
-  font-size: 0.95rem;
-  margin: 0.15rem 0 0.3rem;
-  color: #1f4d6e;
-  font-weight: 700;
-  text-align: center;
+  font-size: clamp(1rem, 6vw, 1rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  background-image: linear-gradient(
+    to right,
+    var(--color-primary-dark),
+    var(--color-primary-light),
+    var(--color-accent-light),
+    var(--color-primary-light),
+    var(--color-primary-dark)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradient-animation 6s ease-in-out infinite;
+  background-size: 200% auto;
+}
+
+@keyframes gradient-animation {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .card-description {
   color: #555;
-  font-size: 0.65rem;
+  font-size: 1rem;
   line-height: 1.25;
   margin: 0 0 0.3rem;
   text-align: left;
