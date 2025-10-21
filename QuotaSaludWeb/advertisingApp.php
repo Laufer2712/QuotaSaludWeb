@@ -40,30 +40,47 @@ require_once 'includes/header.php';
     <div class="container">
 
         <div class="section-title">
-            <h2>Titulo</h2>
-            <p>Conoce los beneficios que te ofrece nuestra App para tener control total sobre tu bienestar financiero y tu salud.</p>
+            <h2>Disfruta los beneficios de usar Quota App</h2>
+            <p>Con Quota App, tus compras y servicios son más accesibles. Divide tus pagos, disfruta cuotas sin intereses y obtén beneficios exclusivos en los comercios aliados.</p>
         </div>
 
+        <!-- BLOQUE 1 -->
         <div class="content-row content-row-default">
             <div class="content-column content-text">
-                <h3>titulo1</h3>
-                <p>ed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <h3>Compra ahora, paga sin estrés</h3>
+                <p>Olvídate de los pagos únicos. Con Quota App puedes dividir tus compras o servicios en cómodas cuotas sin intereses, ajustadas a tu presupuesto. Más control, más libertad financiera.</p>
             </div>
-            <div class="content-column content-image">
+            <div class="content-column content-image"
+                style="background-image: url('img/app1.png');">
             </div>
         </div>
 
+        <!-- BLOQUE 2 -->
         <div class="content-row content-row-reverse">
-            <div class="content-column content-image">
+            <div class="content-column content-image"
+                style="background-image: url('img/app2.png');">
             </div>
             <div class="content-column content-text">
-                <h3>Directo y Simple</h3>
-                <p>Disfruta de la tranquilidad de cuidar tu salud. Quota App organiza tus pagos y te conecta, sin complicaciones, con nuestra Red de Especialistas y Centros Aliados.</p>
+                <h3>Encuentra comercios aliados cerca de ti</h3>
+                <p>Descubre tiendas, clínicas y servicios que aceptan Quota App. Usa el mapa integrado para llegar directamente al sitio, muestra tu código y disfruta tus beneficios en el momento.</p>
             </div>
         </div>
+
+        <!-- BLOQUE 3 
+        <div class="content-row content-row-default">
+            <div class="content-column content-text">
+                <h3>Todo desde tu teléfono</h3>
+                <p>Administra tus pagos, consulta tus cuotas activas y aprovecha promociones exclusivas. Con Quota App tienes el control total desde una sola aplicación, sin papeleos ni complicaciones.</p>
+            </div>
+            <div class="content-column content-image"
+                style="background-image: url('img/app2.png');">
+            </div>
+        </div>-->
 
     </div>
 </section>
+
+
 <script src="js/script.js"></script>
 <script src="js/app-carrusel.js"></script>
 <?php
