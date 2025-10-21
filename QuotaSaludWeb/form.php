@@ -113,15 +113,10 @@ include('includes/header.php');
                         </select>
                     </div>
                     <div class="form-col">
-                        <label for="presentacion" class="required">¿Dónde nos conociste?</label>
-                        <select name="presentacion" id="presentacion" required>
-                            <option value="" disabled selected>Selecciona una opción</option>
-                            <option value="Instagram">Instagram</option>
-                            <option value="Facebook">Facebook</option>
-                            <option value="Evento">Evento</option>
-                            <option value="Otro">Otro</option>
-                        </select>
+                        <label for="socialMedia" class="required">¿Dónde nos conociste?</label>
+                        <input type="text" id="socialMedia" name="socialMedia" placeholder="Escribe la red social o fuente" required>
                     </div>
+
                 </div>
                 <div class="form-row">
                     <div class="form-col">
