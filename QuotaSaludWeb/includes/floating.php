@@ -614,7 +614,7 @@
                     cta: "¿Quieres que agendemos una llamada para mostrarte todo el flujo de activación en detalle?"
                 },
                 {
-                    question: "¿Qué necesito para afiliarme como centro aliado?",
+                    question: "¿Qué necesito para formar parte de la red de Aliados de Quota Salud?",
                     answer: "El proceso de afiliación requiere documentación estándar para garantizar la transparencia y calidad de nuestra red: Documentación legal del centro (RIF, registro, etc.), manual de marca y logotipo en formato editable (SVG), información de contacto y responsable administrativo.",
                     cta: "¿Quieres que te envíe ahora mismo el checklist de requisitos para que lo tengan listo?"
                 },

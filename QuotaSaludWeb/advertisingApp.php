@@ -129,7 +129,7 @@ require_once 'includes/header.php';
 
         <div class="section-title">
             <h2>Control Total en tus Manos</h2>
-            <p>Visualiza tus pagos, cuotas y servicios de forma clara y organizada. Con Quota App sabrás exactamente cuándo y cuánto pagar, sin sorpresas, sin estrés y con recordatorios automáticos.</p>
+            <p>Visualiza tus pagos, cuotas y servicios de forma clara y organizada. Con Quota Salud App sabrás exactamente cuándo y cuánto pagar, sin sorpresas, sin estrés y con recordatorios automáticos.</p>
         </div>
 
         <!-- BLOQUE 1 -->
