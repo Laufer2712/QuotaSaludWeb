@@ -165,6 +165,6 @@ try {
 } catch (Exception $e) {
     echo "Error de conexión: " . $e->getMessage();
 }
-  //header('Location: ../form.php?estado=exito');
+  header('Location: ../form.php?estado=exito');
 
 ?>
