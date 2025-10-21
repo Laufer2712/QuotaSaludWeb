@@ -44,6 +44,7 @@ $estado_formulario = $_GET['estado'] ?? null;
                 <span></span>
                 <span></span>
                 <span></span>
+                <span></span>
             </div>
 
             <nav class="nav" id="main-nav">
@@ -87,25 +88,41 @@ $estado_formulario = $_GET['estado'] ?? null;
         });
     </script>
 
-
     <!-- MODAL DE CONTACTO -->
     <div id="contactModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2>Contáctanos</h2>
-            <p>Selecciona tu método preferido para comunicarte con nosotros:</p>
-            <div class="modal-buttons">
-                <a href="#" id="whatsappBtn" class="btn btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-                <a href="#" id="emailBtn" class="btn btn-email">
-                    <i class="fas fa-envelope"></i> Correo
-                </a>
-            </div>
+            <form id="contactForm" class="contact-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre completo *</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo electrónico *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="celular">Número de celular *</label>
+                    <input type="tel" id="celular" name="celular" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje">Mensaje (opcional)</label>
+                    <textarea id="mensaje" name="mensaje" rows="3" placeholder="¿En qué podemos ayudarte?"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-submit">
+                    <i class="fas fa-paper-plane"></i> Enviar mensaje
+                </button>
+            </form>
+
+            <!-- Mensaje de confirmación -->
+            <div id="formMessage" class="form-message" style="display: none;"></div>
         </div>
     </div>
-
-
 
     <style>
         /* ESTILOS MODAL */
@@ -124,12 +141,11 @@ $estado_formulario = $_GET['estado'] ?? null;
 
         .modal-content {
             background-color: #fff;
-            margin: 10% auto;
+            margin: 5% auto;
             padding: 30px;
             border-radius: 12px;
             width: 90%;
-            max-width: 400px;
-            text-align: center;
+            max-width: 500px;
             position: relative;
             animation: slideIn 0.3s ease-out;
         }
@@ -155,71 +171,182 @@ $estado_formulario = $_GET['estado'] ?? null;
             color: #333;
         }
 
-        .modal-buttons a {
-            display: inline-block;
-            margin: 15px 10px 0 10px;
-            padding: 12px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #fff;
+        .close-modal:hover {
+            color: #0072c6;
+        }
+
+        /* Estilos del formulario */
+        .contact-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 600;
-            transition: 0.2s;
+            color: #333;
         }
 
-        .btn-whatsapp {
-            background-color: #25D366;
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
         }
 
-        .btn-whatsapp:hover {
-            background-color: #1ebe5d;
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0072c6;
         }
 
-        .btn-email {
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
             background-color: #0072c6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        .btn-email:hover {
+        .btn-submit:hover {
             background-color: #005a9e;
         }
-    </style>
 
+        .btn-submit:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .form-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 10% auto;
+                padding: 20px;
+                width: 95%;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                margin: 5% auto;
+                padding: 15px;
+            }
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('contactModal');
             const contactBtn = document.querySelector('.cta-link[href="#formulario-captacion"]');
             const closeBtn = document.querySelector('.close-modal');
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
 
             // Abrir modal al presionar Contactanos
             contactBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 modal.style.display = 'block';
+                contactForm.reset();
+                formMessage.style.display = 'none';
             });
 
-            // Cerrar modal al presionar la "X"
+            // Cerrar modal
             closeBtn.addEventListener('click', function() {
                 modal.style.display = 'none';
             });
 
-            // Cerrar modal al hacer clic fuera del contenido
             window.addEventListener('click', function(e) {
-                if (e.target === modal) modal.style.display = 'none';
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
             });
 
-            // Botón WhatsApp
-            const whatsappBtn = document.getElementById('whatsappBtn');
-            whatsappBtn.addEventListener('click', function() {
-                const phone = "584226077838";
-                const message = encodeURIComponent("Hola, quiero información sobre Quota Salud");
-                window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
-            });
+            // Envío del formulario
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
 
-            // Botón Correo
-            const emailBtn = document.getElementById('emailBtn');
-            emailBtn.addEventListener('click', function() {
-                const email = "quotasalud@quotasalud.com";
-                const subject = encodeURIComponent("Información Quota Salud");
-                const body = encodeURIComponent("Hola, quiero más información sobre Quota Salud");
-                window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+                const submitBtn = contactForm.querySelector('.btn-submit');
+                const originalText = submitBtn.innerHTML;
+
+                // Mostrar estado de carga
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                submitBtn.disabled = true;
+                formMessage.style.display = 'none';
+
+                // Obtener datos del formulario
+                const formData = new FormData(contactForm);
+
+                // Enviar datos via AJAX
+                fetch('backend/enviar-correo.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.text()) // <--- temporal para ver qué devuelve PHP
+                    .then(text => {
+                        console.log(text);
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            formMessage.textContent = data.message;
+                            formMessage.className = 'form-message success';
+                            formMessage.style.display = 'block';
+                            contactForm.reset();
+
+                            setTimeout(() => {
+                                modal.style.display = 'none';
+                            }, 4000);
+                        } else {
+                            throw new Error(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        formMessage.textContent = error.message;
+                        formMessage.className = 'form-message error';
+                        formMessage.style.display = 'block';
+                    })
+                    .finally(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    });
             });
         });
     </script>
