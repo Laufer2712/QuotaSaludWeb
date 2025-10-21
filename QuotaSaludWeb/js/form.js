@@ -1,189 +1,289 @@
-// Esperar a que el DOM esté completamente cargado
+// ======== VALIDACIÓN COMPLETA DEL FORMULARIO ========
 document.addEventListener('DOMContentLoaded', function () {
-    // Mostrar/ocultar campos según el sector seleccionado
-    const sectorSelect = document.getElementById('sector');
-    if (sectorSelect) {
-        sectorSelect.addEventListener('change', function () {
-            toggleSectorFields(this.value);
-        });
-    }
+    // Validación en tiempo real para todos los inputs
+    setupRealTimeValidation();
 
-    // Mostrar/ocultar campos según figura legal
-    const figuraLegalSelect = document.getElementById('figura_legal');
-    if (figuraLegalSelect) {
-        figuraLegalSelect.addEventListener('change', function () {
-            toggleFiguraLegalFields(this.value);
-        });
-    }
-
-    // Manejo de subida de archivos
-    const fileUploadArea = document.getElementById('file-upload-area');
-    const fileInput = document.getElementById('documentos');
-
-    if (fileUploadArea && fileInput) {
-        fileUploadArea.addEventListener('click', function () {
-            fileInput.click();
-        });
-
-        fileInput.addEventListener('change', function () {
-            updateFileUploadDisplay(this.files);
-        });
-    }
-
-    // Validación del formulario antes de enviar
     const form = document.getElementById('form-afiliacion');
     if (form) {
         form.addEventListener('submit', function (e) {
             if (!validateForm()) {
                 e.preventDefault();
             } else {
-                // Mostrar estado de carga
                 showLoadingState();
             }
         });
     }
 
-    // Validación en tiempo real
-    setupRealTimeValidation();
+    // Configurar visibilidad condicional de campos
+    setupConditionalFields();
 });
 
-// Función para mostrar/ocultar campos según el sector
-function toggleSectorFields(sector) {
-    const especialidadContainer = document.getElementById('especialidad-container');
-    const serviciosContainer = document.getElementById('servicios-container');
-    const insumosContainer = document.getElementById('insumos-container');
+// ======== CONFIGURACIÓN DE CAMPOS CONDICIONALES ========
+function setupConditionalFields() {
+    // Mostrar/ocultar campos según figura legal
+    const legalFigureSelect = document.getElementById('legalFigure');
+    if (legalFigureSelect) {
+        legalFigureSelect.addEventListener('change', toggleLegalDocumentFields);
+        toggleLegalDocumentFields(); // Ejecutar al cargar
+    }
 
-    // Ocultar todos primero
-    hideElement(especialidadContainer);
-    hideElement(serviciosContainer);
-    hideElement(insumosContainer);
-
-    // Mostrar según corresponda
-    switch (sector) {
-        case 'profesional_salud':
-            showElement(especialidadContainer);
-            break;
-        case 'centro_imagenologia':
-        case 'laboratorio':
-            showElement(serviciosContainer);
-            break;
-        case 'distribuidor_insumos':
-            showElement(insumosContainer);
-            break;
+    // Mostrar/ocultar nombre del sistema de facturación
+    const usesBillingSystem = document.getElementById('usesBillingSystem');
+    if (usesBillingSystem) {
+        usesBillingSystem.addEventListener('change', toggleBillingSystemName);
+        toggleBillingSystemName(); // Ejecutar al cargar
     }
 }
 
-// Función para mostrar/ocultar campos según figura legal
-function toggleFiguraLegalFields(figuraLegal) {
-    const rifContainer = document.getElementById('rif-container');
-    const razonSocialContainer = document.getElementById('razon_social-container');
-    const cedulaContainer = document.getElementById('cedula-container');
+function toggleLegalDocumentFields() {
+    const legalFigure = document.getElementById('legalFigure').value;
+    const rifGroup = document.querySelector('.form-col:has(#rifNumber)');
+    const ciGroup = document.querySelector('.form-col:has(#ciNumber)');
 
-    // Ocultar todos primero
-    hideElement(rifContainer);
-    hideElement(razonSocialContainer);
-    hideElement(cedulaContainer);
-
-    // Quitar requerido de todos
-    setRequiredField('rif', false);
-    setRequiredField('razon_social', false);
-    setRequiredField('cedula', false);
-
-    // Mostrar según corresponda
-    switch (figuraLegal) {
-        case 'sociedad':
-            showElement(rifContainer);
-            showElement(razonSocialContainer);
-            setRequiredField('rif', true);
-            setRequiredField('razon_social', true);
-            break;
-        case 'persona_natural':
-            showElement(cedulaContainer);
-            setRequiredField('cedula', true);
-            break;
-    }
+    if (rifGroup) rifGroup.style.display = legalFigure === 'Jurídica' ? 'block' : 'none';
+    if (ciGroup) ciGroup.style.display = legalFigure === 'Natural' ? 'block' : 'none';
 }
 
-// Función para actualizar la visualización de archivos subidos
-function updateFileUploadDisplay(files) {
-    const fileUploadArea = document.getElementById('file-upload-area');
-    if (!fileUploadArea) return;
+function toggleBillingSystemName() {
+    const usesBilling = document.getElementById('usesBillingSystem').value;
+    const billingNameGroup = document.querySelector('.form-col:has(#billingSystemName)');
 
-    if (files.length > 0) {
-        let fileNames = [];
-        for (let i = 0; i < files.length; i++) {
-            fileNames.push(files[i].name);
+    if (billingNameGroup) {
+        billingNameGroup.style.display = usesBilling === '1' ? 'block' : 'none';
+        if (usesBilling === '0') {
+            document.getElementById('billingSystemName').value = '';
         }
-        fileUploadArea.innerHTML = `<p>Archivos seleccionados: ${fileNames.join(', ')}</p>`;
-    } else {
-        fileUploadArea.innerHTML = `<p>Haga clic aquí para subir sus documentos (RIF y/o Cédula)</p>`;
     }
 }
 
-// Función para validar el formulario completo
+// ======== FUNCIONES DE VALIDACIÓN POR TIPO DE CAMPO ========
+
+// Validación de texto
+function validateTextField(field, maxLength = 255) {
+    if (!field.value.trim()) return false;
+    if (field.value.length > maxLength) return false;
+    return true;
+}
+
+// Validación de teléfono
+function validatePhoneField(field) {
+    const value = field.value.trim();
+    if (!value) return false;
+    return /^\d{10,15}$/.test(value);
+}
+
+// Validación de email
+function validateEmailField(field) {
+    const value = field.value.trim();
+    if (!value) return false;
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+// Validación de URL de Google Maps (versión corregida y mejorada)
+function validateUrlField(field) {
+    const value = field.value.trim();
+    if (!value) return false;
+
+    // Verificar si es una URL válida
+    try {
+        const url = new URL(value);
+
+        // Verificar protocolos permitidos
+        if (!['http:', 'https:'].includes(url.protocol)) {
+            return false;
+        }
+
+        // Patrones más flexibles para Google Maps
+        const googleMapsPatterns = [
+            /maps\.google/i,
+            /google\.com\/maps/i,
+            /goo\.gl\/maps/i,
+            /maps\.app\.goo\.gl/i
+        ];
+
+        // Aceptar cualquier URL válida O específicamente de Google Maps
+        return googleMapsPatterns.some(pattern => pattern.test(value)) ||
+            /^https?:\/\//.test(value); // Cualquier URL HTTP/HTTPS
+    } catch {
+        return false;
+    }
+}
+
+// Validación de RIF (Formato: J-12345678-9)
+function validateRifField(field) {
+    const value = field.value.trim();
+    if (!value) return false;
+    return /^[JGVE]{1}-\d{8}-\d$/.test(value);
+}
+
+// Validación de Cédula (6-8 dígitos)
+function validateCiField(field) {
+    const value = field.value.trim();
+    if (!value) return false;
+    return /^\d{6,8}$/.test(value);
+}
+
+// Validación de figura legal y sus documentos
+function validateLegalFigure() {
+    const figura = document.getElementById('legalFigure').value;
+    if (figura !== 'Natural' && figura !== 'Jurídica') return false;
+
+    if (figura === 'Jurídica') {
+        const rif = document.getElementById('rifNumber');
+        if (!rif || !validateRifField(rif)) return false;
+    } else if (figura === 'Natural') {
+        const ci = document.getElementById('ciNumber');
+        if (!ci || !validateCiField(ci)) return false;
+    }
+    return true;
+}
+
+// Validación de archivos (documentRifCiPath)
+function validateFileField() {
+    const fileInput = document.getElementById('documentRifCiPath');
+    if (!fileInput || !fileInput.files.length) return false;
+
+    const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
+    const maxSize = 5 * 1024 * 1024; // 5MB
+
+    for (let i = 0; i < fileInput.files.length; i++) {
+        const file = fileInput.files[i];
+        if (!allowedTypes.includes(file.type)) return false;
+        if (file.size > maxSize) return false;
+    }
+    return true;
+}
+
+// Validación de términos aceptados
+function validateTerms() {
+    const termsCheckbox = document.getElementById('termsAccepted');
+    return termsCheckbox && termsCheckbox.checked;
+}
+
+// ======== VALIDACIÓN PRINCIPAL DEL FORMULARIO ========
 function validateForm() {
     let isValid = true;
+    clearAllErrors();
 
-    // Validar términos y condiciones
-    const terminos = document.getElementById('terminos');
-    if (!terminos.checked) {
-        showError('Debe aceptar los términos y condiciones para continuar');
-        isValid = false;
-    }
-
-    // Validar que se haya seleccionado al menos una opción de presentación
-    const presentacionCheckboxes = document.querySelectorAll('input[name="presentacion[]"]:checked');
-    if (presentacionCheckboxes.length === 0) {
-        showError('Por favor, seleccione al menos una opción de cómo se presenta al público');
-        isValid = false;
-    }
-
-    // Validar archivos
-    const fileInput = document.getElementById('documentos');
-    if (fileInput && fileInput.files.length === 0) {
-        showError('Debe adjuntar al menos un documento');
-        isValid = false;
-    } else if (fileInput) {
-        // Validar tamaño y tipo de archivos
-        for (let i = 0; i < fileInput.files.length; i++) {
-            const file = fileInput.files[i];
-            if (!validateFile(file)) {
-                isValid = false;
-                break;
-            }
+    // --- Campos de texto básicos ---
+    const textFields = ['name', 'lastName', 'mainRole', 'socialMedia', 'locationAddress', 'billingSystemName'];
+    textFields.forEach(id => {
+        const field = document.getElementById(id);
+        if (field && field.offsetParent !== null && !validateTextField(field)) { // Solo validar campos visibles
+            markFieldInvalid(field);
+            isValid = false;
+        } else if (field && field.offsetParent !== null) {
+            markFieldValid(field);
         }
+    });
+
+    // --- Validaciones específicas por campo ---
+    const validations = [
+        { id: 'phone', validator: validatePhoneField },
+        { id: 'email', validator: validateEmailField },
+        { id: 'mapsLink', validator: validateUrlField },
+        { id: 'healthSector', validator: (field) => field.value !== '' },
+        { id: 'approximateBilling', validator: (field) => field.value !== '' },
+        { id: 'numberOfBranches', validator: (field) => field.value !== '' },
+        { id: 'numberOfWorkers', validator: (field) => field.value !== '' },
+        { id: 'usesBillingSystem', validator: (field) => field.value !== '' },
+        { id: 'billingSystemAdaptable', validator: (field) => field.value !== '' },
+        { id: 'legalFigure', validator: (field) => field.value !== '' },
+        { id: 'deliversFiscalInvoice', validator: (field) => field.value !== '' }
+    ];
+
+    validations.forEach(({ id, validator }) => {
+        const field = document.getElementById(id);
+        if (field && field.offsetParent !== null && !validator(field)) {
+            markFieldInvalid(field);
+            isValid = false;
+        } else if (field && field.offsetParent !== null) {
+            markFieldValid(field);
+        }
+    });
+
+    // --- Validaciones condicionales ---
+    if (!validateLegalFigure()) {
+        showError("Complete correctamente la figura legal y su documento correspondiente");
+        isValid = false;
+    }
+
+    if (!validateFileField()) {
+        showError("Debe adjuntar al menos un archivo válido (PDF, JPG, PNG, max 5MB cada uno)");
+        isValid = false;
+    }
+
+    if (!validateTerms()) {
+        showError("Debe aceptar los términos y condiciones para continuar");
+        isValid = false;
     }
 
     return isValid;
 }
 
-// Función para validar archivo individual
-function validateFile(file) {
-    const maxSize = 5 * 1024 * 1024; // 5MB
-    const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
-
-    if (file.size > maxSize) {
-        showError(`El archivo ${file.name} es demasiado grande. Máximo 5MB permitido.`);
-        return false;
-    }
-
-    if (!allowedTypes.includes(file.type)) {
-        showError(`El archivo ${file.name} no es un tipo permitido. Use PDF, JPG o PNG.`);
-        return false;
-    }
-
-    return true;
+// ======== VALIDACIÓN EN TIEMPO REAL ========
+function setupRealTimeValidation() {
+    const inputs = document.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('blur', () => validateField(input));
+        if (['text', 'email', 'tel', 'number', 'url'].includes(input.type)) {
+            let timeout;
+            input.addEventListener('input', function () {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => validateField(this), 500);
+            });
+        }
+    });
 }
 
-// Función para mostrar errores
-function showError(message) {
-    // Remover mensajes de error existentes
-    const existingError = document.querySelector('.error-message');
-    if (existingError) {
-        existingError.remove();
-    }
+function validateField(field) {
+    if (field.offsetParent === null) return; // No validar campos ocultos
 
-    // Crear y mostrar nuevo mensaje de error
+    field.classList.remove('valid', 'invalid');
+
+    let valid = true;
+
+    // Aplicar validadores específicos según el campo
+    if (field.id === 'phone') valid = validatePhoneField(field);
+    else if (field.id === 'email') valid = validateEmailField(field);
+    else if (field.id === 'mapsLink') valid = validateUrlField(field);
+    else if (field.id === 'rifNumber') valid = validateRifField(field);
+    else if (field.id === 'ciNumber') valid = validateCiField(field);
+    else if (field.type === 'select-one') valid = field.value !== '';
+    else if (field.type === 'checkbox') valid = field.checked;
+    else if (field.type === 'file') {
+        // Para archivos, solo validar si hay archivos seleccionados
+        valid = field.files.length === 0 || validateFileField();
+    }
+    else valid = validateTextField(field);
+
+    if (valid) {
+        field.classList.add('valid');
+    } else {
+        field.classList.add('invalid');
+    }
+}
+
+// ======== FUNCIONES AUXILIARES ========
+function markFieldInvalid(field) {
+    field.classList.remove('valid');
+    field.classList.add('invalid');
+}
+
+function markFieldValid(field) {
+    field.classList.remove('invalid');
+    field.classList.add('valid');
+}
+
+function clearAllErrors() {
+    const existingError = document.querySelector('.error-message');
+    if (existingError) existingError.remove();
+}
+
+// ======== MOSTRAR ERRORES ========
+function showError(message) {
+    clearAllErrors();
+
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
     errorDiv.style.cssText = `
@@ -193,26 +293,19 @@ function showError(message) {
         border-radius: 5px;
         margin-bottom: 20px;
         border: 1px solid #f5c6cb;
+        font-weight: bold;
     `;
     errorDiv.textContent = message;
 
     const form = document.getElementById('form-afiliacion');
     if (form) {
         form.insertBefore(errorDiv, form.firstChild);
-
-        // Hacer scroll al mensaje de error
         errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-        // Auto-remover después de 5 segundos
-        setTimeout(() => {
-            if (errorDiv.parentNode) {
-                errorDiv.remove();
-            }
-        }, 5000);
+        setTimeout(() => { if (errorDiv.parentNode) errorDiv.remove(); }, 5000);
     }
 }
 
-// Función para mostrar estado de carga
+// ======== MOSTRAR ESTADO DE CARGA ========
 function showLoadingState() {
     const submitButton = document.querySelector('button[type="submit"]');
     if (submitButton) {
@@ -221,75 +314,6 @@ function showLoadingState() {
         submitButton.textContent = 'Enviando...';
     }
 }
-
-// Configurar validación en tiempo real
-function setupRealTimeValidation() {
-    const inputs = document.querySelectorAll('input, select, textarea');
-    inputs.forEach(input => {
-        input.addEventListener('blur', function () {
-            validateField(this);
-        });
-
-        // Para campos de texto, validar mientras se escribe (después de una pausa)
-        if (input.type === 'text' || input.type === 'email' || input.type === 'tel') {
-            let timeout;
-            input.addEventListener('input', function () {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => {
-                    validateField(this);
-                }, 500);
-            });
-        }
-    });
-}
-
-// Función para validar campo individual
-function validateField(field) {
-    // Remover estilos previos
-    field.classList.remove('valid', 'invalid');
-
-    if (field.checkValidity()) {
-        field.classList.add('valid');
-    } else {
-        field.classList.add('invalid');
-    }
-}
-
-// Funciones auxiliares
-function hideElement(element) {
-    if (element) element.style.display = 'none';
-}
-
-function showElement(element) {
-    if (element) element.style.display = 'block';
-}
-
-function setRequiredField(fieldId, required) {
-    const field = document.getElementById(fieldId);
-    if (field) {
-        field.required = required;
-    }
-}
-
-// Inicialización cuando la ventana carga
-window.addEventListener('load', function () {
-    // Inicializar campos basados en valores existentes (en caso de recarga)
-    const sectorSelect = document.getElementById('sector');
-    if (sectorSelect && sectorSelect.value) {
-        toggleSectorFields(sectorSelect.value);
-    }
-
-    const figuraLegalSelect = document.getElementById('figura_legal');
-    if (figuraLegalSelect && figuraLegalSelect.value) {
-        toggleFiguraLegalFields(figuraLegalSelect.value);
-    }
-
-    const fileInput = document.getElementById('documentos');
-    if (fileInput && fileInput.files.length > 0) {
-        updateFileUploadDisplay(fileInput.files);
-    }
-});
-
 
 // ======== FORMULARIO POR PASOS ========
 document.addEventListener("DOMContentLoaded", () => {
@@ -339,17 +363,54 @@ document.addEventListener("DOMContentLoaded", () => {
         let valid = true;
 
         currentInputs.forEach(input => {
-            if (!input.checkValidity()) {
-                input.classList.add("invalid");
-                valid = false;
-            } else {
-                input.classList.remove("invalid");
+            if (input.offsetParent !== null) { // Solo validar campos visibles
+                validateField(input);
+                if (input.classList.contains('invalid')) {
+                    valid = false;
+                }
             }
         });
 
-        if (!valid) showError("Por favor, completa todos los campos requeridos antes de continuar.");
+        if (!valid) {
+            showError("Por favor, completa todos los campos requeridos correctamente antes de continuar.");
+        }
         return valid;
     }
 
     updateStep();
+});
+
+// ======== PREVISUALIZACIÓN DE ARCHIVOS ========
+document.addEventListener('DOMContentLoaded', () => {
+    const fileInput = document.getElementById('documentRifCiPath');
+    const preview = document.getElementById('file-preview');
+
+    if (fileInput && preview) {
+        fileInput.addEventListener('change', function () {
+            preview.innerHTML = '';
+            for (let i = 0; i < fileInput.files.length; i++) {
+                const file = fileInput.files[i];
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.maxWidth = '200px';
+                        img.style.maxHeight = '150px';
+                        img.style.margin = '5px';
+                        preview.appendChild(img);
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    const p = document.createElement('p');
+                    p.textContent = `📄 ${file.name}`;
+                    p.style.margin = '5px';
+                    p.style.padding = '5px';
+                    p.style.backgroundColor = '#f8f9fa';
+                    p.style.borderRadius = '3px';
+                    preview.appendChild(p);
+                }
+            }
+        });
+    }
 });
