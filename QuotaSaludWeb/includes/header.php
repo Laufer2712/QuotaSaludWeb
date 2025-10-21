@@ -87,6 +87,8 @@ $estado_formulario = $_GET['estado'] ?? null;
             });
         });
     </script>
+    <!-- Mensaje global flotante -->
+    <div id="globalMessage" class="form-message" style="display: none; position: fixed; top: 20px; right: 20px; z-index: 10001;"></div>
 
     <!-- MODAL DE CONTACTO -->
     <div id="contactModal" class="modal">
@@ -118,9 +120,6 @@ $estado_formulario = $_GET['estado'] ?? null;
                     <i class="fas fa-paper-plane"></i> Enviar mensaje
                 </button>
             </form>
-
-            <!-- Mensaje de confirmación -->
-            <div id="formMessage" class="form-message" style="display: none;"></div>
         </div>
     </div>
 
@@ -231,12 +230,14 @@ $estado_formulario = $_GET['estado'] ?? null;
             cursor: not-allowed;
         }
 
-        .form-message {
-            margin-top: 20px;
-            padding: 15px;
+        /* Mensajes globales */
+        .form-message.success,
+        .form-message.error {
+            padding: 15px 20px;
             border-radius: 8px;
-            text-align: center;
             font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeInOut 4s forwards;
         }
 
         .form-message.success {
@@ -249,6 +250,28 @@ $estado_formulario = $_GET['estado'] ?? null;
             background-color: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            90% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
         }
 
         /* Responsive */
@@ -273,74 +296,55 @@ $estado_formulario = $_GET['estado'] ?? null;
             }
         }
     </style>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('contactModal');
             const contactBtn = document.querySelector('.cta-link[href="#formulario-captacion"]');
             const closeBtn = document.querySelector('.close-modal');
             const contactForm = document.getElementById('contactForm');
-            const formMessage = document.getElementById('formMessage');
+            const globalMessage = document.getElementById('globalMessage');
 
-            // Abrir modal al presionar Contactanos
+            // Abrir modal
             contactBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 modal.style.display = 'block';
                 contactForm.reset();
-                formMessage.style.display = 'none';
             });
 
             // Cerrar modal
-            closeBtn.addEventListener('click', function() {
-                modal.style.display = 'none';
-            });
-
-            window.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                }
+            closeBtn.addEventListener('click', () => modal.style.display = 'none');
+            window.addEventListener('click', e => {
+                if (e.target === modal) modal.style.display = 'none';
             });
 
             // Envío del formulario
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-
                 const submitBtn = contactForm.querySelector('.btn-submit');
                 const originalText = submitBtn.innerHTML;
 
-                // Mostrar estado de carga
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
                 submitBtn.disabled = true;
-                formMessage.style.display = 'none';
 
-                // Obtener datos del formulario
                 const formData = new FormData(contactForm);
 
-                // Enviar datos via AJAX
                 fetch('backend/enviar-correo.php', {
-
-
                         method: 'POST',
                         body: formData
                     })
-                    .then(response => response.text())
+                    .then(response => response.json())
                     .then(data => {
-                        if (data.success) {
-                            formMessage.textContent = data.message;
-                            formMessage.className = 'form-message success';
-                            formMessage.style.display = 'block';
-                            contactForm.reset();
-
-                            setTimeout(() => {
-                                modal.style.display = 'none';
-                            }, 4000);
-                        } else {
-                            throw new Error(data.message);
-                        }
+                        globalMessage.textContent = data.message;
+                        globalMessage.className = 'form-message ' + (data.success ? 'success' : 'error');
+                        globalMessage.style.display = 'block';
+                        if (data.success) contactForm.reset();
+                        modal.style.display = 'none';
                     })
                     .catch(error => {
-                        formMessage.textContent = error.message;
-                        formMessage.className = 'form-message error';
-                        formMessage.style.display = 'block';
+                        globalMessage.textContent = error.message;
+                        globalMessage.className = 'form-message error';
+                        globalMessage.style.display = 'block';
                     })
                     .finally(() => {
                         submitBtn.innerHTML = originalText;
