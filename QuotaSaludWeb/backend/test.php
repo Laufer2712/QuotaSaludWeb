@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // =============================================================================
-// PROCESAR ARCHIVOS - CONVERTIR A BASE64
+// PROCESAR ARCHIVOS - CONVERTIR A BASE64 CON FORMATO CORRECTO
 // =============================================================================
 
 $documentRifCiBase64 = null;
@@ -29,12 +29,34 @@ $documentRifCiBase64 = null;
 if (isset($_FILES['documentRifCiPath']) && $_FILES['documentRifCiPath']['error'] === UPLOAD_ERR_OK) {
     $fileTmpPath = $_FILES['documentRifCiPath']['tmp_name'];
     $fileName = $_FILES['documentRifCiPath']['name'];
+    $fileType = $_FILES['documentRifCiPath']['type'];
     
     // Validar que el archivo existe
     if (file_exists($fileTmpPath)) {
-        // Convertir la imagen a base64
-        $documentRifCiBase64 = base64_encode(file_get_contents($fileTmpPath));
+        // Obtener el tipo MIME real
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mimeType = finfo_file($finfo, $fileTmpPath);
+        finfo_close($finfo);
+        
+        // Convertir la imagen a base64 con el formato correcto
+        $fileContent = file_get_contents($fileTmpPath);
+        $base64Data = base64_encode($fileContent);
+        
+        // Formatear como data URL (compatible con el backend)
+        $documentRifCiBase64 = "data:" . $mimeType . ";base64," . $base64Data;
     }
+}
+
+// =============================================================================
+// UNIFICAR CI Y RIF EN CAMPO DNI
+// =============================================================================
+
+// Determinar qué campo usar según la figura legal
+$dni = '';
+if ($_POST['legalFigure'] === 'Natural' && !empty($_POST['ciNumber'])) {
+    $dni = $_POST['ciNumber'];
+} elseif ($_POST['legalFigure'] === 'Jurídica' && !empty($_POST['rifNumber'])) {
+    $dni = $_POST['rifNumber'];
 }
 
 // =============================================================================
@@ -76,7 +98,7 @@ $numberOfWorkersMap = [
 ];
 
 // =============================================================================
-// PREPARAR DATOS PARA EL SERVICIO JAVA
+// PREPARAR DATOS PARA EL SERVICIO JAVA (CON NUEVA ESTRUCTURA)
 // =============================================================================
 
 $data = array(
@@ -97,11 +119,10 @@ $data = array(
     'billingSystemName' => $_POST['billingSystemName'],
     'billingSystemAdaptable' => (int)$_POST['billingSystemAdaptable'], // Long
     'legalFigure' => $_POST['legalFigure'],
-    'rifNumber' => $_POST['rifNumber'],
-    'ciNumber' => $_POST['ciNumber'],
+    'dni' => $dni, // NUEVO CAMPO UNIFICADO
     'deliversFiscalInvoice' => (int)$_POST['deliversFiscalInvoice'], // Long
     'termsAccepted' => isset($_POST['termsAccepted']) ? 1 : 0, // Long
-    'documentRifCiPath' => $documentRifCiBase64, // Base64 en lugar de null
+    'documentPath' => $documentRifCiBase64, // CAMBIO DE NOMBRE: documentRifCiPath -> documentPath
     'createdAt' => date('Y-m-d\TH:i:s.v\Z') // Formato ISO para Java
 );
 
@@ -142,6 +163,7 @@ try {
     } else {
         if ($httpCode == 200 || $httpCode == 201) {
             // Descomenta la siguiente línea para redireccionar en éxito
+            // header('Location: ../form.php?estado=exito');
             // exit;
             
             echo "✅ Éxito: Solicitud enviada correctamente. HTTP Code: $httpCode";
@@ -155,6 +177,7 @@ try {
             // Mostrar info del archivo si se subió
             if ($documentRifCiBase64) {
                 echo "<br>📎 Archivo codificado en base64 (" . strlen($documentRifCiBase64) . " caracteres)";
+                echo "<br>📝 DNI enviado: " . $dni;
             } else {
                 echo "<br>⚠️ No se subió ningún archivo o hubo un error al procesarlo";
             }
@@ -165,6 +188,6 @@ try {
 } catch (Exception $e) {
     echo "Error de conexión: " . $e->getMessage();
 }
-  header('Location: ../form.php?estado=exito');
 
+ header('Location: ../solicitud-exitosa.php');
 ?>
