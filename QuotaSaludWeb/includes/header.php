@@ -86,3 +86,140 @@ $estado_formulario = $_GET['estado'] ?? null;
             });
         });
     </script>
+
+
+    <!-- MODAL DE CONTACTO -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Contáctanos</h2>
+            <p>Selecciona tu método preferido para comunicarte con nosotros:</p>
+            <div class="modal-buttons">
+                <a href="#" id="whatsappBtn" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="#" id="emailBtn" class="btn btn-email">
+                    <i class="fas fa-envelope"></i> Correo
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <style>
+        /* ESTILOS MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 26px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .modal-buttons a {
+            display: inline-block;
+            margin: 15px 10px 0 10px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1ebe5d;
+        }
+
+        .btn-email {
+            background-color: #0072c6;
+        }
+
+        .btn-email:hover {
+            background-color: #005a9e;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('contactModal');
+            const contactBtn = document.querySelector('.cta-link[href="#formulario-captacion"]');
+            const closeBtn = document.querySelector('.close-modal');
+
+            // Abrir modal al presionar Contactanos
+            contactBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.style.display = 'block';
+            });
+
+            // Cerrar modal al presionar la "X"
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+
+            // Cerrar modal al hacer clic fuera del contenido
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) modal.style.display = 'none';
+            });
+
+            // Botón WhatsApp
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            whatsappBtn.addEventListener('click', function() {
+                const phone = "584226077838";
+                const message = encodeURIComponent("Hola, quiero información sobre Quota Salud");
+                window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+            });
+
+            // Botón Correo
+            const emailBtn = document.getElementById('emailBtn');
+            emailBtn.addEventListener('click', function() {
+                const email = "quotasalud@quotasalud.com";
+                const subject = encodeURIComponent("Información Quota Salud");
+                const body = encodeURIComponent("Hola, quiero más información sobre Quota Salud");
+                window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+            });
+        });
+    </script>
