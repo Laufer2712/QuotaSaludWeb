@@ -224,8 +224,10 @@ include('includes/header.php');
                 </ul>
                 <label class="terms-checkbox">
                     <input type="checkbox" id="termsAccepted" name="termsAccepted" required>
-                    Acepto los términos y condiciones del Acuerdo de Colaboración con Quota Salud.
+                    <span class="checkmark"></span>
+                    Acepto los <a href="#" target="_blank">términos y condiciones</a> del Acuerdo de Colaboración con Quota Salud.
                 </label>
+
             </div>
         </div>
 
@@ -239,6 +241,85 @@ include('includes/header.php');
 
 
 </div>
+
+<style>
+    /* Contenedor del checkbox */
+    .terms-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+        color: #333;
+        cursor: pointer;
+        position: relative;
+        padding-left: 30px;
+        line-height: 1.4;
+        user-select: none;
+    }
+
+    /* Ocultamos el checkbox original */
+    .terms-checkbox input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    /* Estilo visual del check */
+    .terms-checkbox .checkmark {
+        position: absolute;
+        left: 0;
+        top: 2px;
+        height: 20px;
+        width: 20px;
+        background-color: #f0f0f0;
+        border-radius: 6px;
+        border: 2px solid #ccc;
+        transition: all 0.2s ease-in-out;
+    }
+
+    /* Hover */
+    .terms-checkbox:hover .checkmark {
+        border-color: #666;
+    }
+
+    /* Estado seleccionado */
+    .terms-checkbox input:checked~.checkmark {
+        background-color: #0088ff;
+        border-color: #0088ff;
+    }
+
+    /* Check interno (la palomita) */
+    .terms-checkbox .checkmark::after {
+        content: "";
+        position: absolute;
+        display: none;
+        left: 6px;
+        top: 2px;
+        width: 5px;
+        height: 10px;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+
+    /* Mostrar la palomita cuando está activo */
+    .terms-checkbox input:checked~.checkmark::after {
+        display: block;
+    }
+
+    /* Enlace de términos */
+    .terms-checkbox a {
+        color: #0088ff;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .terms-checkbox a:hover {
+        text-decoration: underline;
+    }
+</style>
 <script src="js/form.js" defer></script>
 <?php
 // Incluir footer
