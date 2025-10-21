@@ -60,12 +60,15 @@
         align-items: center;
         padding: 0 20px;
         height: 50px;
+        max-width: 1200px;
+        margin: 0 auto;
       }
 
       .logo-container {
         display: flex;
         align-items: center;
         gap: 15px;
+        flex: 1;
       }
 
       .logo {
@@ -76,13 +79,13 @@
       .site-title {
         font-size: 1.2rem;
         font-weight: 700;
+        color: var(--primary-color);
       }
 
-      /* NAVEGACIÓN EN HEADER */
+      /* NAVEGACIÓN EN HEADER - MEJORADO */
       .header-nav {
         display: flex;
         align-items: center;
-        gap: 20px;
         position: relative;
       }
 
@@ -172,6 +175,7 @@
         gap: 8px;
         transition: all 0.3s ease;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
       }
 
       .back-button:hover {
@@ -207,8 +211,7 @@
         padding: 20px;
         border-radius: 8px;
         transition: all 0.3s ease;
-        /* Añadimos un padding superior adicional y margen negativo */
-        scroll-margin-top: 10px; /* Esto asegura que el scroll se detenga con espacio para el header */
+        scroll-margin-top: 10px;
       }
 
       section:target {
@@ -216,10 +219,9 @@
         padding: 20px;
         border-left: 4px solid var(--primary-color);
         transition: all 0.3s ease;
-        /* Aseguramos que las secciones objetivo tengan suficiente espacio */
         padding-top: 30px;
-        margin-top: -20px; /* Compensa el espacio del header */
-        padding-top: 10px; /* Añade espacio para que el título sea visible */
+        margin-top: -20px;
+        padding-top: 10px;
       }
 
       section:hover {
@@ -233,7 +235,6 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        /* Aseguramos que los títulos tengan suficiente espacio */
         padding-top: 10px;
       }
 
@@ -270,37 +271,55 @@
         color: #555;
       }
 
-      /* Privacy policy specific styles */
-      .privacy-section {
-        background-color: rgba(112, 182, 66, 0.05);
-        border-left: 4px solid var(--accent-color);
+      /* Definition list styles */
+      .definition-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin: 20px 0;
       }
 
-      .privacy-section h2 {
-        color: var(--accent-color);
+      .definition-item {
+        padding: 10px 15px;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+        border-left: 3px solid var(--accent-color);
       }
 
-      .sub-section {
-        margin-left: 20px;
-        padding-left: 15px;
-        border-left: 2px solid #e0e0e0;
-        margin-bottom: 20px;
-      }
-
-      .sub-section h3 {
-        color: var(--secondary-color);
-        margin-bottom: 10px;
-        font-size: 1.2em;
-      }
-
-      .external-link {
+      .definition-term {
+        font-weight: 600;
         color: var(--primary-color);
-        text-decoration: none;
-        font-weight: 500;
+        display: block;
+        margin-bottom: 5px;
       }
 
-      .external-link:hover {
-        text-decoration: underline;
+      /* Table styles */
+      .categories-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .categories-table th,
+      .categories-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .categories-table th {
+        background-color: var(--primary-color);
+        color: white;
+        font-weight: 600;
+      }
+
+      .categories-table tr:nth-child(even) {
+        background-color: #f8f9fa;
+      }
+
+      .categories-table tr:hover {
+        background-color: #e9f7fe;
       }
 
       /* FLOATING ACTION BUTTON FOR MOBILE */
@@ -321,6 +340,7 @@
         cursor: pointer;
         z-index: 999;
         transition: all 0.3s ease;
+        border: none;
       }
 
       .fab:hover {
@@ -328,7 +348,7 @@
         background-color: #406a27;
       }
 
-      /* RESPONSIVE STYLES */
+      /* RESPONSIVE STYLES - MEJORADO SIGNIFICATIVAMENTE */
       @media (max-width: 768px) {
         body {
           padding-top: 120px;
@@ -336,27 +356,46 @@
 
         .header-content {
           padding: 0 15px;
-          flex-wrap: wrap;
+          height: auto;
+          min-height: 50px;
+          padding: 10px 15px;
+          flex-wrap: nowrap;
         }
 
         .site-title {
           font-size: 1rem;
+          display: none;
         }
 
         .logo {
           height: 35px;
         }
 
+        .logo-container {
+          flex: 1;
+          justify-content: flex-start;
+          gap: 10px;
+        }
+
         .header-nav {
-          display: flex;
-          align-items: center;
-          gap: 15px;
+          margin-left: auto;
+        }
+
+        .nav-toggle span {
+          display: none;
+        }
+
+        .nav-toggle {
+          padding: 8px;
+          font-size: 1.1rem;
         }
 
         .nav-dropdown {
           right: 0;
           left: auto;
           min-width: 250px;
+          width: 90vw;
+          max-width: 300px;
         }
 
         .back-button {
@@ -383,7 +422,7 @@
 
         /* Ajustes para móviles */
         section {
-          scroll-margin-top: 120px; /* Mayor espacio para el header en móviles */
+          scroll-margin-top: 120px;
         }
 
         section:target {
@@ -398,6 +437,19 @@
           bottom: 20px;
           right: 20px;
         }
+
+        /* Table responsive */
+        .categories-table {
+          display: block;
+          overflow-x: auto;
+          white-space: nowrap;
+        }
+
+        .categories-table th,
+        .categories-table td {
+          padding: 8px 10px;
+          font-size: 0.9rem;
+        }
       }
 
       @media (max-width: 480px) {
@@ -407,24 +459,36 @@
 
         .header-content {
           flex-direction: row;
-          gap: 10px;
+          gap: 5px;
           text-align: left;
+          justify-content: space-between;
+          padding: 8px 10px;
         }
 
         .logo-container {
           justify-content: flex-start;
+          flex: 1;
+          min-width: 0;
         }
 
         .header-nav {
           order: 2;
           width: auto;
           margin-top: 0;
+          flex-shrink: 0;
         }
 
         .nav-dropdown {
           right: 0;
-          left: 0;
+          left: auto;
           min-width: auto;
+          width: calc(100vw - 20px);
+          max-width: none;
+        }
+
+        .back-button {
+          padding: 8px 12px;
+          font-size: 0.85rem;
         }
 
         .container {
@@ -449,12 +513,36 @@
           margin-top: -90px;
           padding-top: 120px;
         }
+
+        /* Table adjustments for very small screens */
+        .categories-table th,
+        .categories-table td {
+          padding: 6px 8px;
+          font-size: 0.8rem;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .header-content {
+          padding: 8px 5px;
+        }
+
+        .logo {
+          height: 30px;
+        }
+
+        .back-button {
+          padding: 6px 10px;
+        }
+
+        .nav-toggle {
+          padding: 6px 8px;
+        }
       }
 
       /* Smooth scrolling */
       html {
         scroll-behavior: smooth;
-        /* Añadimos padding para el scroll suave */
         scroll-padding-top: 100px;
       }
 
@@ -465,17 +553,20 @@
       }
     </style>
   </head>
+
   <body>
-    <!-- HEADER FIXED CON NAVEGACIÓN -->
+    <!-- HEADER FIXED - MEJORADO -->
     <header class="page-header">
       <div class="header-content">
         <div class="logo-container">
           <img src="img/LOGO-ICON.png" alt="QuotaSalud Logo" class="logo" />
+          <span class="site-title">QuotaSalud</span>
+
+          <a href="index.php" class="back-button">
+            <i class="fas fa-home"></i>
+            <span class="button-text">Ir a la web</span>
+          </a>
         </div>
-        <button class="back-button" onclick="window.location.href='index.php'">
-          <i class="fas fa-home"></i>
-          <span class="button-text">Ir a la web</span>
-        </button>
 
         <div class="header-nav">
           <button class="nav-toggle" id="navToggle">
@@ -509,7 +600,6 @@
         </div>
       </div>
     </header>
-
     <!-- MAIN CONTENT -->
     <div class="container">
       <header>

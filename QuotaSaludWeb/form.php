@@ -176,13 +176,20 @@ include('includes/header.php');
                         <option value="Jurídica">Jurídica</option>
                     </select>
                 </div>
-                <div class="form-col">
-                    <label for="rifNumber" class="required">Número de RIF</label>
-                    <input type="text" id="rifNumber" name="rifNumber" required pattern="^[JGVE]{1}-\d{8}-\d$" maxlength="12" title="Formato válido: J-12345678-9">
+                <!-- Persona Jurídica -->
+                <div class="form-col" id="rifGroup">
+                    <label for="rifNumber" class="required">RIF</label>
+                    <input type="text" id="rifNumber" name="rifNumber"
+                        pattern="^[JGPE]{1}-\d{8}-\d$"
+                        title="Formato válido: J-12345678-9">
                 </div>
-                <div class="form-col">
-                    <label for="ciNumber" class="required">Cédula de identidad</label>
-                    <input type="text" id="ciNumber" name="ciNumber" required pattern="^\d{6,8}$" maxlength="8" title="Solo números, 6 a 8 dígitos">
+
+                <!-- Persona Natural -->
+                <div class="form-col" id="ciGroup" style="display: none;">
+                    <label for="ciNumber" class="required">Cédula de Identidad</label>
+                    <input type="text" id="ciNumber" name="ciNumber"
+                        pattern="^\d{6,8}$"
+                        title="Formato válido: 12345678">
                 </div>
             </div>
 

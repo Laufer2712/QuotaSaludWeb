@@ -39,9 +39,42 @@ function toggleLegalDocumentFields() {
     const legalFigure = document.getElementById('legalFigure').value;
     const rifGroup = document.querySelector('.form-col:has(#rifNumber)');
     const ciGroup = document.querySelector('.form-col:has(#ciNumber)');
+    const rifInput = document.getElementById('rifNumber');
+    const ciInput = document.getElementById('ciNumber');
 
-    if (rifGroup) rifGroup.style.display = legalFigure === 'Jurídica' ? 'block' : 'none';
-    if (ciGroup) ciGroup.style.display = legalFigure === 'Natural' ? 'block' : 'none';
+    if (legalFigure === 'Jurídica') {
+        // Mostrar RIF, ocultar Cédula
+        if (rifGroup) rifGroup.style.display = 'block';
+        if (ciGroup) ciGroup.style.display = 'none';
+
+        // Hacer RIF requerido, quitar requerido a Cédula
+        if (rifInput) rifInput.required = true;
+        if (ciInput) ciInput.required = false;
+
+    } else if (legalFigure === 'Natural') {
+        // Mostrar Cédula, ocultar RIF
+        if (rifGroup) rifGroup.style.display = 'none';
+        if (ciGroup) ciGroup.style.display = 'block';
+
+        // Hacer Cédula requerida, quitar requerido a RIF
+        if (rifInput) rifInput.required = false;
+        if (ciInput) ciInput.required = true;
+
+    } else {
+        // Ocultar ambos si no hay selección
+        if (rifGroup) rifGroup.style.display = 'none';
+        if (ciGroup) ciGroup.style.display = 'none';
+        if (rifInput) rifInput.required = false;
+        if (ciInput) ciInput.required = false;
+    }
+
+    // Limpiar los campos cuando se ocultan
+    if (rifGroup && rifGroup.style.display === 'none' && rifInput) {
+        rifInput.value = '';
+    }
+    if (ciGroup && ciGroup.style.display === 'none' && ciInput) {
+        ciInput.value = '';
+    }
 }
 
 function toggleBillingSystemName() {
@@ -113,7 +146,7 @@ function validateUrlField(field) {
 function validateRifField(field) {
     const value = field.value.trim();
     if (!value) return false;
-    return /^[JGVE]{1}-\d{8}-\d$/.test(value);
+    return /^[VJGPE]{1}-\d{8}-\d$/.test(value);
 }
 
 // Validación de Cédula (6-8 dígitos)
@@ -126,14 +159,31 @@ function validateCiField(field) {
 // Validación de figura legal y sus documentos
 function validateLegalFigure() {
     const figura = document.getElementById('legalFigure').value;
-    if (figura !== 'Natural' && figura !== 'Jurídica') return false;
+    if (figura !== 'Natural' && figura !== 'Jurídica') {
+        showError("Seleccione una figura legal válida");
+        return false;
+    }
 
     if (figura === 'Jurídica') {
         const rif = document.getElementById('rifNumber');
-        if (!rif || !validateRifField(rif)) return false;
+        if (!rif || !rif.value.trim()) {
+            showError("El RIF es requerido para Persona Jurídica");
+            return false;
+        }
+        if (!validateRifField(rif)) {
+            showError("Formato de RIF inválido. Use: J-12345678-9");
+            return false;
+        }
     } else if (figura === 'Natural') {
         const ci = document.getElementById('ciNumber');
-        if (!ci || !validateCiField(ci)) return false;
+        if (!ci || !ci.value.trim()) {
+            showError("La Cédula es requerida para Persona Natural");
+            return false;
+        }
+        if (!validateCiField(ci)) {
+            showError("Formato de Cédula inválido. Use 6-8 dígitos");
+            return false;
+        }
     }
     return true;
 }
@@ -169,10 +219,11 @@ function validateForm() {
     const textFields = ['name', 'lastName', 'mainRole', 'socialMedia', 'locationAddress', 'billingSystemName'];
     textFields.forEach(id => {
         const field = document.getElementById(id);
-        if (field && field.offsetParent !== null && !validateTextField(field)) { // Solo validar campos visibles
+        // Solo validar campos visibles y requeridos
+        if (field && isFieldVisible(field) && field.required && !validateTextField(field)) {
             markFieldInvalid(field);
             isValid = false;
-        } else if (field && field.offsetParent !== null) {
+        } else if (field && isFieldVisible(field) && field.required) {
             markFieldValid(field);
         }
     });
@@ -194,17 +245,16 @@ function validateForm() {
 
     validations.forEach(({ id, validator }) => {
         const field = document.getElementById(id);
-        if (field && field.offsetParent !== null && !validator(field)) {
+        if (field && isFieldVisible(field) && !validator(field)) {
             markFieldInvalid(field);
             isValid = false;
-        } else if (field && field.offsetParent !== null) {
+        } else if (field && isFieldVisible(field)) {
             markFieldValid(field);
         }
     });
 
     // --- Validaciones condicionales ---
     if (!validateLegalFigure()) {
-        showError("Complete correctamente la figura legal y su documento correspondiente");
         isValid = false;
     }
 
@@ -237,7 +287,11 @@ function setupRealTimeValidation() {
 }
 
 function validateField(field) {
-    if (field.offsetParent === null) return; // No validar campos ocultos
+    // No validar campos que no son visibles
+    if (!isFieldVisible(field)) {
+        field.classList.remove('valid', 'invalid');
+        return;
+    }
 
     field.classList.remove('valid', 'invalid');
 
@@ -247,15 +301,27 @@ function validateField(field) {
     if (field.id === 'phone') valid = validatePhoneField(field);
     else if (field.id === 'email') valid = validateEmailField(field);
     else if (field.id === 'mapsLink') valid = validateUrlField(field);
-    else if (field.id === 'rifNumber') valid = validateRifField(field);
-    else if (field.id === 'ciNumber') valid = validateCiField(field);
+    else if (field.id === 'rifNumber') {
+        // Solo validar RIF si es requerido (Persona Jurídica)
+        valid = !field.required || validateRifField(field);
+    }
+    else if (field.id === 'ciNumber') {
+        // Solo validar Cédula si es requerido (Persona Natural)
+        valid = !field.required || validateCiField(field);
+    }
     else if (field.type === 'select-one') valid = field.value !== '';
     else if (field.type === 'checkbox') valid = field.checked;
     else if (field.type === 'file') {
         // Para archivos, solo validar si hay archivos seleccionados
         valid = field.files.length === 0 || validateFileField();
     }
-    else valid = validateTextField(field);
+    else if (field.required) {
+        // Solo validar campos de texto si son requeridos
+        valid = validateTextField(field);
+    } else {
+        // Para campos no requeridos, siempre son válidos si están vacíos
+        valid = true;
+    }
 
     if (valid) {
         field.classList.add('valid');
@@ -265,6 +331,12 @@ function validateField(field) {
 }
 
 // ======== FUNCIONES AUXILIARES ========
+function isFieldVisible(field) {
+    return field.offsetParent !== null &&
+        field.style.display !== 'none' &&
+        field.getAttribute('type') !== 'hidden';
+}
+
 function markFieldInvalid(field) {
     field.classList.remove('valid');
     field.classList.add('invalid');
@@ -363,7 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let valid = true;
 
         currentInputs.forEach(input => {
-            if (input.offsetParent !== null) { // Solo validar campos visibles
+            if (isFieldVisible(input)) { // Solo validar campos visibles
                 validateField(input);
                 if (input.classList.contains('invalid')) {
                     valid = false;
