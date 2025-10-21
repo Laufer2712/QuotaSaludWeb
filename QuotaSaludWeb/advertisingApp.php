@@ -24,7 +24,7 @@ require_once 'includes/header.php';
 
 
                 <div class="hero-botones">
-                    <a href="descarga.php" class="cta-link">Descarga la App Ahora</a>
+                    <a href="#" class="cta-link" id="btn-descargar-app">Descarga la App Ahora</a>
                     <a href="#nuestra-solucion" class="cta-secondary">Mas Informacion</a>
                 </div>
             </div>
@@ -44,7 +44,6 @@ require_once 'includes/header.php';
             <p>Con Quota App, tus compras y servicios son más accesibles. Divide tus pagos, disfruta cuotas sin intereses y obtén beneficios exclusivos en los comercios aliados.</p>
         </div>
 
-        <!-- BLOQUE 1 -->
         <div class="content-row content-row-default">
             <div class="content-column content-text">
                 <h3>Compra ahora, paga sin estrés</h3>
@@ -55,7 +54,6 @@ require_once 'includes/header.php';
             </div>
         </div>
 
-        <!-- BLOQUE 2 -->
         <div class="content-row content-row-reverse">
             <div class="content-column content-image"
                 style="background-image: url('img/app2.png');">
@@ -66,18 +64,7 @@ require_once 'includes/header.php';
             </div>
         </div>
 
-        <!-- BLOQUE 3 
-        <div class="content-row content-row-default">
-            <div class="content-column content-text">
-                <h3>Todo desde tu teléfono</h3>
-                <p>Administra tus pagos, consulta tus cuotas activas y aprovecha promociones exclusivas. Con Quota App tienes el control total desde una sola aplicación, sin papeleos ni complicaciones.</p>
-            </div>
-            <div class="content-column content-image"
-                style="background-image: url('img/app2.png');">
-            </div>
-        </div>-->
-
-    </div>
+        </div>
 </section>
 
 
@@ -86,6 +73,40 @@ require_once 'includes/header.php';
 <?php
 include 'includes/floating.php';
 ?>
+
+<div id="proximamenteModal" class="custom-modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h3 class="modal-title">¡Próximamente! 🚀</h3>
+        <p class="modal-body-text">Estamos terminando los detalles finales para ofrecerte la mejor experiencia.</p>
+        <p class="modal-body-text">¡Regresa pronto!</p>
+    </div>
+</div>
 <?php
 require_once 'includes/footer.php';
 ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const btnDescargar = document.getElementById('btn-descargar-app');
+        const modal = document.getElementById('proximamenteModal');
+        const closeBtn = modal.querySelector('.close-btn');
+
+        // Función para abrir el modal
+        btnDescargar.addEventListener('click', function(e) {
+            e.preventDefault(); // Previene la navegación
+            modal.style.display = 'flex';
+        });
+
+        // Función para cerrar el modal con la 'X'
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Función para cerrar el modal haciendo click fuera
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+</script>

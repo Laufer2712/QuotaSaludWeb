@@ -142,7 +142,6 @@ try {
     } else {
         if ($httpCode == 200 || $httpCode == 201) {
             // Descomenta la siguiente línea para redireccionar en éxito
-             header('Location: ../form.php?estado=exito');
             // exit;
             
             echo "✅ Éxito: Solicitud enviada correctamente. HTTP Code: $httpCode";
@@ -166,5 +165,6 @@ try {
 } catch (Exception $e) {
     echo "Error de conexión: " . $e->getMessage();
 }
+  //header('Location: ../form.php?estado=exito');
 
 ?>
