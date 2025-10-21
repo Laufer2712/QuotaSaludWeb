@@ -534,56 +534,107 @@
         const faqData = {
             b2c: [{
                     question: "¿Qué es Quota Salud?",
-                    answer: "Quota Salud es una solución innovadora que te permite acceder a tratamientos médicos, odontológicos y exámenes complementarios a un diagnóstico, ofreciendo Facilidad de Pago en cuotas sin intereses y de forma segura. Nuestro propósito es que nunca dejes de cuidar tu salud por motivos económicos.",
+                    answer: "Quota Salud es una solución innovadora y una plataforma tecnológica que te permite acceder a tratamientos médicos y odontológicos con Facilidad de Pago en cuotas sin intereses y flexibles. Nuestro propósito es que nunca dejes de cuidar tu salud por motivos económicos.",
                     cta: "¿Quieres continuar con otra pregunta?"
                 },
                 {
                     question: "¿Dónde está ubicada Quota Salud?",
-                    answer: "Quota Salud está ubicada 100% en el ámbito digital. Somos una plataforma tecnológica. No somos una clínica ni un centro físico, sino la herramienta que te permite acceder y pagar en cuotas sin intereses por servicios de salud de alta calidad en cualquier centro médico u odontológico o establecimiento de la salud que esté registrado en Quota Salud, gracias a nuestra red de aliados.",
+                    answer: "Quota Salud está ubicada 100% en el ámbito digital; somos una plataforma tecnológica, somos la herramienta que te permite acceder y pagar en cuotas sin intereses por servicios de salud de alta calidad gracias a nuestra red de aliados.",
                     cta: "¿Quieres continuar con otra pregunta?"
                 },
                 {
                     question: "¿Cómo funciona Quota Salud?",
-                    answer: "Funcionar con nosotros es un proceso rápido, digital y en tres pasos: 1. Regístrate y Conoce tu Monto Disponible. 2. Activa tu Orden de Pago en un Centro o Profesional Aliado. 3. Comienza tu Tratamiento y Paga con Facilidad.",
+                    answer: "Funciona en tres pasos digitales y rápidos: 1. Te registras en la app y obtienes tu Monto Disponible (tope de uso). 2. En un Aliado, activas tu Orden de Servicio y pagas la Cuota Inicial. 3. Recibes tu tratamiento de inmediato, y el saldo restante se divide automáticamente en cuotas fijas sin ningún tipo de interés.",
                     cta: "¿Quieres continuar con otra pregunta?"
                 },
                 {
                     question: "¿Cuáles son los planes disponibles?",
-                    answer: "En QuotaSalud el plan eres tú y tus necesidades. No ofrecemos planes genéricos ni paquetes predefinidos, sino que te damos acceso a un abanico de servicios que se ajustan a lo que realmente necesitas. Nuestra propuesta se centra en la flexibilidad y personalización.",
+                    answer: "En QuotaSalud, el plan eres tú y tus necesidades. Te damos acceso a un abanico de servicios en nuestra Red de Aliados. Al registrarte, la plataforma asigna un Monto Disponible inicial. Al cumplir con tus pagos puntualmente, este Monto Disponible irá aumentando para más opciones.",
                     cta: "¿Quieres continuar con otra pregunta?"
                 },
                 {
                     question: "¿Cómo accedo a un plan?",
-                    answer: "Acceder a QuotaSalud es un proceso rápido y totalmente digital diseñado para llevarte directamente a tu tratamiento. Sigue estos sencillos pasos: 1. Regístrate y Descubre tu Potencial. 2. Obtén tu Monto Disponible. 3. Activa y Utiliza tu Facilidad de Pago.",
+                    answer: "Acceder es un proceso rápido y totalmente digital. Descarga la aplicación y completa tus datos básicos para obtener tu Monto Disponible. Luego, visita un centro aliado para seleccionar el tratamiento, confirma tu Orden de Servicio en Cuotas y pagas la Cuota Inicial del servicio.",
                     cta: "¿Quieres continuar con otra pregunta?"
                 },
                 {
                     question: "¿Qué requisitos necesito para registrarme?",
                     answer: "El proceso es sencillo, rápido y 100% digital. Solo necesitas ser Mayor de Edad y tener tu Cédula de Identidad Vigente, y proveer datos personales básicos como correo y teléfono activo.",
                     cta: "¿Quieres continuar con otra pregunta?"
+                },
+                {
+                    question: "¿Qué pasa si no pago a tiempo mi cuota?",
+                    answer: "La puntualidad es fundamental. Si te retrasas, se te aplicará un recargo según los términos de uso. Además, tu Monto Disponible será limitado o suspendido temporalmente, impidiendo activar nuevos servicios. Mantener tus pagos al día es clave para aumentar tu Monto Disponible progresivamente.",
+                    cta: "¿Quieres continuar con otra pregunta?"
+                },
+                {
+                    question: "¿Dónde puedo ver mis pagos y mi monto disponible?",
+                    answer: "Tienes control total y en tiempo real en la Aplicación Móvil de QuotaSalud. Al ingresar, verás tu Monto Disponible actualizado y listo para usar. También puedes consultar tu Historial de Pagos y el calendario de Próximas Cuotas con fechas y montos exactos.",
+                    cta: "¿Quieres continuar con otra pregunta?"
+                },
+                {
+                    question: "¿Puedo usar Quota Salud en cualquier clínica o doctor?",
+                    answer: "No. Solo puedes usar tu Facilidad de Pago en Cuotas sin Intereses en los cientos de centros médicos y odontológicos de nuestra Red de Aliados. Esto garantiza que recibas servicios de salud de alta calidad y profesionalismo. La activación del pago es un proceso tecnológico directo solo disponible con nuestros Aliados integrados.",
+                    cta: "¿Quieres continuar con otra pregunta?"
+                },
+                {
+                    question: "¿Qué pasa si necesito un tratamiento más costoso que mi monto disponible?",
+                    answer: "Si el costo excede tu Monto Disponible, puedes usar el monto actual para cubrir una parte del servicio. La diferencia restante debe ser cancelada directamente al Aliado al activar la Orden de Servicio. Recuerda que tu Monto Disponible aumentará progresivamente a medida que cumplas con tus pagos.",
+                    cta: "¿Quieres continuar con otra pregunta?"
+                },
+                {
+                    question: "¿Puedo cancelar mi plan en cualquier momento?",
+                    answer: "Sí, puedes cancelar tu cuenta o dar por terminado el uso de tu Facilidad de Pago en Cuotas en cualquier momento. La única condición para la cancelación es estar al día con todas las cuotas pendientes generadas por los tratamientos que ya activaste.",
+                    cta: "¿Quieres continuar con otra pregunta?"
+                },
+                {
+                    question: "¿Qué diferencia tiene Quota Salud con un seguro médico?",
+                    answer: "Quota Salud no es un seguro médico. El seguro cubre imprevistos y emergencias futuras. Quota Salud facilita la gestión y pago de tratamientos de salud planificados y necesarios ahora. Te da la capacidad para dividir el costo en cuotas fijas y sin intereses, sin depender de una póliza.",
+                    cta: "¿Quieres continuar con otra pregunta?"
+                },
+                {
+                    question: "¿Puedo tener más de un tratamiento activo a la vez?",
+                    answer: "Sí, puedes tener varios tratamientos activos simultáneamente, siempre que el costo total sea cubierto por tu Monto Disponible. La clave es mantener la puntualidad en todas tus cuotas activas, lo que permite que tu Monto Disponible vaya aumentando para darte mayor capacidad.",
+                    cta: "¿Quieres continuar con otra pregunta?"
                 }
             ],
             b2b: [{
                     question: "¿Qué es Quota Salud?",
                     answer: "Quota Salud es una herramienta estratégica de crecimiento para tu clínica. Te ayudamos a aumentar tus ventas y a captar más pacientes. A los pacientes les damos la posibilidad de organizar sus pagos en cómodas cuotas, eliminando el riesgo de perder oportunidades por motivos económicos.",
-                    cta: "¿Quieres continuar con otra pregunta?"
+                    cta: "¿Quieres que te muestre cómo Quota Salud puede ayudarte a aumentar la captación de pacientes en tu clínica desde este mes?"
+                },
+                {
+                    question: "¿Dónde opera Quota Salud?",
+                    answer: "Quota Salud opera en Venezuela y trabaja en alianza con centros médicos registrados en nuestra red. Una vez que tu clínica se registra, cualquier paciente con un Monto Disponible activo puede usarlo directamente en tus instalaciones.",
+                    cta: "¿Quieres que te guíe con los pasos para registrar tu clínica hoy mismo?"
                 },
                 {
                     question: "¿Cómo funciona para mi clínica?",
-                    answer: "Tu clínica se registra en nuestra plataforma. Los pacientes compran sus planes en tu clínica o de forma digital y tú recibes el pago completo de manera inmediata mientras el paciente paga cómodamente en cuotas.",
-                    cta: "¿Quieres continuar con otra pregunta?"
+                    answer: "Es un flujo sencillo y sin complejidad administrativa: Tu clínica se registra en Quota Salud como centro aliado. El paciente llega con su Monto Disponible en la app. Ustedes generan la orden de servicio desde el centro, reciben la confirmación y el pago inicial del paciente. El tratamiento se realiza, y tu clínica recibe los pagos según el esquema acordado, sin preocuparse por el cobro al paciente.",
+                    cta: "¿Quieres que agendemos una llamada para mostrarte todo el flujo de activación en detalle?"
                 },
                 {
-                    question: "¿Qué beneficios ofrece Quota Salud?",
-                    answer: "Incremento de ingresos, mayor captación de pacientes, facilidad administrativa y seguimiento completo de pagos sin riesgo de impago.",
-                    cta: "¿Quieres continuar con otra pregunta?"
+                    question: "¿Qué necesito para afiliarme como centro aliado?",
+                    answer: "El proceso de afiliación requiere documentación estándar para garantizar la transparencia y calidad de nuestra red: Documentación legal del centro (RIF, registro, etc.), manual de marca y logotipo en formato editable (SVG), información de contacto y responsable administrativo.",
+                    cta: "¿Quieres que te envíe ahora mismo el checklist de requisitos para que lo tengan listo?"
                 },
                 {
-                    question: "¿Qué requisitos necesito para registrar mi clínica?",
-                    answer: "Solo necesitas ser representante legal de tu clínica y proporcionar datos legales y bancarios válidos.",
-                    cta: "¿Quieres continuar con otra pregunta?"
+                    question: "¿Qué beneficios tiene para mi clínica?",
+                    answer: "Los beneficios se centran en el crecimiento y la seguridad: Aumento de ventas captando más pacientes que hoy no pueden pagar un tratamiento completo de contado; cero riesgo de impago, ya que tu clínica recibe los pagos sin asumir la gestión; fidelización de pacientes; y visibilidad digital dentro del sitio y la app de Quota Salud.",
+                    cta: "¿Quieres que te muestre un caso de cómo un centro aliado aumentó su flujo de pacientes en el primer mes?"
+                },
+                {
+                    question: "¿Cómo recibimos los pagos?",
+                    answer: "Los pagos son transparentes y se realizan bajo el esquema acordado en el convenio de alianza. El paciente organiza sus cuotas desde la app y tu centro recibe su parte con total puntualidad y sin riesgo administrativo.",
+                    cta: "¿Quieres que te comparta un ejemplo de cómo se liquidan los pagos en un caso real?"
+                },
+                {
+                    question: "¿Qué pasa si el paciente no cumple con sus cuotas?",
+                    answer: "La clínica no asume ese riesgo. Quota Salud se encarga y asume completamente la gestión del seguimiento y el cobro al paciente. Tu centro recibe lo acordado, evitando riesgos administrativos y garantizando total tranquilidad.",
+                    cta: "¿Quieres que te muestre cómo gestionamos la trazabilidad de cada paciente?"
                 }
             ]
+
         };
 
         // Keywords para matching
@@ -660,7 +711,7 @@
             chatBody.scrollTop = chatBody.scrollHeight;
         }
 
-        // Selector tipo usuario sin parpadeo
+        // Selector tipo usuario
         function showUserTypeSelector() {
             chatBody.innerHTML = "";
             addMessage('<div class="welcome-message">Bienvenido a Quota Salud</div>', 'bot');
@@ -679,15 +730,14 @@
             });
 
             const infoData = {
-                b2c: "<strong>Para usuarios:</strong> Somos la solución inmediata que les permite comenzar hoy mismo cualquier tratamiento de nuestra red de Aliados, utilizando monto disponible y gestionando el costo restante con nuestra facilidad de pago en cuotas sin intereses.",
-                b2b: "<strong>Para aliados/clínicas:</strong> Somos un canal de crecimiento garantizado que les permite atraer más pacientes, asegurar flujo constante de ingresos por servicios y evitar preocupaciones logísticas relacionadas con el cobro."
+                b2c: "<strong>Para usuarios:</strong> Comienza hoy mismo cualquier tratamiento de nuestra red de Aliados usando tu monto disponible y pagando en cuotas sin intereses.",
+                b2b: "<strong>Para aliados/clínicas:</strong> Atrae más pacientes y asegura flujo constante de ingresos sin preocuparte por cobros."
             };
 
             function createButton(type, text) {
                 const btn = document.createElement("button");
                 btn.classList.add("user-type-btn");
                 btn.innerText = text;
-
                 btn.addEventListener("mouseenter", () => infoBox.innerHTML = infoData[type]);
                 btn.onclick = () => {
                     selectedType = type;
@@ -704,7 +754,7 @@
             chatBody.appendChild(infoBox);
         }
 
-        // Mostrar opciones FAQ
+        // Opciones FAQ
         function showFaqOptions() {
             addMessage("Selecciona una pregunta de nuestra lista o escribe tu consulta:", 'bot');
             const container = document.createElement("div");
@@ -723,7 +773,7 @@
             chatBody.appendChild(container);
         }
 
-        // CTA (Sí/No)
+        // CTA Sí/No
         function askCTA(ctaText) {
             const container = document.createElement("div");
             container.classList.add("yes-no-buttons");
@@ -747,7 +797,7 @@
             chatBody.appendChild(container);
         }
 
-        // Enviar mensaje escrito con matching de keywords
+        // Enviar mensaje escrito con sugerencias
         function sendMessage() {
             const msg = chatInput.value.trim();
             if (!msg || !selectedType) return;
@@ -776,8 +826,43 @@
                 addMessage(bestMatch.answer, 'bot');
                 askCTA(bestMatch.cta);
             } else {
-                addMessage("Lo siento, no entendí tu pregunta. Por favor selecciona una de las opciones disponibles.", 'bot');
-                showFaqOptions();
+                // Si no hay coincidencia exacta, sugerir preguntas similares
+                const suggestions = keywordsArray
+                    .map(item => {
+                        let score = 0;
+                        for (const kw of item.keywords)
+                            if (msg.toLowerCase().includes(kw.toLowerCase())) score++;
+                        return {
+                            question: item.question,
+                            score
+                        };
+                    })
+                    .filter(x => x.score > 0)
+                    .sort((a, b) => b.score - a.score)
+                    .slice(0, 3) // máximo 3 sugerencias
+                    .map(x => x.question);
+
+                if (suggestions.length) {
+                    addMessage("No entendí exactamente tu pregunta, pero quizás te interesen estas opciones:", 'bot');
+                    const container = document.createElement("div");
+                    container.classList.add("chat-options");
+                    suggestions.forEach(q => {
+                        const btn = document.createElement("button");
+                        btn.classList.add("option-btn");
+                        btn.innerText = q;
+                        btn.onclick = () => {
+                            const selected = faqArray.find(f => f.question === q);
+                            addMessage(selected.question, 'user');
+                            addMessage(selected.answer, 'bot');
+                            askCTA(selected.cta);
+                        };
+                        container.appendChild(btn);
+                    });
+                    chatBody.appendChild(container);
+                } else {
+                    addMessage("Lo siento, no entendí tu pregunta. Por favor selecciona una de las opciones disponibles.", 'bot');
+                    showFaqOptions();
+                }
             }
         }
 
@@ -789,6 +874,7 @@
         // Inicial
         setTimeout(showUserTypeSelector, 500);
     </script>
+
 
 </body>
 
