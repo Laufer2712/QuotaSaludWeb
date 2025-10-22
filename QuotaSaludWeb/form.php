@@ -47,19 +47,19 @@ include('includes/header.php');
             <div class="form-row">
                 <div class="form-col">
                     <label for="name" class="required">Nombre</label>
-                    <input type="text" id="name" name="name" required pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$" title="Solo letras y espacios">
+                    <input type="text" id="name" name="name" required pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$" title="Solo letras y espacios" placeholder="Ej: María José">
                 </div>
                 <div class="form-col">
                     <label for="lastName" class="required">Apellido</label>
-                    <input type="text" id="lastName" name="lastName" required pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$" title="Solo letras y espacios">
+                    <input type="text" id="lastName" name="lastName" required pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$" title="Solo letras y espacios" placeholder="Ej: González Pérez">
                 </div>
                 <div class="form-col">
                     <label for="phone" class="required">Número de Whatsapp</label>
-                    <input type="tel" id="phone" name="phone" required pattern="^\d{10,15}$" title="Solo números, 10 a 15 dígitos">
+                    <input type="tel" id="phone" name="phone" required pattern="^\d{10,15}$" title="Solo números, 10 a 15 dígitos" placeholder="Ej: 584141234567">
                 </div>
                 <div class="form-col">
                     <label for="email" class="required">Correo Electrónico</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required placeholder="Ej: maria@empresa.com">
                 </div>
             </div>
 
@@ -77,11 +77,11 @@ include('includes/header.php');
                 </div>
                 <div class="form-col">
                     <label for="locationAddress" class="required">Ubicación</label>
-                    <input type="text" id="locationAddress" name="locationAddress" placeholder="Estado, Ciudad, Calle o referencia" required>
+                    <input type="text" id="locationAddress" name="locationAddress" placeholder="Ej: Caracas, Municipio Libertador, Av. Principal" required>
                 </div>
                 <div class="form-col">
                     <label for="mapsLink" class="required">Enlace de Google Maps</label>
-                    <input type="url" id="mapsLink" name="mapsLink" placeholder="https://maps.google.com/..." pattern="https?://.+" title="Debe ser un enlace válido de Google Maps" required>
+                    <input type="url" id="mapsLink" name="mapsLink" placeholder="Ej: https://maps.google.com/?q=Tu+Ubicación" pattern="https?://.+" title="Debe ser un enlace válido de Google Maps" required>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@ include('includes/header.php');
                 </div>
                 <div class="form-col">
                     <label for="socialMedia" class="required">¿Cuáles son tus redes?</label>
-                    <input type="text" id="socialMedia" name="socialMedia" placeholder="Escribe la red social o fuente" required>
+                    <input type="text" id="socialMedia" name="socialMedia" placeholder="Ej: Instagram @clinica_salud, Facebook Clínica Salud" required>
                 </div>
             </div>
 
@@ -155,7 +155,7 @@ include('includes/header.php');
                 </div>
                 <div class="form-col">
                     <label for="billingSystemName" class="required">Nombre del sistema de facturación</label>
-                    <input type="text" id="billingSystemName" name="billingSystemName" placeholder="Escribe el nombre del sistema">
+                    <input type="text" id="billingSystemName" name="billingSystemName" placeholder="Ej: SAP, ContSys, FacturaPlus">
                 </div>
                 <div class="form-col">
                     <label for="billingSystemAdaptable" class="required">¿Permite distintos métodos de pago?</label>
@@ -181,7 +181,8 @@ include('includes/header.php');
                     <label for="rifNumber" class="required">RIF</label>
                     <input type="text" id="rifNumber" name="rifNumber"
                         pattern="^[JGPE]{1}-\d{8}-\d$"
-                        title="Formato válido: J-12345678-9">
+                        title="Formato válido: J-12345678-9"
+                        placeholder="Ej: J-12345678-9">
                 </div>
 
                 <!-- Persona Natural -->
@@ -189,7 +190,8 @@ include('includes/header.php');
                     <label for="ciNumber" class="required">Cédula de Identidad</label>
                     <input type="text" id="ciNumber" name="ciNumber"
                         pattern="^\d{6,8}$"
-                        title="Formato válido: 12345678">
+                        title="Formato válido: 12345678"
+                        placeholder="Ej: 12345678">
                 </div>
             </div>
 
