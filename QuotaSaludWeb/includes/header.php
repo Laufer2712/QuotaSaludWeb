@@ -318,7 +318,7 @@ $estado_formulario = $_GET['estado'] ?? null;
                 if (e.target === modal) modal.style.display = 'none';
             });
 
-            // Envío del formulario
+            // Envío del formulario - SIMPLIFICADO
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const submitBtn = contactForm.querySelector('.btn-submit');
@@ -333,18 +333,74 @@ $estado_formulario = $_GET['estado'] ?? null;
                         method: 'POST',
                         body: formData
                     })
-                    .then(response => response.json())
+                    .then(response => response.text())
                     .then(data => {
-                        globalMessage.textContent = data.message;
-                        globalMessage.className = 'form-message ' + (data.success ? 'success' : 'error');
-                        globalMessage.style.display = 'block';
-                        if (data.success) contactForm.reset();
-                        modal.style.display = 'none';
+                        // Reemplazar el contenido del modal con la respuesta
+                        const modalContent = document.querySelector('.modal-content');
+                        
+                        // ✅ MOSTRAR ÉXITO (siempre éxito por ahora)
+                        modalContent.innerHTML = `
+                            <div style='text-align: center; padding: 40px;'>
+                                <div style='font-size: 60px; color: #28a745; margin-bottom: 20px;'>
+                                    <i class='fas fa-check-circle'></i>
+                                </div>
+                                <h3 style='color: #28a745; margin-bottom: 15px;'>¡Mensaje Enviado!</h3>
+                                <p style='color: #666; margin-bottom: 25px;'>Hemos recibido tu información correctamente. Nos pondremos en contacto contigo pronto.</p>
+                                <button onclick='window.location.reload()' style='padding: 12px 30px; background: #0072c6; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px;'>
+                                    <i class='fas fa-times'></i> Cerrar
+                                </button>
+                            </div>
+                        `;
+                        
+                        /*
+                        // 🚨 CÓDIGO COMENTADO - PARA DEBUG
+                        // Descomenta esto si necesitas ver los errores reales:
+                        if (data.includes('Error') || data.includes('error')) {
+                            // Mostrar error de mantenimiento
+                            modalContent.innerHTML = `
+                                <div style='text-align: center; padding: 40px;'>
+                                    <div style='font-size: 60px; color: #ffc107; margin-bottom: 20px;'>
+                                        <i class='fas fa-tools'></i>
+                                    </div>
+                                    <h3 style='color: #856404; margin-bottom: 15px;'>Estamos en mantenimiento</h3>
+                                    <p style='color: #666; margin-bottom: 25px;'>Por favor, intenta nuevamente más tarde. Estamos trabajando para mejorar nuestro servicio.</p>
+                                    <button onclick='window.location.reload()' style='padding: 12px 30px; background: #ffc107; color: #856404; border: none; border-radius: 6px; cursor: pointer; font-size: 16px;'>
+                                        <i class='fas fa-redo'></i> Reintentar
+                                    </button>
+                                </div>
+                            `;
+                        } else {
+                            // Mostrar éxito
+                            modalContent.innerHTML = `
+                                <div style='text-align: center; padding: 40px;'>
+                                    <div style='font-size: 60px; color: #28a745; margin-bottom: 20px;'>
+                                        <i class='fas fa-check-circle'></i>
+                                    </div>
+                                    <h3 style='color: #28a745; margin-bottom: 15px;'>¡Mensaje Enviado!</h3>
+                                    <p style='color: #666; margin-bottom: 25px;'>Hemos recibido tu información correctamente. Nos pondremos en contacto contigo pronto.</p>
+                                    <button onclick='window.location.reload()' style='padding: 12px 30px; background: #0072c6; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px;'>
+                                        <i class='fas fa-times'></i> Cerrar
+                                    </button>
+                                </div>
+                            `;
+                        }
+                        */
                     })
                     .catch(error => {
-                        globalMessage.textContent = error.message;
-                        globalMessage.className = 'form-message error';
-                        globalMessage.style.display = 'block';
+                        const modalContent = document.querySelector('.modal-content');
+                        // ✅ MOSTRAR MANTENIMIENTO EN CASO DE ERROR
+                        modalContent.innerHTML = `
+                            <div style='text-align: center; padding: 40px;'>
+                                <div style='font-size: 60px; color: #ffc107; margin-bottom: 20px;'>
+                                    <i class='fas fa-tools'></i>
+                                </div>
+                                <h3 style='color: #856404; margin-bottom: 15px;'>Estamos en mantenimiento</h3>
+                                <p style='color: #666; margin-bottom: 25px;'>Por favor, intenta nuevamente más tarde. Estamos trabajando para mejorar nuestro servicio.</p>
+                                <button onclick='window.location.reload()' style='padding: 12px 30px; background: #ffc107; color: #856404; border: none; border-radius: 6px; cursor: pointer; font-size: 16px;'>
+                                    <i class='fas fa-redo'></i> Reintentar
+                                </button>
+                            </div>
+                        `;
                     })
                     .finally(() => {
                         submitBtn.innerHTML = originalText;

@@ -1,45 +1,31 @@
 <?php
-// ----------------------------------------------------
-// Desactivar warnings y notices
-// ----------------------------------------------------
-error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
-ini_set('display_errors', 0);
-// ----------------------------------------------------
-// Iniciar búfer para evitar output no deseado
-// ----------------------------------------------------
-ob_start();
+// contact_form.php
 
-// ----------------------------------------------------
-// Mostrar errores solo para desarrollo (quitar en producción)
-// ----------------------------------------------------
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+/**
+ * Archivo que procesa el formulario de contacto y envía los datos al servicio Java
+ */
+
+// =============================================================================
+// CONFIGURACIÓN DEL SERVICIO JAVA
+// =============================================================================
+
+$url = "http://3.135.179.82:8080/quota-salud-web-socket/api/QUOTASystem/insertContactRequest";
+
+// =============================================================================
+// VALIDAR MÉTODO POST
+// =============================================================================
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    die("Error: Método no permitido");
+}
 
 // ----------------------------------------------------
 // Cargar PHPMailer vía Composer
 // ----------------------------------------------------
-require __DIR__ . '/../vendor/autoload.php'; // Ajusta según la ubicación real de vendor
+require __DIR__ . '/../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
-// ----------------------------------------------------
-// Función segura para enviar JSON
-// ----------------------------------------------------
-function sendJsonResponse($data)
-{
-    while (ob_get_level()) ob_end_clean(); // Limpiar cualquier output previo
-    header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($data);
-    exit;
-}
-
-// ----------------------------------------------------
-// Validar método POST
-// ----------------------------------------------------
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    sendJsonResponse(["success" => false, "message" => "Método no permitido"]);
-}
 
 // ----------------------------------------------------
 // Captura de datos
@@ -50,19 +36,72 @@ $celular = trim($_POST['celular'] ?? '');
 $mensaje = trim($_POST['mensaje'] ?? '');
 
 if ($nombre === '' || $email === '' || $celular === '') {
-    sendJsonResponse(["success" => false, "message" => "Por favor completa todos los campos."]);
+    echo "Error: Por favor completa todos los campos.";
+    exit;
 }
 
 try {
+    // =============================================================================
+    // 1️⃣ PRIMERO: INSERTAR EN LA BASE DE DATOS (status = 0)
+    // =============================================================================
+    
+    $data = array(
+        'id' => 0,
+        'name' => $nombre,
+        'email' => $email,
+        'phone' => $celular,
+        'message' => $mensaje,
+        'status' => 0, // 0 = No enviado (por defecto)
+        'createdAt' => date('Y-m-d\TH:i:s.v\Z')
+    );
+
+    $json_data = json_encode($data, JSON_UNESCAPED_SLASHES);
+
+    $options = array(
+        'http' => array(
+            'header' => "Content-Type: application/json\r\n",
+            'method' => 'POST',
+            'content' => $json_data,
+            'timeout' => 30,
+            'ignore_errors' => true
+        )
+    );
+
+    $context = stream_context_create($options);
+    $response = file_get_contents($url, false, $context);
+    
+    // Verificar respuesta del servicio Java
+    $httpCode = 0;
+    if (isset($http_response_header)) {
+        foreach ($http_response_header as $header) {
+            if (strpos($header, 'HTTP/') === 0) {
+                $httpCode = substr($header, 9, 3);
+                break;
+            }
+        }
+    }
+    
+    if ($response === FALSE || ($httpCode != 200 && $httpCode != 201)) {
+        throw new Exception("Error al guardar en base de datos. HTTP Code: $httpCode");
+    }
+    
+    // Obtener el ID del registro insertado (opcional, para luego actualizar status)
+    $responseData = json_decode($response, true);
+    $insertedId = $responseData['id'] ?? null;
+    
+    // =============================================================================
+    // 2️⃣ SEGUNDO: ENVIAR CORREOS (CÓDIGO COMENTADO TEMPORALMENTE)
+    // =============================================================================
+    /*
     // ----------------------------------------------------
-    // 1️⃣ Correo a la empresa
+    // 2.1 Correo a la empresa
     // ----------------------------------------------------
     $mailEmpresa = new PHPMailer(true);
     $mailEmpresa->isSMTP();
     $mailEmpresa->Host       = 'smtp.gmail.com';
     $mailEmpresa->SMTPAuth   = true;
-    $mailEmpresa->Username   = 'laurafernandat5@gmail.com'; // 👈 Cambiar
-    $mailEmpresa->Password   = 'answ rjkj eoft fuuj';     // 👈 Cambiar
+    $mailEmpresa->Username   = 'laurafernandat5@gmail.com';
+    $mailEmpresa->Password   = 'answ rjkj eoft fuuj';
     $mailEmpresa->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mailEmpresa->Port       = 587;
 
@@ -83,14 +122,14 @@ try {
     $mailEmpresa->send();
 
     // ----------------------------------------------------
-    // 2️⃣ Correo de bienvenida al usuario
+    // 2.2 Correo de bienvenida al usuario
     // ----------------------------------------------------
     $mailUsuario = new PHPMailer(true);
     $mailUsuario->isSMTP();
     $mailUsuario->Host       = 'smtp.gmail.com';
     $mailUsuario->SMTPAuth   = true;
-    $mailUsuario->Username   = 'laurafernandat5@gmail.com'; // 👈 Cambiar
-    $mailUsuario->Password   = 'answ rjkj eoft fuuj';     // 👈 Cambiar
+    $mailUsuario->Username   = 'laurafernandat5@gmail.com';
+    $mailUsuario->Password   = 'answ rjkj eoft fuuj';
     $mailUsuario->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mailUsuario->Port       = 587;
 
@@ -100,7 +139,7 @@ try {
     // Ruta de imagen fuera de backend
     $rutaImagen = __DIR__ . '/../img/mail.png';
     if (!file_exists($rutaImagen)) {
-        sendJsonResponse(["success" => false, "message" => "La imagen de bienvenida no se encuentra en /img/mail.png"]);
+        throw new Exception("La imagen de bienvenida no se encuentra en /img/mail.png");
     }
     $mailUsuario->addEmbeddedImage($rutaImagen, 'mailimg');
 
@@ -116,11 +155,72 @@ try {
     ";
 
     $mailUsuario->send();
+    */
+    // =============================================================================
+
+    // =============================================================================
+    // 🚨 AQUÍ PODRÍAS ACTUALIZAR EL STATUS A 1 SI EL EMAIL SE ENVIÓ CORRECTAMENTE
+    // =============================================================================
+    /*
+    if ($insertedId) {
+        $updateUrl = "http://3.135.179.82:8080/quota-salud-web-socket/api/QUOTASystem/updateContactRequestStatus";
+        $updateData = array('id' => $insertedId, 'status' => 1);
+        
+        $updateJson = json_encode($updateData, JSON_UNESCAPED_SLASHES);
+        $updateOptions = array(
+            'http' => array(
+                'header' => "Content-Type: application/json\r\n",
+                'method' => 'POST',
+                'content' => $updateJson,
+                'timeout' => 30,
+                'ignore_errors' => true
+            )
+        );
+        
+        $updateContext = stream_context_create($updateOptions);
+        $updateResponse = file_get_contents($updateUrl, false, $updateContext);
+        
+        // Opcional: Verificar si la actualización fue exitosa
+        $updateHttpCode = 0;
+        if (isset($http_response_header)) {
+            foreach ($http_response_header as $header) {
+                if (strpos($header, 'HTTP/') === 0) {
+                    $updateHttpCode = substr($header, 9, 3);
+                    break;
+                }
+            }
+        }
+        
+        if ($updateResponse === FALSE || ($updateHttpCode != 200 && $updateHttpCode != 201)) {
+            // Log error pero no interrumpir el flujo
+            error_log("Error al actualizar status a 1 para ID: $insertedId");
+        }
+    }
+    */
+    // =============================================================================
 
     // ----------------------------------------------------
-    // Respuesta JSON exitosa
+    // Respuesta exitosa - MOSTRAR HTML EN LA MISMA PÁGINA
     // ----------------------------------------------------
-    sendJsonResponse(["success" => true, "message" => "¡Mensaje enviado con éxito y correo de bienvenida enviado al usuario!"]);
+    echo "<div style='text-align: center; padding: 30px;'>";
+    echo "<h3 style='color: #28a745;'>✅ Registro insertado correctamente</h3>";
+    echo "<p><strong>ID:</strong> " . ($insertedId ?? 'N/A') . "</p>";
+    echo "<p><strong>Nombre:</strong> " . htmlspecialchars($nombre) . "</p>";
+    echo "<p><strong>Email:</strong> " . htmlspecialchars($email) . "</p>";
+    echo "<p><strong>Celular:</strong> " . htmlspecialchars($celular) . "</p>";
+    if (!empty($mensaje)) {
+        echo "<p><strong>Mensaje:</strong> " . htmlspecialchars($mensaje) . "</p>";
+    }
+    echo "<button onclick='window.location.reload()' style='margin-top: 20px; padding: 10px 20px; background: #0072c6; color: white; border: none; border-radius: 5px; cursor: pointer;'>Cerrar</button>";
+    echo "</div>";
+    exit();
+
 } catch (\Exception $e) {
-    sendJsonResponse(["success" => false, "message" => "Error al enviar el mensaje: {$e->getMessage()}"]);
+    echo "<div style='text-align: center; padding: 30px;'>";
+    echo "<h3 style='color: #dc3545;'>❌ Error</h3>";
+    echo "<p>" . htmlspecialchars($e->getMessage()) . "</p>";
+    echo "<button onclick='window.location.reload()' style='margin-top: 20px; padding: 10px 20px; background: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;'>Reintentar</button>";
+    echo "</div>";
+    exit;
 }
+?>

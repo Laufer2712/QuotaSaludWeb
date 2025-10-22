@@ -165,22 +165,8 @@ try {
             // Descomenta la siguiente línea para redireccionar en éxito
             // header('Location: ../form.php?estado=exito');
             // exit;
-            
-            echo "✅ Éxito: Solicitud enviada correctamente. HTTP Code: $httpCode";
-            
-            // Mostrar respuesta si es JSON
-            $responseData = json_decode($response, true);
-            if (json_last_error() === JSON_ERROR_NONE && isset($responseData['id'])) {
-                echo "<br>ID generado: " . $responseData['id'];
-            }
-            
-            // Mostrar info del archivo si se subió
-            if ($documentRifCiBase64) {
-                echo "<br>📎 Archivo codificado en base64 (" . strlen($documentRifCiBase64) . " caracteres)";
-                echo "<br>📝 DNI enviado: " . $dni;
-            } else {
-                echo "<br>⚠️ No se subió ningún archivo o hubo un error al procesarlo";
-            }
+            header('Location: ../solicitud-exitosa.php');
+            exit();
         } else {
             echo "❌ Error HTTP: $httpCode - " . $response;
         }
@@ -189,5 +175,4 @@ try {
     echo "Error de conexión: " . $e->getMessage();
 }
 
- header('Location: ../solicitud-exitosa.php');
 ?>
