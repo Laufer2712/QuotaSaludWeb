@@ -6,8 +6,8 @@ include('includes/header.php');
 <div class="container">
     <div class="process-info">
         <h2>Ruta de activación: Pasos para unirte a la red de Aliados Quota Salud</h2>
-        <p>Para comenzar, se requiere una inversión única de USD 100 + IVA, que incluye todo lo necesario para prestar su servicio de salud con la facilidad del manejo de CxC que ofrece QS.</p>
-        <p>El proceso completo de activación puede demorar hasta 20 días, dentro de los cuales QS ejecuta las siguientes acciones:</p>
+        <p>Para asegurar la activación y el soporte tecnológico, se requiere una inversión operativa única de USD 100 + IVA. Este monto cubre la configuración e implementación de todas las herramientas necesarias para garantizar el flujo de ingresos en tu centro.</p>
+        <p>La Ruta de Activación para comenzar a operar con Quota Salud toma un período estimado de hasta 20 días. Durante este plazo, ejecutamos las siguientes acciones clave para su integración:</p>
         <ul>
             <li>Validación de información</li>
             <li>Firma del contrato</li>

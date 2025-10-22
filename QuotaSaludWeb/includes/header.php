@@ -89,29 +89,34 @@ $estado_formulario = $_GET['estado'] ?? null;
     </script>
     <!-- Mensaje global flotante -->
     <div id="globalMessage" class="form-message" style="display: none; position: fixed; top: 20px; right: 20px; z-index: 10001;"></div>
-
     <!-- MODAL DE CONTACTO -->
     <div id="contactModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2>Contáctanos</h2>
+
             <form id="contactForm" class="contact-form">
-                <div class="form-group">
+                <!-- Nombre completo (una sola columna) -->
+                <div class="form-group full-width">
                     <label for="nombre">Nombre completo *</label>
                     <input type="text" id="nombre" name="nombre" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Correo electrónico *</label>
-                    <input type="email" id="email" name="email" required>
+                <!-- Correo y celular en dos columnas -->
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label for="email">Correo electrónico *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group half-width">
+                        <label for="celular">Número de celular *</label>
+                        <input type="tel" id="celular" name="celular" required>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="celular">Número de celular *</label>
-                    <input type="tel" id="celular" name="celular" required>
-                </div>
-
-                <div class="form-group">
+                <!-- Mensaje -->
+                <div class="form-group full-width">
                     <label for="mensaje">Mensaje (opcional)</label>
                     <textarea id="mensaje" name="mensaje" rows="3" placeholder="¿En qué podemos ayudarte?"></textarea>
                 </div>
@@ -124,7 +129,7 @@ $estado_formulario = $_GET['estado'] ?? null;
     </div>
 
     <style>
-        /* ESTILOS MODAL */
+        /* MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -133,7 +138,6 @@ $estado_formulario = $_GET['estado'] ?? null;
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
             background-color: rgba(0, 0, 0, 0.6);
             transition: all 0.3s ease-in-out;
         }
@@ -144,7 +148,7 @@ $estado_formulario = $_GET['estado'] ?? null;
             padding: 30px;
             border-radius: 12px;
             width: 90%;
-            max-width: 500px;
+            max-width: 600px;
             position: relative;
             animation: slideIn 0.3s ease-out;
         }
@@ -174,18 +178,36 @@ $estado_formulario = $_GET['estado'] ?? null;
             color: #0072c6;
         }
 
-        /* Estilos del formulario */
+        /* FORMULARIO */
         .contact-form {
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
             text-align: left;
         }
 
+        .full-width {
+            width: 100%;
+        }
+
+        .half-width {
+            flex: 1;
+            min-width: 200px;
+        }
+
         .form-group label {
-            display: block;
             margin-bottom: 8px;
             font-weight: 600;
             color: #333;
@@ -225,78 +247,16 @@ $estado_formulario = $_GET['estado'] ?? null;
             background-color: #005a9e;
         }
 
-        .btn-submit:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        /* Mensajes globales */
-        .form-message.success,
-        .form-message.error {
-            padding: 15px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            animation: fadeInOut 4s forwards;
-        }
-
-        .form-message.success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .form-message.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        @keyframes fadeInOut {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            10% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            90% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            100% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-        }
-
-        /* Responsive */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .modal-content {
-                margin: 10% auto;
-                padding: 20px;
-                width: 95%;
-            }
-
-            .form-group input,
-            .form-group textarea {
-                padding: 10px;
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .modal-content {
-                margin: 5% auto;
-                padding: 15px;
+            .form-row {
+                flex-direction: column;
             }
         }
     </style>
 
+
+    <!-- ================= SECCIÓN NUESTRO COMPROMISO ================= -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('contactModal');
@@ -337,7 +297,7 @@ $estado_formulario = $_GET['estado'] ?? null;
                     .then(data => {
                         // Reemplazar el contenido del modal con la respuesta
                         const modalContent = document.querySelector('.modal-content');
-                        
+
                         // ✅ MOSTRAR ÉXITO (siempre éxito por ahora)
                         modalContent.innerHTML = `
                             <div style='text-align: center; padding: 40px;'>
@@ -351,7 +311,7 @@ $estado_formulario = $_GET['estado'] ?? null;
                                 </button>
                             </div>
                         `;
-                        
+
                         /*
                         // 🚨 CÓDIGO COMENTADO - PARA DEBUG
                         // Descomenta esto si necesitas ver los errores reales:
