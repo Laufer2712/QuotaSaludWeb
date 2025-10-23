@@ -127,9 +127,9 @@ require_once 'includes/header.php';
 
         <!-- Mensaje motivador y CTA -->
         <div class="benefits-cta">
-            <ul class="nota-grid">
-                <li class="nota-item">
-                    <div class="nota-text">
+            <ul class="requisito-grid">
+                <li class="requisito-item">
+                    <div class="requisito-text">
                         <h3>Convierte tu Centro en un Aliado Estratégico.</h3>
                         <p>Únete hoy para aumentar tu flujo de pacientes y asegurar cada ingreso.</p>
                     </div>
