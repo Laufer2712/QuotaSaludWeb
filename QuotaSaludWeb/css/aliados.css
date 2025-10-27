@@ -405,6 +405,7 @@ section .container {
   align-items: flex-start;
   gap: 8px;
   transition: transform 0.3s ease, color 0.3s ease;
+  text-align: left;
 }
 
 .benefits-list li:last-child {

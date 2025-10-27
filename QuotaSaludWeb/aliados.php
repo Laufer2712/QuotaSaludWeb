@@ -50,7 +50,7 @@ require_once 'includes/header.php';
             <!-- Card 1 -->
             <div class="card-item">
                 <div class="card-image">
-                    <img src="img/MayorFlujo.png" alt="Flujo de Pacientes">
+                    <img src="assets/Cobro.png" alt="Flujo de Pacientes">
                 </div>
                 <div class="card-content">
                     <div class="feature-header">
@@ -69,7 +69,7 @@ require_once 'includes/header.php';
             <!-- Card 2 -->
             <div class="card-item">
                 <div class="card-image">
-                    <img src="img/Impago.png" alt="Cero Riesgo de Impago">
+                    <img src="assets/Fideliza.png" alt="Cero Riesgo de Impago">
                 </div>
                 <div class="card-content">
                     <div class="feature-header">
@@ -88,7 +88,7 @@ require_once 'includes/header.php';
             <!-- Card 3 -->
             <div class="card-item">
                 <div class="card-image">
-                    <img src="img/Potencial.png" alt="Potencial de Alto Costo">
+                    <img src="assets/Gestion.png" alt="Potencial de Alto Costo">
                 </div>
                 <div class="card-content">
                     <div class="feature-header">
@@ -107,7 +107,7 @@ require_once 'includes/header.php';
             <!-- Card 4 -->
             <div class="card-item">
                 <div class="card-image">
-                    <img src="img/Apoyo.png" alt="Apoyo en Marketing Digital">
+                    <img src="assets/Soporte.png" alt="Apoyo en Marketing Digital">
                 </div>
                 <div class="card-content">
                     <div class="feature-header">
