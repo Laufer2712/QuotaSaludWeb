@@ -280,53 +280,62 @@ section .container {
   width: 100%;
   padding: 0 10px;
 }
-
-/* ================== BENEFITS ULTRA-COMPACTO ================== */
+/* ================== BENEFITS COMPACT 2X2 ================== */
 .benefits-section-container {
-  max-width: 850px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 8px 6px;
+  padding: 50px 20px;
   text-align: center;
 }
 
-/* GRID 2X2 con gap minimalista */
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  margin-bottom: 0.5rem;
+  color: var(--color-primary-dark);
+  font-weight: 700;
+}
+
+.section-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: var(--color-text-medium);
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  line-height: 1.5;
+}
+
+/* GRID 2X2 */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.8rem;
-  margin: 15px 0;
+  gap: 2rem;
 }
 
-/* CARD MINIMALISTA */
+/* CARD COMPACT */
 .card-item {
-  background-color: #fff;
-  border-radius: 0.6rem;
-  overflow: hidden;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  opacity: 0;
-  transform: translateY(12px);
-  animation: fadeInUp 0.5s ease forwards;
-  cursor: pointer;
-  will-change: transform, box-shadow;
-}
-
-/* Hover sofisticado */
-.card-item:hover {
-  transform: translateY(-6px) scale(1.03) rotateZ(0.3deg);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
-  filter: brightness(1.05);
-}
-
-/* Imagen compacta con efecto hover */
-.card-image {
-  width: 100%;
-  height: 130px;
+  flex-direction: row;
+  border-radius: 1rem;
   overflow: hidden;
-  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 200px;
+}
+
+.card-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* IMAGEN IZQUIERDA */
+.card-image {
+  flex: 1;
+  min-width: 120px;
+  max-width: 180px;
+  height: 100%;
+  overflow: hidden;
 }
 
 .card-image img {
@@ -337,107 +346,185 @@ section .container {
 }
 
 .card-item:hover .card-image img {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
-/* Contenido reducido y centrado */
+/* CONTENIDO DERECHA */
 .card-content {
-  padding: 0.5rem 0.6rem;
-  flex-grow: 1;
+  flex: 2;
+  padding: 1rem 1.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
+  justify-content: center;
+  color: #fff;
 }
 
+/* TITULO */
 .feature-header h3 {
-  font-size: clamp(1rem, 6vw, 1rem);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 10px;
-  background-image: linear-gradient(
-    to right,
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(
+    90deg,
     var(--color-primary-dark),
-    var(--color-primary-light),
     var(--color-accent-light),
-    var(--color-primary-light),
-    var(--color-primary-dark)
+    var(--color-green-dark)
   );
-  background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  animation: gradient-animation 6s ease-in-out infinite;
+  background-clip: text;
   background-size: 200% auto;
+  animation: gradientFlow 6s linear infinite;
 }
 
-@keyframes gradient-animation {
-  0%,
-  100% {
+/* DESCRIPCIÓN */
+.card-description {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  color: rgba(0, 0, 0, 0.95);
+  text-align: left;
+}
+
+/* LISTA DE BENEFICIOS */
+.benefits-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.benefits-list li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.95);
+  text-align: left;
+}
+
+.benefits-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--color-green-dark);
+  font-weight: bold;
+}
+
+/* ANIMACION DE GRADIENTE */
+@keyframes gradientFlow {
+  0% {
     background-position: 0% 50%;
   }
   50% {
     background-position: 100% 50%;
   }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.card-description {
-  color: #555;
-  font-size: 1rem;
-  line-height: 1.25;
-  margin: 0 0 0.3rem;
-  text-align: left;
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-item {
+    flex-direction: row;
+    min-height: 180px;
+  }
+  .card-image {
+    max-width: 140px;
+  }
+  .card-content {
+    padding: 1rem;
+  }
 }
 
-/* ================== LISTA DE BENEFICIOS MINIMALISTA ================== */
-.benefits-list {
-  list-style: none;
-  margin: 10px 0 0;
-  padding: 0 0 0 0.5rem;
-  font-size: 0.75rem;
+@media (max-width: 550px) {
+  .card-item {
+    flex-direction: column;
+  }
+  .card-image {
+    width: 100%;
+    height: 180px;
+  }
+  .card-content {
+    padding: 1rem;
+    min-height: auto;
+  }
+  .feature-header h3 {
+    font-size: 1.2rem;
+  }
+  .card-description {
+    font-size: 0.9rem;
+  }
+  .benefits-list li {
+    font-size: 0.85rem;
+  }
 }
 
-.benefits-list li {
-  padding: 6px 0;
-  color: #5a6c7d;
-  line-height: 1.4;
-  border-bottom: 1px solid #f0f0f0;
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  transition: transform 0.3s ease, color 0.3s ease;
-  text-align: left;
+/* TABLETS: mantener 2x2 */
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    gap: 1rem;
+  }
+  .card-item {
+    flex-direction: row;
+    min-height: 180px;
+  }
+  .card-image {
+    height: 120px; /* altura compacta */
+    min-width: 100px;
+    max-width: 140px;
+  }
+  .card-content {
+    padding: 0.8rem 1rem;
+  }
+  .feature-header h3 {
+    font-size: 1rem;
+  }
+  .card-description {
+    font-size: 0.75rem;
+  }
+  .benefits-list li {
+    font-size: 0.7rem;
+  }
 }
 
-.benefits-list li:last-child {
-  border-bottom: none;
+/* Cards móviles */
+@media (max-width: 600px) {
+  .feature-header h3 {
+    font-size: 1.9rem; /* más grande que antes */
+  }
+
+  .card-description {
+    font-size: 2rem; /* legible */
+    line-height: 1.5;
+  }
 }
 
-.benefits-list li::before {
-  content: "•";
-  color: var(--color-green-main);
-  font-weight: bold;
-  font-size: 1rem;
-  flex-shrink: 0;
+/* Requisitos móviles */
+@media (max-width: 480px) {
+  .requisito-text h3 {
+    font-size: 1.1rem; /* subir un poco */
+  }
+
+  .requisito-text p {
+    font-size: 1rem; /* subir un poco */
+    line-height: 1.4;
+  }
 }
 
-.benefits-list li:hover {
-  transform: translateX(5px);
-  color: var(--color-green-dark);
-}
+@media (max-width: 360px) {
+  .requisito-text h3 {
+    font-size: 1rem;
+  }
 
-/* CTA compacto */
-.benefits-cta {
-  margin-top: 15px;
-  opacity: 0;
-  transform: translateY(12px);
-  animation: fadeInUp 0.5s ease 0.4s forwards;
-}
-
-/* Animación */
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .requisito-text p {
+    font-size: 0.9rem;
   }
 }
 
@@ -465,44 +552,6 @@ section .container {
 .show-requisitos-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 10px rgba(130, 201, 84, 0.4);
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .cards-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.6rem;
-  }
-  .card-image {
-    height: 110px;
-  }
-  .feature-header h3 {
-    font-size: 0.85rem;
-  }
-  .card-description {
-    font-size: 0.6rem;
-  }
-  .benefits-list {
-    font-size: 0.65rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .cards-grid {
-    grid-template-columns: 1fr;
-  }
-  .card-image {
-    height: 90px;
-  }
-  .feature-header h3 {
-    font-size: 0.8rem;
-  }
-  .card-description {
-    font-size: 0.55rem;
-  }
-  .benefits-list {
-    font-size: 0.6rem;
-  }
 }
 
 /* ================== BOTÓN REQUISITOS ================== */
@@ -1232,4 +1281,12 @@ section .container {
   #seccion-requisitos {
     background-size: cover;
   }
+}
+
+.benefits-cta {
+  margin-top: 60px; /* más espacio sobre el CTA */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* espacio entre texto y botones */
 }
