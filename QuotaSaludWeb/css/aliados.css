@@ -38,7 +38,7 @@ section {
   align-items: center;
   position: relative;
   width: 100%;
-  min-height: 60vh;
+  min-height: 70vh;
   overflow: hidden;
 }
 
@@ -905,7 +905,7 @@ section .container {
   .aliados-texto-columna,
   .aliados-imagen {
     width: 100%;
-    min-height: 50vh;
+    min-height: 60vh;
   }
 
   .aliados-texto {
@@ -955,7 +955,7 @@ section .container {
 
 @media (max-width: 480px) {
   .container-aliados {
-    margin-top: 20px;
+    margin-top: 50px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
 
